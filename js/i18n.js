@@ -1,6 +1,6 @@
 /**
  * @file i18n.js
- * @description Locale engine — Russian (default) and English UI.
+ * @description Locale engine — English (default) and Russian UI.
  */
 'use strict';
 
@@ -10,7 +10,7 @@ const SUPPORTED_LOCALES = Object.freeze(['ru', 'en']);
 
 const AppI18n = {
   /** @type {AppLocale} */
-  _locale: 'ru',
+  _locale: 'en',
 
   /** @returns {AppLocale} */
   getLocale() {
@@ -32,8 +32,8 @@ const AppI18n = {
   },
 
   init() {
-    const saved = AppStorage.getString(STORAGE_KEYS.LANGUAGE, 'ru');
-    this._locale = SUPPORTED_LOCALES.includes(saved) ? /** @type {AppLocale} */ (saved) : 'ru';
+    const saved = AppStorage.getString(STORAGE_KEYS.LANGUAGE, 'en');
+    this._locale = SUPPORTED_LOCALES.includes(saved) ? /** @type {AppLocale} */ (saved) : 'en';
     document.documentElement.lang = this._locale;
     document.title = this.t('meta.title');
     this.bindContentGlobals();
@@ -201,6 +201,7 @@ const AppI18n = {
       settingsEddLbl: 'settings.eddLabel',
       settingsEddUpdate: 'settings.eddUpdate',
       settingsClearBtn: 'settings.clearData',
+      settingsFooter: 'settings.footer',
       couponModalLbl: 'coupon.modalLabel',
       couponScreenshotHint: 'coupon.screenshotHint',
       couponExpiry: 'coupon.expiry',
@@ -236,7 +237,13 @@ const AppI18n = {
       medPauseLbl: 'medForm.pauseLabel',
       galAddBtn: 'gallery.addPhoto',
       galDelBtn: 'gallery.deletePhoto',
-      tmsgTap: 'hero.tmsgTap',
+      annivTitle: 'anniv.title',
+      annivSub: 'anniv.defaultSub',
+      heroTitle: 'hero.defaultTitle',
+      qTxt: 'hero.quoteLoading',
+      babyT: 'hero.babyDefault',
+      tmText: 'hero.tmsgLoading',
+      medMoTitle: 'medForm.new',
       qNoteSig: 'hero.quoteSignature',
       qNoteTap: 'hero.quoteTapHint',
       babyAuthor: 'hero.babyAuthor',
@@ -252,6 +259,7 @@ const AppI18n = {
       gBtnBLbl: 'gender.boy',
       lSign: 'letter.signDefault',
       tmsgFrom: 'hero.tmsgDefaultFrom',
+      tmsgTap: 'hero.tmsgTap',
     };
     Object.entries(byId).forEach(([id, key]) => {
       const el = document.getElementById(id);
@@ -265,6 +273,8 @@ const AppI18n = {
       diaryT: 'meds.diaryPlaceholder',
       medNameIn: 'medForm.namePlaceholder',
       medDoseIn: 'medForm.dosePlaceholder',
+      medIconIn: 'medForm.iconPlaceholder',
+      medDetIn: 'medForm.notePlaceholder',
     };
     Object.entries(phById).forEach(([id, key]) => {
       const el = document.getElementById(id);
@@ -294,6 +304,7 @@ const AppI18n = {
     document.querySelectorAll('#nav .nb .nav-lbl').forEach((el, i) => {
       if (navKeys[i]) el.textContent = this.t(navKeys[i]);
     });
+    if (typeof updateCallButton === 'function') updateCallButton();
   },
 
   /**

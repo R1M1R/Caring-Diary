@@ -78,8 +78,8 @@ const UI_I18N = {
     'hero.breathingReady': 'Нажми на круг, когда будешь готова',
     'hero.waterTitle': '💧 Водичка',
     'hero.waterSub': 'Пей за двоих! Норма: 8 стаканов в день',
-    'hero.ultrasoundTitle': '📸 Фото УЗИ',
-    'hero.ultrasoundSub': 'Сохрани здесь любимое фото УЗИ',
+    'hero.ultrasoundTitle': '📸 Наше чудо',
+    'hero.ultrasoundSub': 'Сохрани здесь наше любимое фото УЗИ',
     'hero.ultrasoundAdd': 'Добавить фото',
     'hero.ultrasoundAlt': 'Наш малыш',
     'hero.kicksTitle': '👣 Шевеления малыша',
@@ -267,7 +267,7 @@ const UI_I18N = {
 
     // ── Journal ──
     'journal.pageTitle': 'Дневник',
-    'journal.pageDesc': 'История настроений, вес и фото животика по неделям',
+    'journal.pageDesc': 'История настроений, вес и наш животик по неделям',
     'journal.moodHistoryTitle': '📊 История настроений',
     'journal.moodHistorySub': 'Последние 14 дней',
     'journal.weightTitle': '⚖️ Весовой трекер',
@@ -380,6 +380,7 @@ const UI_I18N = {
     'settings.eddUpdate': 'Обновить дату',
     'settings.clearData': 'Очистить все данные',
     'settings.clearConfirm': 'Это удалит все данные и фотографии. Точно сбрасываем?',
+    'settings.footer': 'Дневник заботы · HealthTech portfolio demo 🤍',
 
     // ── Coupon modal ──
     'coupon.modalLabel': 'Купон на:',
@@ -471,13 +472,13 @@ const UI_I18N = {
 
   en: {
     // ── Meta ──
-    'meta.title': 'Care Diary 🤍',
+    'meta.title': 'Caring Diary 🤍',
     'meta.description': 'Your pregnancy companion — daily trackers, evidence-based facts, and gentle support',
     'meta.shortName': 'Care',
     'meta.appleTitle': 'Care Diary',
 
     // ── Splash ──
-    'splash.title': 'Care Diary',
+    'splash.title': 'Caring Diary',
     'splash.tagline': 'Your companion on the journey to motherhood 🤍',
 
     // ── Setup ──
@@ -541,8 +542,8 @@ const UI_I18N = {
     'hero.breathingReady': 'Tap the circle when you\'re ready',
     'hero.waterTitle': '💧 Hydration',
     'hero.waterSub': 'Stay hydrated for two! Goal: 8 glasses per day',
-    'hero.ultrasoundTitle': '📸 Our Miracle',
-    'hero.ultrasoundSub': 'Save your favorite ultrasound photo here',
+    'hero.ultrasoundTitle': '📸 Ultrasound Photo',
+    'hero.ultrasoundSub': 'Save your favorite ultrasound image here',
     'hero.ultrasoundAdd': 'Add photo',
     'hero.ultrasoundAlt': 'Our baby',
     'hero.kicksTitle': '👣 Baby Movements',
@@ -843,6 +844,7 @@ const UI_I18N = {
     'settings.eddUpdate': 'Update date',
     'settings.clearData': 'Clear all data',
     'settings.clearConfirm': 'This will delete all data and photos. Are you sure?',
+    'settings.footer': 'Caring Diary · HealthTech portfolio demo 🤍',
 
     // ── Coupon modal ──
     'coupon.modalLabel': 'Coupon for:',

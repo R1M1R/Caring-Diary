@@ -352,9 +352,7 @@ function getLocalizedFaqs() {
 }
 
 function getLocalizedSmartTips(w) {
-  if (AppI18n.getLocale() === 'en') return getSmartTipsEn(w);
-  if (typeof getSmartTipsRu === 'function') return getSmartTipsRu(w);
-  return [];
+  return AppI18n.getLocale() === 'en' ? getSmartTipsEn(w) : null;
 }
 
 function getLocalizedGenderMsgs() {
@@ -365,7 +363,7 @@ function getLocalizedGenderFacts() {
   return AppI18n.getLocale() === 'en' ? genderFactsEn : null;
 }
 
-/** English trimester body-change cards (week-specific RU cards in body-changes-ru.js). */
+/** English trimester body-change cards (week-specific cards stay RU-only in index.html). */
 const bodyChangesEn = {
   t1: [
     { type: 'bc-warn', icon: '🤢', title: 'Morning sickness', text: 'Nausea is driven by rising hCG and estrogen, often peaking around weeks 9–10 and easing by 12–14. A plain cracker before getting up may help.' },

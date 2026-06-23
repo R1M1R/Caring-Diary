@@ -1,0 +1,11 @@
+{
+  "name": "caring-diary",
+  "private": true,
+  "description": "Caring Diary — English-first pregnancy PWA for Upwork portfolio",
+  "scripts": {
+    "start": "npx --yes serve . -p 4173",
+    "preview": "npm run start",
+    "verify": "node scripts/verify-smoke.js",
+    "icons": "python scripts/optimize-icons.py"
+  }
+}

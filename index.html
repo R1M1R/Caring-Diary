@@ -1,16 +1,26 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>Дневник заботы 🤍</title>
-<meta name="description" content="Дневник беременности — забота, трекеры и поддержка каждый день">
-<meta name="theme-color" content="#E8325A">
+<title>Caring Diary 🤍</title>
+<meta name="description" content="Your pregnancy companion — daily trackers, evidence-based facts, and gentle support">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Caring Diary 🤍">
+<meta property="og:description" content="Your pregnancy companion — daily trackers, evidence-based facts, and gentle support">
+<meta property="og:url" content="https://r1m1r.github.io/Caring-Diary/">
+<meta property="og:image" content="https://r1m1r.github.io/Caring-Diary/apple-icon.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Caring Diary 🤍">
+<meta name="twitter:description" content="Your pregnancy companion — daily trackers, evidence-based facts, and gentle support">
+<meta name="twitter:image" content="https://r1m1r.github.io/Caring-Diary/apple-icon.png">
+<link rel="canonical" href="https://r1m1r.github.io/Caring-Diary/">
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="apple-icon.png">
+<link rel="apple-touch-startup-image" href="splash-iphone.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Дневник заботы">
+<meta name="apple-mobile-web-app-title" content="Caring Diary">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Lora:ital,wght@0,500;0,600;1,500;1,600&family=Nunito:wght@400;600;700;800;900&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
 <script>
 // Inline confetti - no Web Worker (avoids blob: security error in previews)
@@ -501,8 +511,9 @@ input:checked+.tog-sl::before{transform:translateX(22px)}
 .nb.act span:first-child{transform:scale(1.3) translateY(-4px);filter:drop-shadow(0 5px 14px rgba(232,50,90,0.5));}
 
 /* ══ SETUP ══ */
-#setupScreen{display:flex;min-height:100vh;flex-direction:column;align-items:center;justify-content:center;padding:24px;position:relative;z-index:2}
-.setup-card{background:var(--card);border:1px solid var(--cb);border-radius:36px;padding:44px 32px;text-align:center;box-shadow:var(--sh);width:100%;max-width:360px}
+#setupScreen{display:flex;min-height:100vh;flex-direction:column;align-items:center;justify-content:center;padding:24px;position:relative;z-index:2;background:linear-gradient(160deg,var(--bg) 0%,var(--rose4) 45%,var(--bg2) 100%)}
+.setup-card{background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.65);border-radius:36px;padding:44px 32px;text-align:center;box-shadow:0 24px 64px rgba(232,50,90,.11),0 8px 28px rgba(0,0,0,.06);width:100%;max-width:360px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
+html.dark .setup-card{background:rgba(22,4,16,.9);border-color:rgba(255,255,255,.08)}
 input[type=date],input[type=text],textarea,input[type=number]{font-family:'Nunito',sans-serif;border:2px solid var(--cb);background:var(--bg2);color:var(--t1);border-radius:16px;outline:none;transition:border-color .3s,box-shadow .3s}
 input:focus,textarea:focus{border-color:var(--rose);box-shadow:0 0 0 4px rgba(232,50,90,.13)}
 
@@ -1433,8 +1444,8 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
 <div id="splash">
   <div class="sp-orb sp-orb1"></div><div class="sp-orb sp-orb2"></div><div class="sp-orb sp-orb3"></div>
   <div class="sp-heart">💗</div>
-  <div class="sp-title" id="spTitle">Дневник заботы</div>
-  <div class="sp-name" id="spName">Твой спутник на пути к материнству 🤍</div>
+  <div class="sp-title" id="spTitle">Caring Diary</div>
+  <div class="sp-name" id="spName">Your companion on the journey to motherhood 🤍</div>
   <div class="sp-heart-small">🌸 💕 ✨ 💖 🌷</div>
   <div class="sp-dots"><div class="sp-dot"></div><div class="sp-dot"></div><div class="sp-dot"></div></div>
 </div>
@@ -1448,16 +1459,16 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
 <div id="setupScreen" style="display:none">
   <div class="setup-card">
     <div style="font-size:88px;animation:spBeat 2s ease-in-out infinite;display:block;margin-bottom:18px">🤍</div>
-    <div style="font-family:'Playfair Display',serif;font-size:34px;font-style:italic;font-weight:900;margin-bottom:12px" id="setupWelcome">Добро пожаловать!</div>
-    <p style="font-size:14px;font-weight:700;color:var(--t3);line-height:1.68;margin-bottom:18px" id="setupDesc">Персональный дневник беременности: трекеры, факты и поддержка каждый день. Укажи предполагаемую дату родов (ПДР).</p>
-    <input type="text" id="userNameIn" placeholder="Как к тебе обращаться? (необязательно)" maxlength="32" style="width:100%;font-size:16px;padding:14px;text-align:center;font-weight:700;margin-bottom:12px;border-radius:16px;border:2px solid var(--cb);background:var(--bg2);font-family:'Nunito',sans-serif">
+    <div style="font-family:'Playfair Display',serif;font-size:34px;font-style:italic;font-weight:900;margin-bottom:12px" id="setupWelcome">Welcome!</div>
+    <p style="font-size:14px;font-weight:700;color:var(--t3);line-height:1.68;margin-bottom:18px" id="setupDesc">A personal pregnancy diary with trackers, weekly facts, and daily support. Enter your estimated due date (EDD).</p>
+    <input type="text" id="userNameIn" placeholder="What should we call you? (optional)" maxlength="32" style="width:100%;font-size:16px;padding:14px;text-align:center;font-weight:700;margin-bottom:12px;border-radius:16px;border:2px solid var(--cb);background:var(--bg2);font-family:'Nunito',sans-serif">
     <input type="date" id="eddDate" style="width:100%;font-size:18px;padding:16px;text-align:center;font-weight:800;margin-bottom:14px">
-    <div style="font-size:13px;font-weight:800;color:var(--t3);margin-bottom:8px" id="setupLangLbl">Язык / Language</div>
+    <div style="font-size:13px;font-weight:800;color:var(--t3);margin-bottom:8px" id="setupLangLbl">Language / Язык</div>
     <div style="display:flex;gap:8px;margin-bottom:18px">
-      <button type="button" id="setupLangRu" onclick="setAppLanguage('ru')" style="flex:1;border-radius:14px;padding:10px;border:2px solid var(--cb);background:var(--bg2);font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;cursor:pointer">Русский</button>
       <button type="button" id="setupLangEn" onclick="setAppLanguage('en')" style="flex:1;border-radius:14px;padding:10px;border:2px solid var(--cb);background:var(--bg2);font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;cursor:pointer">English</button>
+      <button type="button" id="setupLangRu" onclick="setAppLanguage('ru')" style="flex:1;border-radius:14px;padding:10px;border:2px solid var(--cb);background:var(--bg2);font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;cursor:pointer">Русский</button>
     </div>
-    <button class="lq" id="setupStartBtn" onclick="saveEDD()">Начать путь ✨</button>
+    <button class="lq" id="setupStartBtn" onclick="saveEDD()">Begin your journey ✨</button>
   </div>
 </div>
 
@@ -1469,8 +1480,8 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
     <div id="tab-home" class="tab-c act" style="padding-top:0">
       <div id="annexBanner" style="display:none" class="anniv">
         <div style="font-size:38px;margin-bottom:8px;position:relative;z-index:1">✨🎉✨</div>
-        <div style="font-family:'Playfair Display',serif;font-size:30px;font-style:italic;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.2);position:relative;z-index:1">Особенный день!</div>
-        <div style="font-size:14px;font-weight:800;color:rgba(255,255,255,.9);margin-top:8px;position:relative;z-index:1">Ты делаешь невероятное каждый день ❤️</div>
+        <div style="font-family:'Playfair Display',serif;font-size:30px;font-style:italic;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.2);position:relative;z-index:1" id="annivTitle">A Special Day!</div>
+        <div style="font-size:14px;font-weight:800;color:rgba(255,255,255,.9);margin-top:8px;position:relative;z-index:1" id="annivSub">You do something incredible every day ❤️</div>
       </div>
 
       <!-- ── HERO ZONE: баннер пола + герой — единый блок ── -->
@@ -1489,18 +1500,18 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
         <div class="hero-streak">🔥 <span id="streakNum">0</span></div>
         <div class="hero-date" id="heroDate"></div>
         <div id="heroTrimBadge" style="display:inline-flex;align-items:center;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.35);border-radius:50px;padding:3px 10px;font-size:9px;font-weight:900;color:rgba(255,255,255,0.85);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px;backdrop-filter:blur(8px)"></div>
-        <div class="hero-title" id="heroTitle">С заботой о тебе</div>
+        <div class="hero-title" id="heroTitle">Caring for you</div>
         <div class="hero-bottom">
           <div class="hero-chip">
             <div>
               <div class="hero-chip-num" id="heroWeek">—</div>
-              <div class="hero-chip-lbl" id="heroChipLbl">недель &amp; <span id="heroWD">0</span> дн. <span id="heroEmoji">🌸</span></div>
+              <div class="hero-chip-lbl" id="heroChipLbl">weeks &amp; <span id="heroWD">0</span> d. <span id="heroEmoji">🌸</span></div>
             </div>
           </div>
           <div class="hero-edd">
-            <div style="font-size:9px;font-weight:800;color:rgba(255,255,255,.68);text-transform:uppercase;letter-spacing:1px" id="heroUntilLbl">До встречи</div>
+            <div style="font-size:9px;font-weight:800;color:rgba(255,255,255,.68);text-transform:uppercase;letter-spacing:1px" id="heroUntilLbl">Until we meet</div>
             <div class="hero-edd-num" id="heroDaysLeft">—</div>
-            <div style="font-size:9px;font-weight:700;color:rgba(255,255,255,.68)" id="heroDaysUnit">дней</div>
+            <div style="font-size:9px;font-weight:700;color:rgba(255,255,255,.68)" id="heroDaysUnit">days</div>
           </div>
         </div>
         <div class="hero-progress-bar"><div class="hero-progress-fill" id="heroProgressFill" style="width:0%"></div></div>
@@ -1511,20 +1522,20 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
       <div id="smartTips" style="margin-top:4px"></div>
 
       <div class="cd-bar">
-        <div class="cd-title" id="cdTitle">✨ До встречи с малышом</div>
+        <div class="cd-title" id="cdTitle">✨ Countdown to baby</div>
         <div class="cd-grid">
-          <div class="cd-unit"><div class="cd-num" id="cdD">--</div><div class="cd-lbl" id="cdLblD">дней</div></div>
-          <div class="cd-unit"><div class="cd-num" id="cdH">--</div><div class="cd-lbl" id="cdLblH">часов</div></div>
-          <div class="cd-unit"><div class="cd-num" id="cdM">--</div><div class="cd-lbl" id="cdLblM">минут</div></div>
+          <div class="cd-unit"><div class="cd-num" id="cdD">--</div><div class="cd-lbl" id="cdLblD">days</div></div>
+          <div class="cd-unit"><div class="cd-num" id="cdH">--</div><div class="cd-lbl" id="cdLblH">hours</div></div>
+          <div class="cd-unit"><div class="cd-num" id="cdM">--</div><div class="cd-lbl" id="cdLblM">minutes</div></div>
         </div>
       </div>
 
       <div class="tmsg" id="tmCard" onclick="nextTMsg()">
-        <div class="tmsg-badge" id="tmBadge">Утро</div>
+        <div class="tmsg-badge" id="tmBadge">Morning ☀️</div>
         <div class="tmsg-icon" id="tmIcon">💌</div>
-        <div class="tmsg-from" id="tmsgFrom">Послание поддержки</div>
-        <div class="tmsg-text" id="tmText">Загружаю любовь...</div>
-        <div class="tmsg-tap" id="tmsgTap">тапни — следующее ↻</div>
+        <div class="tmsg-from" id="tmsgFrom">A message of support</div>
+        <div class="tmsg-text" id="tmText">Loading love...</div>
+        <div class="tmsg-tap" id="tmsgTap">tap — next message ↻</div>
       </div>
 
       <div class="card">
@@ -1541,32 +1552,32 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
             </svg>
             <div class="ring-c">
               <div class="ring-num" id="wkNum">0</div>
-              <div class="ring-lbl" id="ringLbl">недель</div>
-              <div class="ring-days" id="wkDays">0 дней</div>
+              <div class="ring-lbl" id="ringLbl">weeks</div>
+              <div class="ring-days" id="wkDays">and 0 d.</div>
             </div>
           </div>
           <div class="badges">
-            <div class="badge b-teal">🌿 <span id="sizeT">Размер: --</span></div>
-            <div class="badge b-plum"><span id="sizeE">👶</span> <span id="cdBadge">-- дн.</span></div>
+            <div class="badge b-teal">🌿 <span id="sizeT">Size: --</span></div>
+            <div class="badge b-plum"><span id="sizeE">👶</span> <span id="cdBadge">-- d.</span></div>
             <div class="badge b-gold" id="weightBadge" style="display:none">⚖️ <span id="wBadge">— г</span></div>
             <div class="badge b-rose" id="lengthBadge" style="display:none">📏 <span id="lBadge">— см</span></div>
           </div>
           
           <!-- FETUS SIZE VISUAL -->
           <div class="fetus-visual" id="fetusVisual">
-            <div style="font-size:11px;font-weight:900;color:var(--t3);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px" id="fetusCompareTitle">Малыш сейчас как...</div>
+            <div style="font-size:11px;font-weight:900;color:var(--t3);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px" id="fetusCompareTitle">Baby is about the size of...</div>
             <div class="fetus-row">
-              <div class="fetus-obj"><div class="fetus-em" id="fetusEm1">🥭</div><div class="fetus-lbl" id="fetusLbl1">манго</div></div>
+              <div class="fetus-obj"><div class="fetus-em" id="fetusEm1">🥭</div><div class="fetus-lbl" id="fetusLbl1">mango</div></div>
               <div class="fetus-vs">≈</div>
-              <div class="fetus-obj"><div class="fetus-em" id="fetusEm2">✋</div><div class="fetus-lbl" id="fetusLbl2">ладошка</div></div>
+              <div class="fetus-obj"><div class="fetus-em" id="fetusEm2">✋</div><div class="fetus-lbl" id="fetusLbl2">a hand</div></div>
             </div>
           </div>
           <div id="factT" class="fact-card"></div>
           <!-- Quote note - tappable, rotates quotes -->
-          <div class="q-note" onclick="nextQuote()" id="qNote" title="Тапни — другая цитата">
+          <div class="q-note" onclick="nextQuote()" id="qNote" data-i18n-title="hero.quoteTitle">
             <div class="q-pin">📌</div>
-            <div class="q-txt" id="qTxt">Загружаю мою любовь...</div>
-            <div class="q-sig"><span id="qNoteSig">— с любовью 🤍</span> <span id="qNoteTap" style="font-size:10px;opacity:.4;margin-left:8px;font-family:'Nunito',sans-serif">тапни для новой цитаты ↻</span></div>
+            <div class="q-txt" id="qTxt">Loading a little love...</div>
+            <div class="q-sig"><span id="qNoteSig">— with love 🤍</span> <span id="qNoteTap" style="font-size:10px;opacity:.4;margin-left:8px;font-family:'Nunito',sans-serif">tap for a new quote ↻</span></div>
           </div>
         </div>
       </div>
@@ -1577,7 +1588,7 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
             <span style="font-size:26px">💝</span>
             <div>
-            <div style="font-size:12px;font-weight:900;color:var(--rose);text-transform:uppercase;letter-spacing:1.5px" id="careTipTitle">Совет дня</div>
+            <div style="font-size:12px;font-weight:900;color:var(--rose);text-transform:uppercase;letter-spacing:1.5px" id="careTipTitle">Tip of the Day</div>
               <div style="font-size:11px;font-weight:700;color:var(--t3)" id="careTime"></div>
             </div>
           </div>
@@ -1589,8 +1600,8 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
         <div class="baby-card" onclick="babyKiss()">
           <div class="baby-em">👶</div>
           <div>
-            <div class="baby-txt" id="babyT">Мамочка, я расту и очень тебя люблю!</div>
-            <div class="baby-author" id="babyAuthor">малыш пишет 💕 · тапни чтобы сменить</div>
+            <div class="baby-txt" id="babyT">Mommy, I'm growing and I love you so much!</div>
+            <div class="baby-author" id="babyAuthor">baby writes 💕 · tap to change</div>
           </div>
         </div>
       </div>
@@ -1598,44 +1609,44 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
       <!-- BODY CHANGES CARD -->
       <div class="card" id="bodyChangesCard">
         <div class="cb">
-          <div class="sh" id="bodyChangesTitle">🌸 Твоё тело сейчас</div>
-          <div class="ssub" id="bodyChangesSub">Что происходит с мамой на этой неделе</div>
+          <div class="sh" id="bodyChangesTitle">🌸 Your Body Right Now</div>
+          <div class="ssub" id="bodyChangesSub">What's happening for you this week</div>
           <div id="bodyChangesContent"></div>
         </div>
       </div>
 
       <div class="card">
         <div class="cb">
-          <div class="sh" id="lettersTitle">💌 Письма поддержки</div>
-          <div class="ssub" id="lettersSub">Выбери, что чувствуешь сейчас — тёплые слова уже здесь для тебя</div>
+          <div class="sh" id="lettersTitle">💌 Support Letters</div>
+          <div class="ssub" id="lettersSub">Choose how you feel — warm words are here for you</div>
           <div class="lg">
-            <button class="lb lb1" onclick="openLetter('anxiety')"><em>🥺</em><span id="letterBtnAnxiety">Мне тревожно</span></button>
-            <button class="lb lb2" onclick="openLetter('tired')"><em>😫</em><span id="letterBtnTired">Я устала</span></button>
-            <button class="lb lb3" onclick="openLetter('sad')"><em>😢</em><span id="letterBtnSad">Мне грустно</span></button>
-            <button class="lb lb4" onclick="openLetter('love')"><em>❤️</em><span id="letterBtnLove">Нужна поддержка</span></button>
-            <button class="lb lb1" onclick="openLetter('games')" style="grid-column:span 2;background:rgba(99,102,241,.13)"><em>🎮</em><span id="letterBtnGames">Хочу отвлечься</span></button>
+            <button class="lb lb1" onclick="openLetter('anxiety')"><em>🥺</em><span id="letterBtnAnxiety">I'm anxious</span></button>
+            <button class="lb lb2" onclick="openLetter('tired')"><em>😫</em><span id="letterBtnTired">I'm tired</span></button>
+            <button class="lb lb3" onclick="openLetter('sad')"><em>😢</em><span id="letterBtnSad">I'm sad</span></button>
+            <button class="lb lb4" onclick="openLetter('love')"><em>❤️</em><span id="letterBtnLove">Need support</span></button>
+            <button class="lb lb1" onclick="openLetter('games')" style="grid-column:span 2;background:rgba(99,102,241,.13)"><em>🎮</em><span id="letterBtnGames">Need a distraction</span></button>
           </div>
         </div>
       </div>
 
       <div class="card" style="border:2px dashed rgba(212,160,23,.4)">
         <div class="cpn-inner">
-          <div class="sh" id="couponTitle" style="color:#8A5800">🎟️ Чековая книжка</div>
-          <div class="ssub" id="couponSub" style="color:rgba(138,88,0,.65)">Вытяни купон и поделись с близким человеком!</div>
-          <button class="cpn-btn" id="couponBtn" onclick="openCoupon()">Вытянуть купон ✨</button>
+          <div class="sh" id="couponTitle" style="color:#8A5800">🎟️ Coupon book</div>
+          <div class="ssub" id="couponSub" style="color:rgba(138,88,0,.65)">Draw a coupon and share it with someone close!</div>
+          <button class="cpn-btn" id="couponBtn" onclick="openCoupon()">Draw a coupon ✨</button>
         </div>
       </div>
 
       <div class="card">
         <div class="cb">
-          <div class="sh" id="moodTitle">✨ Как ты себя чувствуешь?</div>
-          <div class="ssub" id="moodSub">Отметь настроение — я хочу знать 💕</div>
-          <div class="mood-row" role="group" aria-label="Выбери настроение">
-            <button class="mb" onclick="saveMood('😊',this)" aria-label="Хорошее настроение" aria-pressed="false">😊</button>
-            <button class="mb" onclick="saveMood('🥰',this)" aria-label="Влюблённое настроение" aria-pressed="false">🥰</button>
-            <button class="mb" onclick="saveMood('🥱',this)" aria-label="Устала" aria-pressed="false">🥱</button>
-            <button class="mb" onclick="saveMood('🤢',this)" aria-label="Тошнит" aria-pressed="false">🤢</button>
-            <button class="mb" onclick="saveMood('✨',this)" aria-label="Сияю" aria-pressed="false">✨</button>
+          <div class="sh" id="moodTitle">✨ How are you feeling?</div>
+          <div class="ssub" id="moodSub">Log your mood — I want to know 💕</div>
+          <div class="mood-row" role="group" data-i18n-aria="mood.groupAria">
+            <button class="mb" onclick="saveMood('😊',this)" data-i18n-aria="mood.happy" aria-pressed="false">😊</button>
+            <button class="mb" onclick="saveMood('🥰',this)" data-i18n-aria="mood.loving" aria-pressed="false">🥰</button>
+            <button class="mb" onclick="saveMood('🥱',this)" data-i18n-aria="mood.tired" aria-pressed="false">🥱</button>
+            <button class="mb" onclick="saveMood('🤢',this)" data-i18n-aria="mood.nauseous" aria-pressed="false">🤢</button>
+            <button class="mb" onclick="saveMood('✨',this)" data-i18n-aria="mood.shining" aria-pressed="false">✨</button>
           </div>
           <div class="mood-resp" id="moodR"></div>
         </div>
@@ -1643,16 +1654,16 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
 
       <div class="card">
         <div class="cb">
-          <div class="sh" id="faqTitle">🫂 Спокойствие мамы</div>
-          <div class="ssub" id="faqSub">Ответы на частые вопросы</div>
+          <div class="sh" id="faqTitle">🫂 Peace of Mind</div>
+          <div class="ssub" id="faqSub">Answers to common questions</div>
           <div id="faqBox"></div>
         </div>
       </div>
 
       <div class="card">
         <div class="cb" style="text-align:center">
-          <div class="sh" id="breathingTitle">🌬️ Подышим вместе?</div>
-          <div class="ssub" id="breathingSub">Снимает тревогу и успокаивает пульс</div>
+          <div class="sh" id="breathingTitle">🌬️ Breathe with me?</div>
+          <div class="ssub" id="breathingSub">Eases anxiety and steadies your pulse</div>
           <div class="br-wrap">
             <div class="br-stage" id="brStage">
               <!-- Постоянные кольца-ауры -->
@@ -1667,19 +1678,19 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
               <div id="brDots" style="position:absolute;inset:0;pointer-events:none;z-index:2"></div>
               <!-- Основная кнопка -->
               <div class="br-circle" id="brC" onclick="toggleBr()">
-                <span id="brTit" style="font-size:18px;font-weight:900">Начать</span>
+                <span id="brTit" style="font-size:18px;font-weight:900">Start</span>
                 <span id="brSec" style="font-size:13px;font-weight:700;opacity:.75;margin-top:4px"></span>
               </div>
             </div>
           </div>
-          <p id="brTxt" style="font-size:13px;font-weight:700;color:var(--t3);margin-top:8px">Нажми на круг, когда будешь готова</p>
+          <p id="brTxt" style="font-size:13px;font-weight:700;color:var(--t3);margin-top:8px">Tap the circle when you're ready</p>
         </div>
       </div>
 
       <div class="card">
         <div class="cb">
-          <div class="sh" id="waterTitle">💧 Водичка</div>
-          <div class="ssub" id="waterSub">Пей за двоих! Норма: 8 стаканов в день</div>
+          <div class="sh" id="waterTitle">💧 Hydration</div>
+          <div class="ssub" id="waterSub">Stay hydrated for two! Goal: 8 glasses per day</div>
           <div class="water-row" id="waterRow"></div>
           <div id="waterTxt" style="text-align:center;font-size:12px;font-weight:800;color:var(--t3);margin-top:12px"></div>
         </div>
@@ -1687,10 +1698,10 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
 
       <div class="card">
         <div class="cb">
-          <div class="sh" id="ultrasoundTitle">📸 Наше чудо</div>
-          <div class="ssub" id="ultrasoundSub">Сохрани здесь любимое фото УЗИ</div>
+          <div class="sh" id="ultrasoundTitle">📸 Ultrasound Photo</div>
+          <div class="ssub" id="ultrasoundSub">Save your favorite ultrasound image here</div>
           <div class="pf" id="photoF" onclick="document.getElementById('uziI').click()">
-            <div id="photoPlaceholder" style="text-align:center"><div style="font-size:64px;margin-bottom:10px">👼</div><div id="photoPlaceholderLbl" style="font-size:14px;font-weight:800;color:var(--t3)">Добавить фото</div></div>
+            <div id="photoPlaceholder" style="text-align:center"><div style="font-size:64px;margin-bottom:10px">👼</div><div id="photoPlaceholderLbl" style="font-size:14px;font-weight:800;color:var(--t3)">Add photo</div></div>
             <img id="uziImg" src="" alt="" style="display:none">
           </div>
           <input type="file" id="uziI" accept="image/*" style="display:none" onchange="loadUziPhoto(event)">
@@ -1699,8 +1710,8 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
 
       <div class="card" id="kickCard" style="display:none">
         <div class="cb" style="text-align:center">
-          <div class="sh" id="kickTitle">👣 Шевеления малыша</div>
-          <div class="ssub" id="kickSub">Считаем пиночки! Норма: 10+ движений за 2 часа. Сбрасывается каждый день.</div>
+          <div class="sh" id="kickTitle">👣 Baby kicks</div>
+          <div class="ssub" id="kickSub">Count those kicks! Norm: 10+ movements in 2 hours. Resets daily.</div>
           <div class="kick-big" id="kickN">0</div>
           <div style="display:flex;justify-content:center;margin-top:18px"><button class="kick-btn" onclick="addKick()">🦶</button></div>
           <div id="kickTip" style="font-size:13px;font-weight:700;color:var(--t3);margin-top:14px;line-height:1.5"></div>
@@ -1709,8 +1720,8 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
 
       <div class="card">
         <div class="cb">
-          <a href="tel:" id="callBtn" class="call-btn">📞 Экстренный звонок</a>
-          <p id="callBtnSub" style="text-align:center;font-size:11px;font-weight:900;color:var(--rose);margin-top:14px;letter-spacing:2px;text-transform:uppercase">Добавь номер в настройках</p>
+          <a href="tel:" id="callBtn" class="call-btn">📞 Emergency call</a>
+          <p id="callBtnSub" style="text-align:center;font-size:11px;font-weight:900;color:var(--rose);margin-top:14px;letter-spacing:2px;text-transform:uppercase">Add a number in settings</p>
         </div>
       </div>
     </div>
@@ -1718,40 +1729,40 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
     <!-- ── MEDS ── -->
     <div id="tab-meds" class="tab-c">
       <div style="padding-top:16px">
-        <div class="page-h1" id="medsPageTitle">План заботы</div>
-        <p style="font-size:14px;font-weight:700;color:var(--t3);margin-bottom:18px" id="medsPageDesc">Отмечай приём, добавляй и редактируй препараты — всё сохраняется на телефоне 💊</p>
+        <div class="page-h1" id="medsPageTitle">Care Plan</div>
+        <p style="font-size:14px;font-weight:700;color:var(--t3);margin-bottom:18px" id="medsPageDesc">Track doses, add and edit medications — everything stays on your phone 💊</p>
         <div class="med-toolbar">
-          <button type="button" class="med-add-btn" id="medAddBtn" onclick="openMedForm(null)">＋ Добавить препарат</button>
+          <button type="button" class="med-add-btn" id="medAddBtn" onclick="openMedForm(null)">＋ Add medication</button>
           <div class="med-next-pill" id="medNextPill">—</div>
         </div>
         <div class="card"><div class="cb">
           <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:var(--t3);margin-bottom:10px">
-            <span id="medDoneLbl">Выполнено сегодня</span><span id="pgT" style="color:var(--rose)">0%</span>
+            <span id="medDoneLbl">Completed today</span><span id="pgT" style="color:var(--rose)">0%</span>
           </div>
           <div class="pg-track"><div class="pg-fill" id="pgBar" style="width:0%"></div></div>
           <div id="medsInfo" style="font-size:12px;font-weight:700;color:var(--t3);margin-top:10px;text-align:center"></div>
         </div></div>
         <div id="schedC"></div>
         <div id="finishC" style="display:none;margin-top:14px;animation:cIn .5s ease backwards">
-          <button class="lq" onclick="finishDay()" id="finBtn">🌟 Завершить день!</button>
-          <p id="finMsg" style="display:none;text-align:center;font-size:18px;font-weight:900;color:var(--rose);margin-top:14px;padding:18px;background:rgba(232,50,90,.09);border-radius:20px;border:1px solid rgba(232,50,90,.18)">Умничка! Я так тобой горжусь ❤️</p>
+          <button class="lq" onclick="finishDay()" id="finBtn">🌟 Finish the day!</button>
+          <p id="finMsg" style="display:none;text-align:center;font-size:18px;font-weight:900;color:var(--rose);margin-top:14px;padding:18px;background:rgba(232,50,90,.09);border-radius:20px;border:1px solid rgba(232,50,90,.18)">Well done! I'm so proud of you ❤️</p>
         </div>
         <div style="margin-top:30px">
-          <div style="font-family:'Playfair Display',serif;font-size:30px;font-style:italic;font-weight:900;margin-bottom:14px" id="diaryTitle">Письмо малышу 📝</div>
+          <div style="font-family:'Playfair Display',serif;font-size:30px;font-style:italic;font-weight:900;margin-bottom:14px" id="diaryTitle">Letter to Baby 📝</div>
           <div class="card"><div class="cb">
-            <p style="font-size:13px;font-weight:700;color:var(--t3);margin-bottom:12px;line-height:1.6" id="diaryDesc">Запиши свои мысли. Потом будет так здорово это перечитать вместе!</p>
+            <p style="font-size:13px;font-weight:700;color:var(--t3);margin-bottom:12px;line-height:1.6" id="diaryDesc">Write your thoughts. You'll love reading these together later!</p>
             <textarea id="diaryT" class="d-area" placeholder=""></textarea>
-            <button class="lq" style="margin-top:12px" id="diarySaveBtn" onclick="saveDiary()">Сохранить в сердце 💖</button>
+            <button class="lq" style="margin-top:12px" id="diarySaveBtn" onclick="saveDiary()">Save to heart 💖</button>
           </div></div>
         </div>
       
         <div style="margin-top:20px">
-          <div style="font-family:'Playfair Display',serif;font-size:30px;font-style:italic;font-weight:900;margin-bottom:14px" id="reportTitle">Отчёт для врача 📋</div>
+          <div style="font-family:'Playfair Display',serif;font-size:30px;font-style:italic;font-weight:900;margin-bottom:14px" id="reportTitle">Provider Report 📋</div>
           <div class="card"><div class="cb">
-            <p style="font-size:13px;font-weight:700;color:var(--t3);margin-bottom:14px;line-height:1.6" id="reportDesc">Сформируй сводку приёма препаратов и самочувствия — удобно показать врачу!</p>
-            <button class="report-btn" id="reportGenBtn" onclick="generateReport()">📊 Сформировать отчёт</button>
+            <p style="font-size:13px;font-weight:700;color:var(--t3);margin-bottom:14px;line-height:1.6" id="reportDesc">Build a summary of medications and wellbeing — easy to share at appointments!</p>
+            <button class="report-btn" id="reportGenBtn" onclick="generateReport()">📊 Generate report</button>
             <textarea class="report-area" id="reportArea" style="display:none" readonly></textarea>
-            <button class="copy-btn" id="reportCopyBtn" style="display:none" onclick="copyReport()">📋 Скопировать в буфер</button>
+            <button class="copy-btn" id="reportCopyBtn" style="display:none" onclick="copyReport()">📋 Copy to clipboard</button>
           </div></div>
         </div>
       </div>
@@ -1760,25 +1771,25 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
     <!-- ── JOURNAL ── -->
     <div id="tab-journal" class="tab-c">
       <div style="padding-top:16px">
-        <div class="page-h1" id="journalPageTitle">Дневник</div>
-        <p style="font-size:14px;font-weight:700;color:var(--t3);margin-bottom:18px" id="journalPageDesc">История настроений, вес и наш животик по неделям</p>
+        <div class="page-h1" id="journalPageTitle">Journal</div>
+        <p style="font-size:14px;font-weight:700;color:var(--t3);margin-bottom:18px" id="journalPageDesc">Mood history, weight, and bump photos by week</p>
         <div class="card"><div class="cb">
-          <div class="sh" id="journalMoodTitle">📊 История настроений</div>
-          <div class="ssub" id="journalMoodSub">Последние 14 дней</div>
+          <div class="sh" id="journalMoodTitle">📊 Mood History</div>
+          <div class="ssub" id="journalMoodSub">Last 14 days</div>
           <div class="mh-grid" id="mhGrid"></div>
         </div></div>
         <div class="card">
           <div class="cb" style="padding:20px 20px 16px">
-            <div class="sh" id="journalWeightTitle">⚖️ Весовой трекер</div>
-            <div class="ssub" id="journalWeightSub" style="margin-bottom:14px">Следим за прибавкой вместе — это важно!</div>
+            <div class="sh" id="journalWeightTitle">⚖️ Weight Tracker</div>
+            <div class="ssub" id="journalWeightSub" style="margin-bottom:14px">Tracking gain together — it matters!</div>
 
             <!-- INPUT ROW -->
             <div class="wt-input-row">
               <div class="wt-input-wrap">
                 <input type="number" class="wt-inp-v2" id="wtIn" placeholder="62.5" step="0.1" min="30" max="150">
-                <span class="wt-unit" id="journalWeightUnit">кг</span>
+                <span class="wt-unit" id="journalWeightUnit">kg</span>
               </div>
-              <button onclick="saveWt()" class="wt-save-btn" id="journalWeightSave">Записать</button>
+              <button onclick="saveWt()" class="wt-save-btn" id="journalWeightSave">Log</button>
             </div>
 
             <!-- CHART -->
@@ -1786,16 +1797,16 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
             <div class="wt-stats-v2" id="wtStats"></div>
 
             <!-- BMI TOGGLE BUTTON -->
-            <button class="bmi-toggle-btn" onclick="toggleBMI()" id="bmiToggleBtn">📊 Показать коридор ВОЗ</button>
+            <button class="bmi-toggle-btn" onclick="toggleBMI()" id="bmiToggleBtn">📊 Show WHO range</button>
 
             <!-- BMI SECTION -->
             <div class="bmi-section-v2" id="bmiSection" style="display:none">
               <div class="bmi-header">
-                <span class="bmi-title" id="bmiTitle">ИМТ до беременности</span>
+                <span class="bmi-title" id="bmiTitle">Pre-pregnancy BMI</span>
                 <span class="bmi-val" id="bmiVal">—</span>
               </div>
               <div class="bmi-labels-v2">
-                <span id="bmiLblUnder">Недовес</span><span id="bmiLblNormal">Норма</span><span id="bmiLblOver">Избыток</span><span id="bmiLblObese">Ожирение</span>
+                <span id="bmiLblUnder">Underweight</span><span id="bmiLblNormal">Normal</span><span id="bmiLblOver">Overweight</span><span id="bmiLblObese">Obese</span>
               </div>
               <div class="bmi-bar-track"><div class="bmi-indicator" id="bmiIndicator" style="left:40%"></div></div>
               <div class="who-box" id="whoBox"></div>
@@ -1803,8 +1814,8 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
           </div>
         </div>
         <div class="card"><div class="cb">
-          <div class="sh" id="journalGalleryTitle">📷 Животик по неделям</div>
-          <div class="ssub" id="journalGallerySub">Тапни на ячейку — добавь фото. Галерея с 19 по 40 неделю! Текущая неделя выделена ✨</div>
+          <div class="sh" id="journalGalleryTitle">📷 Bump by Week</div>
+          <div class="ssub" id="journalGallerySub">Tap a cell to add a photo. Gallery from weeks 19–40! Current week highlighted ✨</div>
           <div class="gal-grid" id="galGrid"></div>
         </div></div>
       </div>
@@ -1813,8 +1824,8 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
     <!-- ── BAG ── -->
     <div id="tab-bag" class="tab-c">
       <div style="padding-top:16px">
-        <div class="page-h1" id="bagPageTitle">Сумка в роддом</div>
-        <p style="font-size:14px;font-weight:700;color:var(--t3);margin-bottom:18px" id="bagPageDesc">Отмечай что уже подготовили — вместе соберём всё!</p>
+        <div class="page-h1" id="bagPageTitle">Hospital Bag</div>
+        <p style="font-size:14px;font-weight:700;color:var(--t3);margin-bottom:18px" id="bagPageDesc">Check off what you've packed — we'll get everything ready together!</p>
         <div class="card"><div class="cb" id="bagBox"></div></div>
       </div>
     </div>
@@ -1822,30 +1833,30 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
     <!-- ── SETTINGS ── -->
     <div id="tab-settings" class="tab-c">
       <div style="padding-top:16px">
-        <div class="page-h1" id="settingsPageTitle" style="margin-bottom:18px">Настройки</div>
+        <div class="page-h1" id="settingsPageTitle" style="margin-bottom:18px">Settings</div>
 
         <div class="card"><div class="cb">
-          <div style="font-size:15px;font-weight:800;margin-bottom:12px" id="settingsLangTitle">Язык интерфейса</div>
+          <div style="font-size:15px;font-weight:800;margin-bottom:12px" id="settingsLangTitle">Language</div>
           <div style="display:flex;gap:10px;margin-bottom:4px">
-            <button type="button" id="langBtnRu" onclick="setAppLanguage('ru')" style="flex:1;border-radius:14px;padding:12px;border:2px solid var(--cb);background:var(--bg2);font-family:'Nunito',sans-serif;font-weight:900;font-size:14px;cursor:pointer">Русский</button>
             <button type="button" id="langBtnEn" onclick="setAppLanguage('en')" style="flex:1;border-radius:14px;padding:12px;border:2px solid var(--cb);background:var(--bg2);font-family:'Nunito',sans-serif;font-weight:900;font-size:14px;cursor:pointer">English</button>
+            <button type="button" id="langBtnRu" onclick="setAppLanguage('ru')" style="flex:1;border-radius:14px;padding:12px;border:2px solid var(--cb);background:var(--bg2);font-family:'Nunito',sans-serif;font-weight:900;font-size:14px;cursor:pointer">Русский</button>
           </div>
         </div></div>
 
         <!-- GENDER CARD -->
         <div class="card" style="border:2px solid rgba(232,50,90,.18);overflow:visible">
           <div class="cb">
-            <div style="font-family:'Playfair Display',serif;font-size:20px;font-style:italic;font-weight:700;margin-bottom:6px" id="genderCardTitle">👶 Пол малыша</div>
-            <p style="font-size:13px;font-weight:700;color:var(--t3);margin-bottom:16px;line-height:1.6" id="genderCardDesc">После УЗИ укажи пол малыша — приложение подстроит тему и некоторые факты.</p>
+            <div style="font-family:'Playfair Display',serif;font-size:20px;font-style:italic;font-weight:700;margin-bottom:6px" id="genderCardTitle">👶 Baby's Sex</div>
+            <p style="font-size:13px;font-weight:700;color:var(--t3);margin-bottom:16px;line-height:1.6" id="genderCardDesc">After your anatomy scan, set baby's sex — the app will adjust the theme and some facts.</p>
             <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
               <button id="gBtnN" onclick="setGender('n')" class="gender-btn active" style="border-radius:18px;padding:16px 8px;border:2px solid var(--cb);background:var(--bg2);cursor:pointer;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;color:var(--t1);transition:all .3s;display:flex;flex-direction:column;align-items:center;gap:6px">
-                <span style="font-size:28px">🤍</span><span id="gBtnNLbl">Пока тайна</span>
+                <span style="font-size:28px">🤍</span><span id="gBtnNLbl">Still a surprise</span>
               </button>
               <button id="gBtnG" onclick="setGender('g')" class="gender-btn" style="border-radius:18px;padding:16px 8px;border:2px solid rgba(214,48,119,.2);background:rgba(214,48,119,.06);cursor:pointer;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;color:var(--t2);transition:all .3s;display:flex;flex-direction:column;align-items:center;gap:6px">
-                <span style="font-size:28px">🎀</span><span id="gBtnGLbl">Девочка</span>
+                <span style="font-size:28px">🎀</span><span id="gBtnGLbl">Girl</span>
               </button>
               <button id="gBtnB" onclick="setGender('b')" class="gender-btn" style="border-radius:18px;padding:16px 8px;border:2px solid rgba(24,120,200,.2);background:rgba(24,120,200,.06);cursor:pointer;font-family:'Nunito',sans-serif;font-weight:900;font-size:13px;color:var(--t2);transition:all .3s;display:flex;flex-direction:column;align-items:center;gap:6px">
-                <span style="font-size:28px">🩵</span><span id="gBtnBLbl">Мальчик</span>
+                <span style="font-size:28px">🩵</span><span id="gBtnBLbl">Boy</span>
               </button>
             </div>
             <div id="genderMsg" style="margin-top:14px;font-family:'Caveat',cursive;font-size:19px;color:var(--rose);text-align:center;line-height:1.45;display:none;padding:12px;background:rgba(232,50,90,.07);border-radius:14px"></div>
@@ -1853,27 +1864,28 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
         </div>
 
         <div class="card"><div class="cb">
-          <div style="font-size:15px;font-weight:800;margin-bottom:8px" id="settingsNameLbl">Как к тебе обращаться:</div>
-          <input type="text" id="settingsNameIn" placeholder="Имя или ласковое обращение" maxlength="32" style="width:100%;font-size:15px;padding:14px;margin-bottom:16px;border-radius:14px;border:2px solid var(--cb);background:var(--bg2);font-family:'Nunito',sans-serif">
-          <div style="font-size:15px;font-weight:800;margin-bottom:8px" id="settingsPartnerLbl">Имя близкого человека (для посланий):</div>
-          <input type="text" id="partnerNameIn" placeholder="Партнёр, мама, подруга…" maxlength="32" style="width:100%;font-size:15px;padding:14px;margin-bottom:16px;border-radius:14px;border:2px solid var(--cb);background:var(--bg2);font-family:'Nunito',sans-serif">
-          <div class="tog-w"><span style="font-size:15px;font-weight:800" id="settingsDarkThemeLbl">Тёмная тема 🌙</span><label class="tog"><input type="checkbox" id="thmTog" onchange="toggleTheme()"><span class="tog-sl"></span></label></div>
-          <div class="tog-w"><span style="font-size:15px;font-weight:800" id="settingsNotifLbl">Уведомления 🔔</span><button id="settingsNotifBtn" onclick="reqNotifs()" style="background:linear-gradient(135deg,#1E9CB0,#30C0D8);color:#fff;border:none;border-radius:50px;padding:9px 20px;font-size:13px;font-weight:900;cursor:pointer;box-shadow:0 4px 14px rgba(30,156,176,.3)">Включить</button></div>
-          <p style="font-size:12px;font-weight:700;color:var(--t3);padding:2px 4px 20px;line-height:1.65" id="settingsNotifDesc">Разреши уведомления — приложение напомнит о препаратах из твоего расписания в нужное время.</p>
+          <div style="font-size:15px;font-weight:800;margin-bottom:8px" id="settingsNameLbl">What should we call you:</div>
+          <input type="text" id="settingsNameIn" placeholder="Name or nickname" maxlength="32" style="width:100%;font-size:15px;padding:14px;margin-bottom:16px;border-radius:14px;border:2px solid var(--cb);background:var(--bg2);font-family:'Nunito',sans-serif">
+          <div style="font-size:15px;font-weight:800;margin-bottom:8px" id="settingsPartnerLbl">Loved one's name (for messages):</div>
+          <input type="text" id="partnerNameIn" placeholder="Partner, parent, friend…" maxlength="32" style="width:100%;font-size:15px;padding:14px;margin-bottom:16px;border-radius:14px;border:2px solid var(--cb);background:var(--bg2);font-family:'Nunito',sans-serif">
+          <div class="tog-w"><span style="font-size:15px;font-weight:800" id="settingsDarkThemeLbl">Dark theme 🌙</span><label class="tog"><input type="checkbox" id="thmTog" onchange="toggleTheme()"><span class="tog-sl"></span></label></div>
+          <div class="tog-w"><span style="font-size:15px;font-weight:800" id="settingsNotifLbl">Notifications 🔔</span><button id="settingsNotifBtn" onclick="reqNotifs()" style="background:linear-gradient(135deg,#1E9CB0,#30C0D8);color:#fff;border:none;border-radius:50px;padding:9px 20px;font-size:13px;font-weight:900;cursor:pointer;box-shadow:0 4px 14px rgba(30,156,176,.3)">Enable</button></div>
+          <p style="font-size:12px;font-weight:700;color:var(--t3);padding:2px 4px 20px;line-height:1.65" id="settingsNotifDesc">Allow notifications — the app will remind you about scheduled medications on time.</p>
           
-          <div style="font-size:15px;font-weight:800;margin-bottom:8px" id="settingsHeightLbl">Твой рост (для расчёта ИМТ):</div>
+          <div style="font-size:15px;font-weight:800;margin-bottom:8px" id="settingsHeightLbl">Your height (for BMI):</div>
           <div style="display:flex;gap:8px;margin-bottom:22px;align-items:center">
             <input type="number" id="heightIn" placeholder="165" min="140" max="210" style="flex:1;font-size:16px;padding:14px;text-align:center;font-weight:800">
-            <span style="font-size:15px;font-weight:800;color:var(--t3)" id="settingsHeightUnit">см</span>
-            <button id="settingsHeightSave" onclick="saveHeight()" style="background:linear-gradient(135deg,var(--teal),var(--teal2));color:#fff;border:none;border-radius:16px;padding:14px 18px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:900;cursor:pointer;box-shadow:0 6px 18px rgba(30,156,176,0.32)">Сохранить</button>
+            <span style="font-size:15px;font-weight:800;color:var(--t3)" id="settingsHeightUnit">cm</span>
+            <button id="settingsHeightSave" onclick="saveHeight()" style="background:linear-gradient(135deg,var(--teal),var(--teal2));color:#fff;border:none;border-radius:16px;padding:14px 18px;font-family:'Nunito',sans-serif;font-size:14px;font-weight:900;cursor:pointer;box-shadow:0 6px 18px rgba(30,156,176,0.32)">Save</button>
           </div>
-          <div style="font-size:15px;font-weight:800;margin-bottom:8px" id="settingsPhoneLbl">Телефон для экстренной связи:</div>
-          <input type="text" id="phoneIn" placeholder="+7 (999) 123-45-67" style="width:100%;font-size:15px;padding:14px;margin-bottom:10px">
-          <button class="lq" id="settingsSaveBtn" style="margin-bottom:22px;font-size:16px" onclick="savePhone()">Сохранить настройки</button>
-          <div style="font-size:15px;font-weight:800;margin-bottom:8px" id="settingsEddLbl">Изменить дату родов (ПДР):</div>
+          <div style="font-size:15px;font-weight:800;margin-bottom:8px" id="settingsPhoneLbl">Emergency contact phone:</div>
+          <input type="text" id="phoneIn" placeholder="+1 (555) 123-4567" style="width:100%;font-size:15px;padding:14px;margin-bottom:10px">
+          <button class="lq" id="settingsSaveBtn" style="margin-bottom:22px;font-size:16px" onclick="savePhone()">Save settings</button>
+          <div style="font-size:15px;font-weight:800;margin-bottom:8px" id="settingsEddLbl">Change due date (EDD):</div>
           <input type="date" id="newEdd" style="width:100%;font-size:16px;padding:14px;text-align:center;font-weight:800;margin-bottom:10px">
-          <button id="settingsEddUpdate" onclick="updateEDD()" style="width:100%;background:var(--bg2);border:2px solid var(--cb);color:var(--t1);font-family:'Nunito',sans-serif;font-size:16px;font-weight:900;padding:16px;border-radius:18px;cursor:pointer;margin-bottom:22px">Обновить дату</button>
-          <button id="settingsClearBtn" onclick="resetAll()" style="width:100%;background:none;border:2.5px solid #EF4444;color:#EF4444;font-family:'Nunito',sans-serif;font-size:16px;font-weight:900;padding:16px;border-radius:18px;cursor:pointer">Очистить все данные</button>
+          <button id="settingsEddUpdate" onclick="updateEDD()" style="width:100%;background:var(--bg2);border:2px solid var(--cb);color:var(--t1);font-family:'Nunito',sans-serif;font-size:16px;font-weight:900;padding:16px;border-radius:18px;cursor:pointer;margin-bottom:22px">Update date</button>
+          <button id="settingsClearBtn" onclick="resetAll()" style="width:100%;background:none;border:2.5px solid #EF4444;color:#EF4444;font-family:'Nunito',sans-serif;font-size:16px;font-weight:900;padding:16px;border-radius:18px;cursor:pointer">Clear all data</button>
+          <p id="settingsFooter" style="text-align:center;font-size:11px;font-weight:700;color:var(--t3);margin-top:28px;line-height:1.65;padding:0 4px 4px">Caring Diary · HealthTech portfolio demo 🤍</p>
         </div></div>
       </div>
     </div>
@@ -1881,11 +1893,11 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
   </div>
 
   <div id="nav">
-    <button class="nb act" onclick="switchTab('home',this)"><span>🤍</span><span class="nav-lbl">Главная</span></button>
-    <button class="nb" onclick="switchTab('meds',this)"><span>💊</span><span class="nav-lbl">Забота</span></button>
-    <button class="nb" onclick="switchTab('journal',this)"><span>📓</span><span class="nav-lbl">Дневник</span></button>
-    <button class="nb" onclick="switchTab('bag',this)"><span>👜</span><span class="nav-lbl">Сумка</span></button>
-    <button class="nb" onclick="switchTab('settings',this)"><span>⚙️</span><span class="nav-lbl">Настр.</span></button>
+    <button class="nb act" onclick="switchTab('home',this)"><span>🤍</span><span class="nav-lbl">Home</span></button>
+    <button class="nb" onclick="switchTab('meds',this)"><span>💊</span><span class="nav-lbl">Care</span></button>
+    <button class="nb" onclick="switchTab('journal',this)"><span>📓</span><span class="nav-lbl">Journal</span></button>
+    <button class="nb" onclick="switchTab('bag',this)"><span>👜</span><span class="nav-lbl">Bag</span></button>
+    <button class="nb" onclick="switchTab('settings',this)"><span>⚙️</span><span class="nav-lbl">Settings</span></button>
   </div>
 </div>
 
@@ -1896,7 +1908,7 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
     <button class="ms-close" onclick="closeLetter()">✕</button>
     <div style="font-family:'Playfair Display',serif;font-size:28px;font-style:italic;font-weight:900;color:var(--rose);text-align:center;margin-bottom:22px" id="lTitle"></div>
     <div style="font-family:'Caveat',cursive;font-size:23px;color:var(--t1);line-height:1.55" id="lBody"></div>
-    <p style="font-family:'Lora',serif;font-size:16px;font-style:italic;text-align:right;margin-top:22px;color:var(--rose)" id="lSign">— С любовью 🤍</p>
+    <p style="font-family:'Lora',serif;font-size:16px;font-style:italic;text-align:right;margin-top:22px;color:var(--rose)" id="lSign">— With love 🤍</p>
   </div>
 </div>
 
@@ -1906,9 +1918,9 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
     <div class="ms-hdl"></div>
     <button class="ms-close" onclick="closeCoupon()">✕</button>
     <div style="text-align:center;font-size:70px;margin-bottom:10px">🎟️</div>
-    <div style="text-align:center;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:rgba(138,88,0,.5);margin-bottom:12px" id="couponModalLbl">Купон на:</div>
+    <div style="text-align:center;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:rgba(138,88,0,.5);margin-bottom:12px" id="couponModalLbl">Coupon for:</div>
     <div style="font-size:22px;font-weight:900;text-align:center;color:#5A2800;line-height:1.45;margin-bottom:22px" id="cpnBody"></div>
-    <p style="text-align:center;font-size:12px;font-weight:700;color:rgba(138,88,0,.55);background:rgba(255,255,255,.5);padding:12px;border-radius:14px"><span id="couponScreenshotHint">Сделай скриншот и покажи близкому человеку ❤️</span><br><span id="couponExpiry">Срок годности: бесконечен.</span></p>
+    <p style="text-align:center;font-size:12px;font-weight:700;color:rgba(138,88,0,.55);background:rgba(255,255,255,.5);padding:12px;border-radius:14px"><span id="couponScreenshotHint">Take a screenshot and show someone you love ❤️</span><br><span id="couponExpiry">Expiration: never.</span></p>
   </div>
 </div>
 
@@ -1919,8 +1931,8 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
     <button class="ms-close" onclick="closeGal()">✕</button>
     <div style="font-family:'Playfair Display',serif;font-size:24px;font-style:italic;font-weight:900;text-align:center;margin-bottom:16px" id="galMoT"></div>
     <div id="galPrev" style="width:100%;height:285px;border-radius:22px;overflow:hidden;background:var(--bg2);display:flex;align-items:center;justify-content:center;margin-bottom:16px;position:relative"><div style="font-size:50px">👼</div></div>
-    <button id="galAddBtn" onclick="document.getElementById('galIn').click()" style="width:100%;background:var(--rose);color:#fff;border:none;border-radius:18px;padding:16px;font-family:'Nunito',sans-serif;font-size:16px;font-weight:900;cursor:pointer;box-shadow:0 8px 26px rgba(232,50,90,.32);margin-bottom:10px">Добавить фото 📷</button>
-    <button id="galDelBtn" onclick="deleteGalPhoto()" style="width:100%;background:none;border:2px solid #EF4444;color:#EF4444;border-radius:18px;padding:14px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:900;cursor:pointer;display:none">Удалить фото</button>
+    <button id="galAddBtn" onclick="document.getElementById('galIn').click()" style="width:100%;background:var(--rose);color:#fff;border:none;border-radius:18px;padding:16px;font-family:'Nunito',sans-serif;font-size:16px;font-weight:900;cursor:pointer;box-shadow:0 8px 26px rgba(232,50,90,.32);margin-bottom:10px">Add photo 📷</button>
+    <button id="galDelBtn" onclick="deleteGalPhoto()" style="width:100%;background:none;border:2px solid #EF4444;color:#EF4444;border-radius:18px;padding:14px;font-family:'Nunito',sans-serif;font-size:15px;font-weight:900;cursor:pointer;display:none">Delete photo</button>
     <input type="file" id="galIn" accept="image/*" style="display:none" onchange="loadGalPhoto(event)">
   </div>
 </div>
@@ -1930,24 +1942,24 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
   <div class="ms" style="position:relative">
     <div class="ms-hdl"></div>
     <button type="button" class="ms-close" onclick="closeMedForm()">✕</button>
-    <div style="font-family:'Playfair Display',serif;font-size:26px;font-style:italic;font-weight:900;color:var(--rose);text-align:center;margin-bottom:6px" id="medMoTitle">Новый препарат</div>
-    <p style="font-size:12px;font-weight:700;color:var(--t3);text-align:center;margin-bottom:8px;line-height:1.5" id="medMoSub">Время, доза и подсказки — как тебе удобно</p>
-    <label class="med-form-lbl" id="medNameLbl">Название</label>
-    <input type="text" class="med-form-inp" id="medNameIn" placeholder="Например: витамины 2" maxlength="80" autocomplete="off">
-    <label class="med-form-lbl" id="medDoseLbl">Доза</label>
-    <input type="text" class="med-form-inp" id="medDoseIn" placeholder="1 табл. / 1 капс." maxlength="40">
-    <label class="med-form-lbl" id="medTimeLbl">Время приёма</label>
+    <div style="font-family:'Playfair Display',serif;font-size:26px;font-style:italic;font-weight:900;color:var(--rose);text-align:center;margin-bottom:6px" id="medMoTitle">New medication</div>
+    <p style="font-size:12px;font-weight:700;color:var(--t3);text-align:center;margin-bottom:8px;line-height:1.5" id="medMoSub">Time, dose, and notes — your way</p>
+    <label class="med-form-lbl" id="medNameLbl">Name</label>
+    <input type="text" class="med-form-inp" id="medNameIn" placeholder="e.g. Prenatal vitamins" maxlength="80" autocomplete="off">
+    <label class="med-form-lbl" id="medDoseLbl">Dose</label>
+    <input type="text" class="med-form-inp" id="medDoseIn" placeholder="1 tab / 1 cap" maxlength="40">
+    <label class="med-form-lbl" id="medTimeLbl">Time</label>
     <input type="time" class="med-form-inp" id="medTimeIn" style="text-align:center;font-weight:900">
-    <label class="med-form-lbl" id="medIconLbl">Иконка</label>
+    <label class="med-form-lbl" id="medIconLbl">Icon</label>
     <input type="text" class="med-form-inp" id="medIconIn" maxlength="4" placeholder="💊" style="text-align:center;font-size:28px">
     <div class="med-emoji-row" id="medEmojiRow"></div>
-    <label class="med-form-lbl" id="medDetLbl">Подсказка (необязательно)</label>
-    <textarea class="med-form-ta" id="medDetIn" placeholder="Как принимать, с чем запивать..."></textarea>
-    <label class="med-form-lbl" id="medEndLbl">Конец курса (необязательно)</label>
+    <label class="med-form-lbl" id="medDetLbl">Notes (optional)</label>
+    <textarea class="med-form-ta" id="medDetIn" placeholder="How to take, what to drink with..."></textarea>
+    <label class="med-form-lbl" id="medEndLbl">End date (optional)</label>
     <input type="date" class="med-form-inp" id="medEndIn">
-    <label class="med-form-tog"><input type="checkbox" id="medPauseIn"> <span style="font-size:14px;font-weight:800" id="medPauseLbl">Временно на паузе</span></label>
-    <button type="button" class="lq" id="medFormSave" style="margin-top:18px" onclick="saveMedForm()">Сохранить 💊</button>
-    <button type="button" class="med-del-btn" id="medDelBtn" style="display:none" onclick="deleteMed()">Удалить препарат</button>
+    <label class="med-form-tog"><input type="checkbox" id="medPauseIn"> <span style="font-size:14px;font-weight:800" id="medPauseLbl">Temporarily paused</span></label>
+    <button type="button" class="lq" id="medFormSave" style="margin-top:18px" onclick="saveMedForm()">Save 💊</button>
+    <button type="button" class="med-del-btn" id="medDelBtn" style="display:none" onclick="deleteMed()">Delete medication</button>
   </div>
 </div>
 
@@ -1956,8 +1968,6 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
 <script src="js/week-data-en.js"></script>
 <script src="js/app-content.js"></script>
 <script src="js/i18n.js"></script>
-<script src="js/smart-tips-ru.js"></script>
-<script src="js/body-changes-ru.js"></script>
 <script src="js/clinical-content.js"></script>
 <script>
 /** Currently selected gallery week (19–40), or null. */
@@ -2299,16 +2309,16 @@ const wkData={
   ]},
   26:{e:"🥬",s:"Большой салат",w:"760 г",l:"360 мм",f:["Глаза ОТКРЫЛИСЬ! Зрачок реагирует на свет. Настоящий цвет радужки — к 6-12 месяцам.","Мозг: автономная терморегуляция — первый шаг к независимости от плаценты!","ЭЭГ: 'веретёна сна' — паттерны идентичны здоровому доношенному. Мозг нейрологически зрел.","У мальчиков яички начинают опускаться. Завершится к 32-35 нед — гормон INSL3 управляет.","Зрительные вызванные потенциалы (VEP): кора мозга реагирует на световую вспышку.","Ikota (икота): диафрагма резко сокращается — ритмичные толчки 1-2 раза/сек. Тренировка!","Нейроны Пуркинье: 300 000 синапсов на клетку. Мозжечок строит систему координации.","Нейромедиаторы серотонин и дофамин: системы удовольствия и настроения — активны.","Антитела IgG: к 26 нед — ~35-40% итогового запаса передано. Нарастает активно.","Длина пуповины к 26 нед: ~35-40 см. Движения плода буквально вытягивают её!","Плацента: степень зрелости I по Grannum — видны первые эхогенные включения.","Маточные сокращения (Брэкстон-Хикс): нерегулярные, проходят от отдыха. Норма с 20 нед.","Кровоток: объём циркулирующей крови мамы вырос на 40-50%. Сердце работает на 30% больше!","ГСД: скрининг назначают 24-28 нед. Если ещё не сдавала — спроси врача на следующем визите.","Шейка матки к 26 нед ≥30 мм на УЗИ — норма. Укорочение → прогестерон вагинально.","Маме: поздравляю — до III триместра осталось 2 недели! Самое время записаться на курсы.","Обсуди с врачом: партнёрские роды (требования к партнёру — справки флюорография, ВИЧ, RW).","Витамин D: 1000-2000 МЕ/сутки. Дефицит → аплазия эмали у ребёнка, рахит.","Сон: U-образная подушка изменит качество сна. Стоит каждого потраченного сома!","Нейронная активность: DMN (сеть пассивного режима) закладывается — самоосознание ребёнка."]},
   27:{e:"🥦",s:"Брокколи",w:"875 г",l:"370 мм",f:["ЭЭГ плода 27 нед: идентична ЭЭГ новорождённого 27 нед. Мозг — как у реального ребёнка!","Выживаемость 27 нед: ~90% в квалифицированном НИКУ. Медицина творит чудеса.","Лёгкие: L/S ratio ~1,5-2,0. Кортикостероиды мамы ускоряют созревание за 24-48 ч.","Икота: ритмичные толчки по 10-30 мин. Чувствуешь — значит малыш тренирует диафрагму!","Кожа розовеет: подкожный жир нарастает. Меньше морщинок — всё больше похож на младенца.","Слух: прагматические аспекты языка (ритм, интонация) различаются плодом 27 нед.","Мозжечок: удвоился за 4 недели — управляет координацией, балансом, речью.","Хранение в памяти: новорождённые узнают колыбельные, которые слышали в утробе (Hepper,1991)!","Суточный ритм: мелатонин синхронизирован. Стабильный режим сна мамы = лучший ритм малыша.","Сон плода: NREM 35%, REM 25%, активное бодрствование 20%, тихое бодрствование 20%.","КТГ нормы (с 28 нед): базальная ЧСС 110-160, вариабельность 5-25, 2+ акцелерации/20 мин.","Антитела: вакцинация мамы от гриппа и коклюша → защита малыша на 3-6 мес после рождения!","Нейростероиды: аллопрегнанолон синтезируется мозгом плода — противовоспалительный и нейрозащитный.","Токолиз: при угрозе родов 24-34 нед — нифедипин, атосибан. Цель — 48 ч для кортикостероидов.","Плод к 27 нед: активен вечером (18-22 ч) и ночью (1-4 ч). Приготовь терпение для будущего!","Маме: до III триместра 1 неделя! Обсуди с врачом план родов. Партнёрские роды — Поддержка рядом.","Спи на левом боку — улучшает кровоснабжение плаценты. Правый бок тоже OK, если комфортно.","Отёки: нижние к вечеру у 80% — физиологические. Лицо утром + АД ≥140/90 → срочно к врачу!","Нейроны лобной коры (PFC): закладываются. Самоконтроль, планирование — созреют к 25 годам!","Маме сейчас: партнёр, обещай делать массаж ног каждый вечер. Это снимает отёки и показывает любовь 🤍"]},
-  28:{e:"🍆",s:"Баклажан",w:"1005 г",l:"380 мм",f:["ТРЕТИЙ ТРИМЕСТР! >1 кг! Мозг: 1,8 млн синапсов/секунду — пик нейропластичности всей жизни!","Выживаемость 28 нед: >90% в НИКУ. Прибавка ~2,5 кг впереди — почти утроит вес.","IgG-трансфер: к 28 нед — 50% защитных антител от мамы. Иммунная история поколений!","Зрачковый рефлекс: сужается на свет. Признак работающей ЦНС на всех уровнях.","Нейронный прунинг: 'молчащие' синапсы удаляются микроглией. Специализация мозга.","КТГ назначается! Норма: базальная ЧСС 110-160, акцелерации ≥2 за 20 мин.","Молочная железа: первые капли молозива при нажатии. Это норма с 16-28 нед.","Молозиво — золото! IgA 12-16 г/л (в зрелом молоке 0,8 г/л). Lactoferrin 7 г/л.","Прогестерон: плацента производит 300-400 мг/сутки — пик. Расслабляет матку.","Движения мощные и ощутимые. Малышу тесновато — движения перестраиваются.","Железо: к 28 нед — ~100 мг из ~300 мг к рождению. Феррум продолжай — это важно!","Сон на спине запрещён: матка сдавливает нижнюю полую вену → гипотония + снижение кровотока.","Крёстцово-маточные связки: релаксин их размягчил. Боль в лоне = симфизиопатия. Бандаж!","Отпуск по беременности в РФ: с 30 нед (листок нетрудоспособности). Заслуженный отдых!","Диастаз прямых мышц: у 66% к III триместру. Не опасно. Стабилизирующие упражнения после родов.","Перинеомассаж: начинай с 34-35 нед, 5-10 мин/день. Снижает разрывы и эпизиотомию.","Нейронные сети мозга: функциональная МРТ 28 нед выявляет 7 базовых сетей как у взрослого!","Запасы витамина D: к 28 нед ~600 МЕ. Новорождённому нужно 400 МЕ/сутки с 2 недели жизни.","Церебральная ауторегуляция: 70% сердечного выброса плода идёт на мозг — природный приоритет!","Поговори с малышом — он уже слышит. Близкий человек может присоединиться 🤍"]},
-  29:{e:"🫑",s:"Тыква-горлянка",w:"1150 г",l:"388 мм",f:["Мозжечок удвоился за 4 недели — координация, баланс, точность движений строятся.","6 родничков черепа мягкие: позволяют головке конфигурироваться при родах — гениальная природа!","L/S ratio лёгких: 2,0-2,5. Почти готовы. При родах 29 нед — вероятно обойдётся без ИВЛ.","Движения мощные — пинки в рёбра! Нормально. Смени позу: ляг на бок или пройдись.","КТГ норма 29 нед: базальная ЧСС 110-160, вариабельность 5-25, нет децелераций.","Железо: 150 мг накоплено из 300 мг к рождению. Феррум продолжай — последний рывок!","Амниотический индекс: норма 8-20 см. Маловодие <5 см, многоводие >24 см — к врачу.","Нейроны PFC (префронтальная кора): самоконтроль, эмпатия, планирование — закладываются.","Задний родничок: закрывается к 35-36 нед. Передний — к 12-18 мес после рождения.","Эпидуральная анестезия: обсуди с врачом заранее. Не влияет на исход при правильном применении.","Партнёрские роды: уточни требования выбранного роддома заранее.","Маме: собери 'план родов': где рожать, кто рядом, анестезия, ГВ, контакт кожа-к-коже.","Нейромышечная зрелость: сосание + глотание + дыхание координируются к 34 нед.","Тромбоэмболия: ведущая причина материнской смертности. Компрессионные гольфы — обязательно!","Гормон роста GH: пик 26-30 нед. IGF-1 — медиатор роста скелета. Белок в питании критичен!","Маточные сокращения учащаются: нерегулярные Брэкстон-Хикс. Регулярные + нарастающие → роддом!","Рефлексы новорождённого уже сформированы: Моро, хватательный, поисковый — все готовы.","Суточный ритм налажен: малыш активнее вечером и ночью. Скоро это проявится в бессоннице!","Нефронов (почечных единиц): 1 миллион — окончательное число! Больше не появится никогда.","Лёгкий массаж поясницы и ног вечером снимает боль и помогает отдохнуть 🤍"]},
-  30:{e:"🥬",s:"Большой кочан",w:"1300 г",l:"397 мм",f:["Лануго исчезает с лица и лба. На плечах и спине держится до 38-40 нед.","Красный костный мозг: главный орган кроветворения. 100 000 эритроцитов в секунду!","Долгосрочная память: новорождённые узнают мелодии из утробы (Hepper, 1991). Пой сейчас!","Мелатонин синхронизирует суточный ритм плода. Тёмная комната ночью = польза малышу.","Мозолистое тело: аксоны связывают полушария. Рост завершится к 2-3 годам жизни.","Гиппокамп: LTP (долгосрочная потенциация) — молекулярная основа памяти. Обучение!","Миелинизация пирамидного тракта: аксоны от M1 дошли до крестца. Произвольные движения!","Плацента ~300-350 г. Степень I по Grannum. К 40 нед — 500-600 г со степенью III.","Молочная железа готова: молозиво при нажатии у многих. Специальная подготовка сосков не нужна.","ИЦН (истмико-цервикальная недостаточность): пессарий или серкляж при выявлении. Наблюдение!","Симфизиопатия (SPD): расширение лонного симфиза >10 мм — бандаж, физиотерапия.","Изжога усилилась? Матка давит на желудок. Омепразол не рекомендован при беременности!","Нейронная сеть DMN: самоосознание, воображение, эмпатия закладываются. Уникальная личность!","Прибавка веса: норма к 30 нед = 8-10 кг. При ИМТ 18-25 — до 16 кг за всю беременность.","Маме: декретный отпуск! Заслуженный отдых. Готовься к последним неделям с комфортом.","Анемия: проверяй ОАК раз в 4 нед в III триместре. Феррум продолжай — правильная тактика.","Тазовое предлежание: к 30 нед — 20% плодов. К 36 нед останется только 4%. Жди!","Физически: плавание, пренатальная йога — снижают боль, улучшают сон, готовят к родам.","Ты невероятно справляешься. Каждый день в утробе — это твои усилия и забота.","Почки плода: к 30 нед — 1 млн нефронов (окончательно). Курение/ПЭ → меньше → риск гипертонии у ребёнка."]},
+  28:{e:"🍆",s:"Баклажан",w:"1005 г",l:"380 мм",f:["ТРЕТИЙ ТРИМЕСТР! >1 кг! Мозг: 1,8 млн синапсов/секунду — пик нейропластичности всей жизни!","Выживаемость 28 нед: >90% в НИКУ. Прибавка ~2,5 кг впереди — почти утроит вес.","IgG-трансфер: к 28 нед — 50% защитных антител от мамы. Иммунная история поколений!","Зрачковый рефлекс: сужается на свет. Признак работающей ЦНС на всех уровнях.","Нейронный прунинг: 'молчащие' синапсы удаляются микроглией. Специализация мозга.","КТГ назначается! Норма: базальная ЧСС 110-160, акцелерации ≥2 за 20 мин.","Молочная железа: первые капли молозива при нажатии. Это норма с 16-28 нед.","Молозиво — золото! IgA 12-16 г/л (в зрелом молоке 0,8 г/л). Lactoferrin 7 г/л.","Прогестерон: плацента производит 300-400 мг/сутки — пик. Расслабляет матку.","Движения мощные и ощутимые. Малышу тесновато — движения перестраиваются.","Железо: к 28 нед — ~100 мг из ~300 мг к рождению. Феррум продолжай — это важно!","Сон на спине запрещён: матка сдавливает нижнюю полую вену → гипотония + снижение кровотока.","Крёстцово-маточные связки: релаксин их размягчил. Боль в лоне = симфизиопатия. Бандаж!","Отпуск по беременности в РФ: с 30 нед (листок нетрудоспособности). Заслуженный отдых!","Диастаз прямых мышц: у 66% к III триместру. Не опасно. Стабилизирующие упражнения после родов.","Перинеомассаж: начинай с 34-35 нед, 5-10 мин/день. Снижает разрывы и эпизиотомию.","Нейронные сети мозга: функциональная МРТ 28 нед выявляет 7 базовых сетей как у взрослого!","Запасы витамина D: к 28 нед ~600 МЕ. Новорождённому нужно 400 МЕ/сутки с 2 недели жизни.","Церебральная ауторегуляция: 70% сердечного выброса плода идёт на мозг — природный приоритет!","Маме: партнёр, поцелуй животик от нас двоих и скажи малышу что папа очень его ждёт 🤍"]},
+  29:{e:"🫑",s:"Тыква-горлянка",w:"1150 г",l:"388 мм",f:["Мозжечок удвоился за 4 недели — координация, баланс, точность движений строятся.","6 родничков черепа мягкие: позволяют головке конфигурироваться при родах — гениальная природа!","L/S ratio лёгких: 2,0-2,5. Почти готовы. При родах 29 нед — вероятно обойдётся без ИВЛ.","Движения мощные — пинки в рёбра! Нормально. Смени позу: ляг на бок или пройдись.","КТГ норма 29 нед: базальная ЧСС 110-160, вариабельность 5-25, нет децелераций.","Железо: 150 мг накоплено из 300 мг к рождению. Феррум продолжай — последний рывок!","Амниотический индекс: норма 8-20 см. Маловодие <5 см, многоводие >24 см — к врачу.","Нейроны PFC (префронтальная кора): самоконтроль, эмпатия, планирование — закладываются.","Задний родничок: закрывается к 35-36 нед. Передний — к 12-18 мес после рождения.","Эпидуральная анестезия: обсуди с врачом заранее. Не влияет на исход при правильном применении.","Партнёрские роды в вашем городе: уточни требования конкретного роддома. партнёр — с тобой!","Маме: собери 'план родов': где рожать, кто рядом, анестезия, ГВ, контакт кожа-к-коже.","Нейромышечная зрелость: сосание + глотание + дыхание координируются к 34 нед.","Тромбоэмболия: ведущая причина материнской смертности. Компрессионные гольфы — обязательно!","Гормон роста GH: пик 26-30 нед. IGF-1 — медиатор роста скелета. Белок в питании критичен!","Маточные сокращения учащаются: нерегулярные Брэкстон-Хикс. Регулярные + нарастающие → роддом!","Рефлексы новорождённого уже сформированы: Моро, хватательный, поисковый — все готовы.","Суточный ритм налажен: малыш активнее вечером и ночью. Скоро это проявится в бессоннице!","Нефронов (почечных единиц): 1 миллион — окончательное число! Больше не появится никогда.","Маме: партнёр, сделай массаж пояснице и ног. Это снимет боль и скажет 'я забочусь' без слов 🤍"]},
+  30:{e:"🥬",s:"Большой кочан",w:"1300 г",l:"397 мм",f:["Лануго исчезает с лица и лба. На плечах и спине держится до 38-40 нед.","Красный костный мозг: главный орган кроветворения. 100 000 эритроцитов в секунду!","Долгосрочная память: новорождённые узнают мелодии из утробы (Hepper, 1991). Пой сейчас!","Мелатонин синхронизирует суточный ритм плода. Тёмная комната ночью = польза малышу.","Мозолистое тело: аксоны связывают полушария. Рост завершится к 2-3 годам жизни.","Гиппокамп: LTP (долгосрочная потенциация) — молекулярная основа памяти. Обучение!","Миелинизация пирамидного тракта: аксоны от M1 дошли до крестца. Произвольные движения!","Плацента ~300-350 г. Степень I по Grannum. К 40 нед — 500-600 г со степенью III.","Молочная железа готова: молозиво при нажатии у многих. Специальная подготовка сосков не нужна.","ИЦН (истмико-цервикальная недостаточность): пессарий или серкляж при выявлении. Наблюдение!","Симфизиопатия (SPD): расширение лонного симфиза >10 мм — бандаж, физиотерапия.","Изжога усилилась? Матка давит на желудок. Омепразол не рекомендован при беременности!","Нейронная сеть DMN: самоосознание, воображение, эмпатия закладываются. Уникальная личность!","Прибавка веса: норма к 30 нед = 8-10 кг. При ИМТ 18-25 — до 16 кг за всю беременность.","Маме: декретный отпуск! Заслуженный отдых. Готовься к последним неделям с комфортом.","Анемия: проверяй ОАК раз в 4 нед в III триместре. Феррум продолжай — правильная тактика.","Тазовое предлежание: к 30 нед — 20% плодов. К 36 нед останется только 4%. Жди!","Физически: плавание, пренатальная йога — снижают боль, улучшают сон, готовят к родам.","Маме: ты невероятно справляешься. Каждый день в утробе — это твои усилия. Горжусь! — партнёр","Почки плода: к 30 нед — 1 млн нефронов (окончательно). Курение/ПЭ → меньше → риск гипертонии у ребёнка."]},
   31:{e:"🍍",s:"Ананас",w:"1500 г",l:"413 мм",f:["Лёгкие: сурфактант в достаточном количестве. Риск РДС при родах 31 нед резко снижается.","Печень: запас железа на 3-4 месяца. Именно поэтому грудное молоко бедно железом — у малыша уже есть!","Мозг: нейронные связи строятся со скоростью 1,8 млн синапсов/сек. Разговоры важны!","BDNF нейротрофин: коррелирует с интеллектом в 2 года. ДГК из витаминыа повышает BDNF!","Интероцепция: инсулярная кора обрабатывает ощущения тела. Телесное самосознание начинается.","Лануго практически ушло с тела. Верникс накапливается в складках — антибактериальная броня.","Метод Кардифф: 10 движений за ≤2 часа. Если дольше или <10 — еда + лечь. Нет ч/з час → врач.","Гемоглобин к 31 нед: норма ≥110 г/л. Феррум + апельсиновый сок = правильно!","Суточный ритм: малыш активнее вечером и ночью. Скоро это станет постоянным в первые месяцы.","Нефроны: 1 млн — финальное число. Алкоголь/курение/ПЭ → меньше нефронов → гипертония.","Тромбоциты: 200-350 × 10⁹/л — как у взрослого. Системы свёртывания готовы к родам.","Сердечный ритм: КТГ с 28-30 нед. Норма: базальная ЧСС 110-160, вариабельность 5-25.","Нейронная сеть болевой матрицы: таламус + кора — полностью сформированы. Боль ощущается!","Объём крови мамы: +45% от добеременного. Сердце перекачивает на 30% больше. Вот почему устаёшь!","Маме: запишитесь с партнёром на курсы подготовки к родам 32-34 нед. Партнёрские роды снижают боль на 30-40%.","Гестационный диабет: если выявлен — диета строгая. При неэффективности — инсулин. Всё контролируемо!","Позиция плода: к 31 нед 70-80% в головном. К 36 нед — 96%. Жди, не торопи!","Груди: бюстгальтер для кормления (2 шт) и крем Пурелан — в списке сумки в роддом!","Физиологические отёки: лодыжки к вечеру у 80% — норма. Подними ноги на подушку вечером.","Маме: в 32-34 нед — 3D/4D УЗИ по желанию. Можно увидеть лицо малыша!"]},
   32:{e:"🍈",s:"Дыня",w:"1700 г",l:"425 мм",f:["Головное предлежание: 80% плодов уже повернулись вниз головой. К 36 нед — 96%.","Ногти достигают кончиков пальцев. При рождении — антицарапки немедленно!","Сурфактант: самостоятельное дыхание при родах 32 нед — высокий шанс. Прогноз хороший.","Кожа розовая и непрозрачная: жир заполнил дерму. Всё больше похож на настоящего малыша!","Мозжечок: полностью функционален. Координация, баланс, ритм речи — строится здесь.","Задний родничок: закрывается. Передний (2-3 см) — остаётся открытым до 12-18 мес после рождения.","Коллаген IV: основа всех базальных мембран. Кожа упругая и прочная — видно по щёчкам.","МРТ плода 32 нед: 7 базовых функциональных сетей мозга уже как у взрослого.","Мелатонин (MT1, MT2 рецепторы): в мозге плода с 30-32 нед. Суточный ритм синхронизирован.","Суточный ритм плода: активен вечером и ночью. Это продолжится первые месяцы — подготовься!","Нейтрофилы: 2000-4000/мкл — как у взрослого. Первая линия защиты от бактерий готова.","Маме: 3D/4D УЗИ по желанию — можно увидеть лицо малыша! Незабываемое впечатление.","Тазовое предлежание осталось? К 36 нед — решение: упражнения, наружный поворот, или КС.","Синдром запястного канала усиливается? Шина на запястье ночью, поднять матрас под руку.","Варикоз вен: компрессионные гольфы 20-30 мм рт.ст. — обязательно при ходьбе и работе.","Гормон релаксин: размягчает всё — симфиз, шейку, связки. Боль в пояснице и лоне = норма.","Плацента степени I-II: кальцинаты появляются — это норма для 32-34 нед. Не 'старая', а зрелая!","Ёмкость желудка при рождении: 10-15 мл (размер мрамора). Молозиво — идеально по объёму.","Перинеомассаж можно начинать с 34-35 нед. 5-10 мин ежедневно с маслом.","Маме: ты прошла уже 32 недели! Сумку в роддом пора начинать собирать. Осталось 8 недель."]},
   33:{e:"🍈",s:"Круглая дыня",w:"1900 г",l:"435 мм",f:["Амниотическая жидкость: максимум ~800-1000 мл. С 34 нед начнёт убывать.","IgG-трансфер пиковый: к 37-38 нед малыш получит больше антител, чем у мамы.","Вакцинация мамы от коклюша в 28-36 нед: защищает малыша на первые 3-6 мес жизни!","Мозговые 'веретёна сна': признак созревания таламо-кортикальных связей на ЭЭГ.","Малыш различает день/ночь через мелатонин мамы. Режим сна мамы — суточный ритм малыша.","Сон на спине опасен: полная vena cava снижает венозный возврат → гипотония + хуже для плода.","Нейромоторная зрелость: сосание + глотание + дыхание — триада кормления. С 34 нед — готово!","Шейка матки по Бишопу: 0-3 = незрелая, 4-6 = созревает, 7-13 = зрелая. К 40 нед ≥6.","Маме: разреши себе быть медленной. Тело делает огромную работу. Отдых — это труд.","Скрининг стрептококка B (GBS): мазок в 35-37 нед. GBS+ → пенициллин при родах (протокол).","Схватки Брэкстон-Хикс могут усилиться. Нерегулярные, без нарастания — норма.","Признаки начала родов: регулярные схватки, воды, боли в пояснице + животе. Звоните в роддом или скорую!","Наружный поворот плода (ECV): при тазовом предлежании в 36-37 нед. Успех 50-70%.","Клетчатка в питании: снижает запоры (30-40% беременных). Чернослив, кефир, злаки.","Нос беременных: Аквамарис — безопасно. Сосудосуживающие >3 дней — нет!","Витамин D к 33 нед: новорождённому нужно 400 МЕ/сутки с 2 недели. Купи капли заранее.","Глубокое дыхание: 4-4-8 (вдох-задержка-выдох) — основа обезболивания в родах. Тренируй!","Нейротрофин BDNF: коррелирует с нейрокогнитивным развитием в 2 года. ДГК → BDNF ↑.","Маме: сумка в роддом должна быть готова к 36 неделям. Документы — в отдельный кармашек!","Ты невероятная, дорогая. Каждый день — это подвиг любви. Ты делаешь невероятное. 🤍"]},
-  34:{e:"🎃",s:"Тыква",w:"2100 г",l:"450 мм",f:["ЦНС созрела для триады кормления: дыхание + сосание + глотание синхронизированы!","Лактаза к 34 нед = 30% зрелости. К 40 нед — 100%+. Малыш переварит молоко при доношенности.","Кортизол плода: первый физиологический пик → созревает лёгкие, запасает гликоген.","Надпочечники: адреналин и норадреналин синтезируются для стрессовой реакции при рождении.","Нейронная матрица боли: таламус + кора полностью сформированы. Боль ощущается как у новорождённого.","Кости к 34 нед: 206 из 270 костей видны на рентгене. Остальные — хрящевые (до 5-15 лет).","Прибавка: 220-250 г/нед. До рождения наберёт ещё ~1,2-1,5 кг — вес удвоится!","МРТ 34 нед: все 7 функциональных сетей мозга, как у взрослого. Личность сформирована!","Лануго: полностью ушло с лица. На плечах и спине — уйдёт к 38-40 нед.","ГСД: при диете неэффективной — инсулинотерапия. Не бойся инсулина — он безопасен.","Сумка в роддом: к 34-36 нед должна быть готова. Документы — обменная карта + паспорт.","Перинеомассаж: начинай с 34-35 нед ежедневно. Снижает разрывы и эпизиотомию при родах.","Позиции при родах: вертикальная (стоя, на четвереньках) — короче II период, меньше разрывов.","Эпидуральная анестезия: консультация анестезиолога до родов желательна. Обсуди показания.","Груди: молозиво при нажатии — норма. Специальная подготовка сосков не нужна!","Маме: ты уже в финальном месяце! Начни фиксировать предвестники родов в дневнике.","Запасы гликогена печени: 5-6 г/кг — запас глюкозы на первые часы после рождения.","Послеродовая депрессия (PPD): 10-15% мам. Стойкое уныние >2 нед — это болезнь. Лечится!","Партнёрские роды: подготовь справки (флюорография, ВИЧ, RW, гепатиты) заранее.","34 недели — ты герой! Осталось совсем немного до встречи 🤍"]},
+  34:{e:"🎃",s:"Тыква",w:"2100 г",l:"450 мм",f:["ЦНС созрела для триады кормления: дыхание + сосание + глотание синхронизированы!","Лактаза к 34 нед = 30% зрелости. К 40 нед — 100%+. Малыш переварит молоко при доношенности.","Кортизол плода: первый физиологический пик → созревает лёгкие, запасает гликоген.","Надпочечники: адреналин и норадреналин синтезируются для стрессовой реакции при рождении.","Нейронная матрица боли: таламус + кора полностью сформированы. Боль ощущается как у новорождённого.","Кости к 34 нед: 206 из 270 костей видны на рентгене. Остальные — хрящевые (до 5-15 лет).","Прибавка: 220-250 г/нед. До рождения наберёт ещё ~1,2-1,5 кг — вес удвоится!","МРТ 34 нед: все 7 функциональных сетей мозга, как у взрослого. Личность сформирована!","Лануго: полностью ушло с лица. На плечах и спине — уйдёт к 38-40 нед.","ГСД: при диете неэффективной — инсулинотерапия. Не бойся инсулина — он безопасен.","Сумка в роддом: к 34-36 нед должна быть готова. Документы — обменная карта + паспорт.","Перинеомассаж: начинай с 34-35 нед ежедневно. Снижает разрывы и эпизиотомию при родах.","Позиции при родах: вертикальная (стоя, на четвереньках) — короче II период, меньше разрывов.","Эпидуральная анестезия: консультация анестезиолога до родов желательна. Обсуди показания.","Груди: молозиво при нажатии — норма. Специальная подготовка сосков не нужна!","Маме: ты уже в финальном месяце! Начни фиксировать предвестники родов в дневнике.","Запасы гликогена печени: 5-6 г/кг — запас глюкозы на первые часы после рождения.","Послеродовая депрессия (PPD): 10-15% мам. Стойкое уныние >2 нед — это болезнь. Лечится!","Партнёрские роды: партнёр, подготовь справки (флюорография, ВИЧ, RW, гепатиты) заранее.","Маме: 34 недели — ты герой! Осталось совсем немного до встречи с нашим счастьем 🤍"]},
   35:{e:"🍉",s:"Арбуз",w:"2350 г",l:"462 мм",f:["Сурфактант: L/S ratio >4, PG положительный. Оба маркера зрелости лёгких. Дыхание будет самостоятельным!","Белый жир: 15% от массы. Ямочки на щёчках — это жир в складках. Тот самый пухлый вид!","Движения изменились: перекатывания, растяжки. Пинки в рёбра — нормально, смени позу.","Норма ≥10 движений в сутки. Кардифф: от первого движения считай до 10-го. Норма ≤2 ч.","Нейтрофилы + NK-клетки: иммунная защита почти как у взрослого. Двойная броня!","Лануго на плечах: исчезнет к 38-40 нед. Иногда рождаются с пушком на спине — мило!","Меконий: кишечник заполнен. Тёмно-зелёный, густой. Выйдет в первые 24-48 ч жизни.","ЭЭГ 35 нед: непрерывная активность вместо 'рваных' паттернов. Кора полностью созрела.","Предвестники родов: опускание живота, жидкий стул, потеря пробки, усиление Брэкстон-Хикс.","Сумка в роддом: к 36 нед положи в машину! Документы кармашком отдельно.","Маме: ты почти у финиша! Сумка — в машину. Номер такси/машины — в телефоне.","Витамин К при рождении: вводят IM 1 мг — профилактика геморрагической болезни новорождённого.","Аудиоскрининг: в роддоме перед выпиской. Тугоухость у 1-2 на 1000 — выявляется рано.","Skin-to-skin (кожа к коже): немедленно при рождении на 1+ час. Стабилизирует всё!","Кортикальная ауторегуляция: MCA-PSV (мозговая артерия). Если RI низкий → гипоксия → УЗИ срочно.","Поздний скрининг на GBS в 35-37 нед: при положительном → пенициллин при родах.","Церебральная зрелость: EEG в 35 нед = доношенный. Нейрологически малыш готов!","Маме: ты несёшь в себе целую вселенную. Это невероятно. Ты заслуживаешь поддержки и заботы. 🤍","Роды в воде: снижают боль в I периоде. Уточни в своём роддоме в вашем городе возможность.","Эпизиотомия: рутинно не рекомендуется (ВОЗ). Перинеомассаж с 34 нед — лучшая профилактика."]},
-  36:{e:"🍉",s:"Большой арбуз",w:"2600 г",l:"473 мм",f:["Ранний доношенный срок. Мозг между 36 и 40 нед вырастет на 35%. Каждый день ценен!","Лёгкие готовы к самостоятельному дыханию. Риск РДС = 5-8% — практически исчез.","Опускание головки: становится легче дышать. Но давление на мочевой пузырь — усилилось!","Шейка матки созревает под действием простагландинов: мягкая, укорачивается.","IgG-трансфер: 95% защитных антител передано! Малыш защищён от всего, что болела ты.","Обвитие пуповины: у 25-30% плодов. В большинстве — безопасно при правильном ведении родов.","Предлежание плаценты: если выявлено в 20 нед — часто 'мигрирует' вверх к 36 нед.","Скрининг GBS (36-37 нед): при GBS+ → пенициллин при родах. Снижает неонатальный сепсис на 80%.","Сумка в роддом — в машину! Документы в кармашке. Позвони в роддом — уточни маршрут.","Схватки Брэкстон-Хикс учащаются: нерегулярные, проходят от отдыха. Истинные — нарастают!","Молочная железа: последние изменения перед лактацией. Молозиво готово. Ранее прикладывание!","Пульсация пуповины слышна стетоскопом через живот — попробуй! 120-160 уд/мин.","Рост волос: средняя длина 1-2 см. Может быть много или почти ничего — оба варианта норма.","Кожа: без лануго на лице. Верникс в складках — не смывай сразу после рождения!","Признаки начала родов: регулярные схватки (≤10 мин), воды, сильная боль — в роддом!","Маме: заряди телефон на 100% каждый вечер. Запиши номер такси/знакомых.","Послеродовое кровотечение (ПРК): норма до 500 мл при вагинальных родах. Больше — атония матки.","Нейромоторная готовность: все рефлексы новорождённого сформированы и отработаны.","Близкий человек может держать твою руку. Вы справитесь вместе 🤍","Физиологические изменения: объём плазмы +45%, СКФ почек +50%, ЧСС +15-20 уд/мин от нормы."]},
-  37:{e:"🍉",s:"Сочный арбуз",w:"2900 г",l:"483 мм",f:["Официально доношенная! ВОЗ с 2013 г.: 37-38 нед = ранние доношенные (early term).","Оптимальные роды — 39-40 нед. Разница в нейрокогнитивных исходах существенная!","Кортизол плода нарастает → один из главных триггеров родов. Малыш 'инициирует' роды!","Хрящи ушей: упругие, держат форму. Признак зрелости по шкале Баллард.","Ногти выступают за кончики. Антицарапки — в сумке в роддом. Готовь!","Сосательный рефлекс: при контакте с ареолой в первые 30-60 мин — золотой час. Не упусти!","Молозиво готово: IgA 12-16 г/л. Каждая капля — первая вакцина малыша. Ранее прикладывание!","HbF → HbA: фетальный гемоглобин будет заменяться взрослым 3-6 месяцев. Переход постепенный.","Кожа: без лануго на лице. Верникс в складках. Не смывай сразу — антибактериальная защита!","Пуповина 50-60 см — оптимальная длина. Позднее пережатие (1-3 мин) = +80-100 мл крови малышу!","APGAR оценка: 1 и 5 мин. 8-10 = отлично. Ждём хорошей оценки — но это не конкурс красоты!","Первый вдох: при пережатии пуповины + холодный воздух → дыхательный центр включается мгновенно.","Skin-to-skin: 1+ часа сразу при рождении. Стабилизирует температуру, ЧСС, дыхание, глюкозу.","Резус-конфликт профилактика: если ты Rh- и малыш Rh+ → анти-D иммуноглобулин в 72 ч после родов.","Витамин К: вводят IM 1 мг при рождении — профилактика геморрагической болезни новорождённого.","Скрининг новорождённых: кровь на пяточке на 4-5 день (ФКУ, гипотиреоз, АГС, МВ, галактоземия).","Аудиоскрининг TEOAE перед выпиской. Если 'не прошёл' → ABR дообследование. Ранняя диагностика!","Микробиом при рождении: вагинальные роды → Lactobacillus. КС → госпитальная флора. Важно для иммунитета!","Ты прошла этот путь. Всё, что делала — это любовь в действии 🤍","Добро пожаловать в последние недели! Малыш готов. Ты готова. 🥰"]},
+  36:{e:"🍉",s:"Большой арбуз",w:"2600 г",l:"473 мм",f:["Ранний доношенный срок. Мозг между 36 и 40 нед вырастет на 35%. Каждый день ценен!","Лёгкие готовы к самостоятельному дыханию. Риск РДС = 5-8% — практически исчез.","Опускание головки: становится легче дышать. Но давление на мочевой пузырь — усилилось!","Шейка матки созревает под действием простагландинов: мягкая, укорачивается.","IgG-трансфер: 95% защитных антител передано! Малыш защищён от всего, что болела ты.","Обвитие пуповины: у 25-30% плодов. В большинстве — безопасно при правильном ведении родов.","Предлежание плаценты: если выявлено в 20 нед — часто 'мигрирует' вверх к 36 нед.","Скрининг GBS (36-37 нед): при GBS+ → пенициллин при родах. Снижает неонатальный сепсис на 80%.","Сумка в роддом — в машину! Документы в кармашке. Позвони в роддом — уточни маршрут.","Схватки Брэкстон-Хикс учащаются: нерегулярные, проходят от отдыха. Истинные — нарастают!","Молочная железа: последние изменения перед лактацией. Молозиво готово. Ранее прикладывание!","Пульсация пуповины слышна стетоскопом через живот — попробуй! 120-160 уд/мин.","Рост волос: средняя длина 1-2 см. Может быть много или почти ничего — оба варианта норма.","Кожа: без лануго на лице. Верникс в складках — не смывай сразу после рождения!","Признаки начала родов: регулярные схватки (≤10 мин), воды, сильная боль — в роддом!","Маме: заряди телефон на 100% каждый вечер. Запиши номер такси/знакомых.","Послеродовое кровотечение (ПРК): норма до 500 мл при вагинальных родах. Больше — атония матки.","Нейромоторная готовность: все рефлексы новорождённого сформированы и отработаны.","Маме: Близкий человек может держать твою руку. Вы справитесь вместе. Вы справитесь вместе. 🤍","Физиологические изменения: объём плазмы +45%, СКФ почек +50%, ЧСС +15-20 уд/мин от нормы."]},
+  37:{e:"🍉",s:"Сочный арбуз",w:"2900 г",l:"483 мм",f:["Официально доношенная! ВОЗ с 2013 г.: 37-38 нед = ранние доношенные (early term).","Оптимальные роды — 39-40 нед. Разница в нейрокогнитивных исходах существенная!","Кортизол плода нарастает → один из главных триггеров родов. Малыш 'инициирует' роды!","Хрящи ушей: упругие, держат форму. Признак зрелости по шкале Баллард.","Ногти выступают за кончики. Антицарапки — в сумке в роддом. Готовь!","Сосательный рефлекс: при контакте с ареолой в первые 30-60 мин — золотой час. Не упусти!","Молозиво готово: IgA 12-16 г/л. Каждая капля — первая вакцина малыша. Ранее прикладывание!","HbF → HbA: фетальный гемоглобин будет заменяться взрослым 3-6 месяцев. Переход постепенный.","Кожа: без лануго на лице. Верникс в складках. Не смывай сразу — антибактериальная защита!","Пуповина 50-60 см — оптимальная длина. Позднее пережатие (1-3 мин) = +80-100 мл крови малышу!","APGAR оценка: 1 и 5 мин. 8-10 = отлично. Ждём хорошей оценки — но это не конкурс красоты!","Первый вдох: при пережатии пуповины + холодный воздух → дыхательный центр включается мгновенно.","Skin-to-skin: 1+ часа сразу при рождении. Стабилизирует температуру, ЧСС, дыхание, глюкозу.","Резус-конфликт профилактика: если ты Rh- и малыш Rh+ → анти-D иммуноглобулин в 72 ч после родов.","Витамин К: вводят IM 1 мг при рождении — профилактика геморрагической болезни новорождённого.","Скрининг новорождённых: кровь на пяточке на 4-5 день (ФКУ, гипотиреоз, АГС, МВ, галактоземия).","Аудиоскрининг TEOAE перед выпиской. Если 'не прошёл' → ABR дообследование. Ранняя диагностика!","Микробиом при рождении: вагинальные роды → Lactobacillus. КС → госпитальная флора. Важно для иммунитета!","Маме: ты прошла этот путь. Всё что делала — это любовь в действии. Горжусь тобой — с любовью 🤍","Добро пожаловать в последние недели! Малыш готов. Ты готова. Мы готовы! 🥰"]},
   38:{e:"🍉",s:"Зрелый арбуз",w:"3100 г",l:"492 мм",f:["Верникс только в складках паха и подмышек. Не смывай сразу — антибактериальный!","Максимальный IgG-трансфер: 0,5 г/сутки. Новорождённый защищён на 3-6 мес от всего, чем болела мама.","Первый вдох: O2 снижается → дыхательный центр активируется за доли секунды. Первый крик!","Механика первого вдоха: 50-60 см вод. ст. — мощнейшее усилие. Сурфактант — готов!","Боталлов проток закрывается за часы. Форамен овале — за часы/дни. Кровообращение перестроено!","Грудное вскармливание: частое прикладывание стимулирует лактацию. Желудок = 5-7 мл в день 1!","Ранее прикладывание (первые 30-60 мин): золотой час. Снижает кровотечение, улучшает лактацию.","Кожа к skin-to-skin: немедленный контакт нормализует температуру, ЧСС, дыхание, глюкозу.","APGAR: 8-10 = отлично. Оценивают 5 параметров — сердце, дыхание, тонус, рефлексы, цвет.","Транзиторная потеря веса: 5-10% от рождения нормально. Восстановление к 7-10 дню жизни.","Желтуха новорождённых: физиологическая у 60% — HbF → HbA, пик на 3-4 день. Фототерапия при необходимости.","Скрининг на пяточке (4-5 день): ФКУ, гипотиреоз, АГС, МВ, галактоземия — ранняя диагностика.","Послеродовая депрессия: 10-15% мам. Начинается в первые 4-6 недель. Это болезнь — лечится!","Маме: ты создала человека. Это невероятно. Ты можешь гордиться собой. Скоро встреча! 🤍","Роды в вашем городе: узнай номер роддома, маршрут, где парковаться. Подготовь партнёра к логистике!","Послеродовой период: матка возвращается к норме за 6-8 нед. Лохии убывают с 3-4 нед.","Кожа после родов: гормональные прыщи у 30-40% — это нормально. Пройдут к 3-6 мес.","Послеродовое выпадение волос (телогеновый эффлювий): в 2-4 мес. Нормально! Прекратится к 6-12 мес.","Маме: всё самое трудное и самое прекрасное — впереди. Вместе справимся! — с любовью 🤍","Позднее пережатие пуповины (1-3 мин): +80-100 мл крови, +30-50 мг железа. Попроси акушера!"]},
   39:{e:"🎃",s:"Большая тыква",w:"3300 г",l:"500 мм",f:["Оптимальный срок! ВОЗ: полные доношенные 39-40 нед. Все системы готовы максимально.","Плановое КС до 39 нед не рекомендуется: мозг между 37-40 нед вырастает на 35%!","Каскад родов: кортизол плода → PGE2 в оболочках → созревание шейки → схватки. Плод инициирует!","Пробка отошла: слизистые выделения ± кровь. Роды — часы или 1-2 дня. Не паникуй.","Ложные схватки: нерегулярные, <1/10 мин, проходят от ходьбы. Истинные — нарастают, не проходят!","Воды отошли: немедленно в роддом! Даже без схваток. Риск инфекции нарастает с каждым часом.","Свободное поведение в родах: ходьба, смена поз — укорачивают I период на 1-2 часа.","Позиции при родах: вертикальная — короче II период, меньше эпизиотомий (ACOG данные).","Роды в воде: снижают боль в I периоде. Уточни в своём роддоме в вашем городе.","Предвестники: опускание живота, жидкий стул, слабость, потеря 1-2 кг (уходят отёки).","Плацента степени III: кальцинаты = физиологическое старение. Норма для доношенной беременности.","Позднее пережатие пуповины: +80-100 мл крови, +30-50 мг железа. Попроси акушера.","3-й период родов: активное ведение (окситоцин) снижает риск ПРК на 60%. Стандарт ВОЗ.","Витамин К, аудиоскрининг, скрининг на пяточке — всё сделают в роддоме. Спроси когда.","Маме: ты дошла до финала. Это было 39 недель любви, силы и терпения. Ты можешь гордиться собой! 🤍","Первый контакт: малыш узнаёт голос мамы сразу. Говори с ним нежно в первые минуты.","Грудное вскармливание: молозиво в первые 2-3 дня → переходное → зрелое молоко.","Ранее прикладывание: в первые 30-60 мин. Не мой руки до этого — малышу нужен запах мамы!","Маме: Близкий человек может держать твою руку всё время. Вдыхай, выдыхай. Ты справишься. 🤍","Микробиом малыша: вагинальные роды → Lactobacillus из маминого влагалища. Первая иммунная программа!"]},
   40:{e:"👶",s:"Наш малыш!",w:"3400 г",l:"510 мм",f:["ПДР! Только 4-5% рождаются точно в срок. Норма: 37-42 нед. Не паникуй если задерживается.","Гликоген: 5-6 г/кг в печени — запас глюкозы на первые часы до налаживания кормления.","Первый вдох: боталлов проток + форамен овале закроются за секунды. Полная перестройка!","APGAR 8-10: сердце, дыхание, тонус, рефлексы, цвет. Это не конкурс — это первичная оценка.","Skin-to-skin 1+ часа: нормализует всё — температуру, глюкозу, ЧСС, дыхание, лактацию.","Молозиво: 2-5 мл/кормление в день 1. Желудок = размер мрамора. Этого достаточно!","Желтуха физиологическая: у 60% доношенных, пик день 3-4. HbF → HbA. Фототерапия при необходимости.","Скрининги в роддоме: аудиология, пяточка (4-5 день), осмотр неонатолога, прививки.","Лактация: частое прикладывание стимулирует. 100-300 мл/сутки к концу 1-й нед. Запрос → ответ.","Послеродовое кровотечение: норма до 500 мл. Активное ведение 3-го периода — стандарт ВОЗ.","Микробиом: стерильный кишечник заселяется при рождении. Вагинальные роды → лучший старт.","Транзиторная потеря веса 5-10% — норма. Восстановление к 7-10 дню при хорошем кормлении.","Послеродовая депрессия: 10-15% мам. Стойкое уныние >2 нед после родов — лечится! Близкие могут помочь — не стесняйся просить поддержки.","Рефлексы: сосательный, хватательный, Моро, поисковый — все есть. Исчезнут к 3-6 мес.","Зрение: резкость 20/400 (~0,05). Видит на 20-25 см — расстояние от груди до лица при кормлении.","Слух: узнаёт голос мамы с первой секунды. Говори, пой, называй по имени.","Вы прошли этот путь вместе — 40 недель любви, заботы и ожидания.","Нашему малышу безумно повезло с вами. Добро пожаловать в родительство! 🥰","Всё самое прекрасное — только начинается. Спасибо за эти 40 недель заботы о себе и малыше. 🤍","Ты прошла невероятный путь. Добро пожаловать в родительство! 🥰"]}
@@ -2342,14 +2352,167 @@ const bodyChanges={
   ]
 };
 
+// Week-specific body changes (medically verified, ACOG/WHO 2024)
+const weekBodyChanges={
+  16:{sub:'Слух! Малыш уже слышит тебя 🎶',items:[
+    {type:'bc-good',icon:'👂',title:'Малыш слышит!',text:'Слуховые косточки окостенели. Говори с ним — он реагирует изменением ЧСС. Пой, читай вслух!'},
+    {type:'bc-info',icon:'🤰',title:'Живот растёт',text:'Матка — размером с авокадо. Начинает выходить за лоно. Удобная одежда — уже актуальна.'},
+    {type:'bc-warn',icon:'💆',title:'Боли в спине',text:'Центр тяжести смещается. Упражнения кошка-корова, правильная обувь без каблука (или 3-4 см).'},
+    {type:'bc-good',icon:'✨',title:'Кожа светится',text:'Усиленный кровоток даёт тот самый беременный "гlow". Ты сейчас особенно красива!'}
+  ]},
+  17:{sub:'17 нед — малыш активно тренируется 🏃',items:[
+    {type:'bc-good',icon:'🥭',title:'Размер как груша',text:'140 г, 13 см. Малыш глотает воды (200-500 мл/сут) и тренирует почки — всё работает!'},
+    {type:'bc-info',icon:'🦴',title:'Кальций важен',text:'Скелет малыша активно кальцинируется. Творог, молоко, сыр — каждый день. витамины помогает!'},
+    {type:'bc-warn',icon:'💤',title:'Судороги ночью',text:'Дефицит магния и кальция. препарат по назначению в 21:30 — именно для этого. Растяни икры перед сном.'},
+    {type:'bc-pink',icon:'🌙',title:'Сон на левом боку',text:'Улучшает кровоток к плаценте на 30%. Подушка между коленями снимает боль в пояснице.'}
+  ]},
+  18:{sub:'18 нед — первые шевеления совсем скоро! 🦋',items:[
+    {type:'bc-good',icon:'🦋',title:'Скоро шевеления!',text:'У первородящих — 18-22 нед. Ощущение: "пузырьки", "лёгкое порхание". Это он!'},
+    {type:'bc-info',icon:'🧠',title:'Мозг малыша',text:'Слуховые зоны сформированы. Его мозг обрабатывает твой голос — лучший для него звук в мире.'},
+    {type:'bc-warn',icon:'🦷',title:'Дёсны',text:'Эстроген усиливает кровоснабжение — дёсны чувствительнее. Мягкая щётка, полоскание.'},
+    {type:'bc-pink',icon:'💧',title:'Отёки',text:'8 стаканов воды — обязательно! Парадокс: недостаток воды = больше отёков. Пей!'}
+  ]},
+  19:{sub:'19 нед — твоё тело сейчас 🌸',items:[
+    {type:'bc-good',icon:'🥭',title:'Малыш — манго!',text:'240 г, 15 см. Слышит тебя, видит свет, чувствует вкус. Верникс (белая смазка) уже защищает кожу.'},
+    {type:'bc-info',icon:'🩺',title:'Второй скрининг (18–22 нед)',text:'Проверяют сердце, мозг, почки, позвоночник, губу. И, возможно, узнают пол! Запишись заранее.'},
+    {type:'bc-pink',icon:'🦵',title:'Боли в пояснице',text:'Связка круглая матки растягивается — острая боль сбоку при движении. Тепло, бандаж, медленно вставать.'},
+    {type:'bc-warn',icon:'💊',title:'Железо — критично',text:'железо в 16:30 с апельсиновым соком. Без железа — усталость, головокружение, гипоксия малыша.'}
+  ]},
+  20:{sub:'20 нед — половина пути пройдена! 🏆',items:[
+    {type:'bc-good',icon:'🏆',title:'Экватор!',text:'Ровно половина беременности! Матка — на уровне пупка. Малыш весит ~300 г и отлично слышит.'},
+    {type:'bc-info',icon:'🦶',title:'Шевеления',text:'Сейчас уже должны чувствоваться движения. Норма: 10 за 2 активных часа — используй счётчик!'},
+    {type:'bc-warn',icon:'😮‍💨',title:'Изжога нарастает',text:'Матка давит на желудок снизу. Малые порции, не лежать 1–2 ч после еды, спать с возвышением головы.'},
+    {type:'bc-pink',icon:'💤',title:'Сон на спине — стоп',text:'С 20 нед матка пережимает нижнюю полую вену. Только левый бок + подушка между коленями!'}
+  ]},
+  21:{sub:'21 нед — малыш слышит тебя как взрослый 🎶',items:[
+    {type:'bc-good',icon:'👂',title:'Слух совершенен',text:'Улитка сформирована полностью. Голос мамы — любимый звук на свете. Пой, разговаривай!'},
+    {type:'bc-info',icon:'🥕',title:'Малыш — морковка',text:'~360 г, 27 см. Вкусовые рецепторы работают — он чувствует всё, что ты ешь. Ешь разнообразно!'},
+    {type:'bc-warn',icon:'💆',title:'Боль в пояснице',text:'Прогестерон размягчает связки. Упражнение «кошка-корова», удобная обувь, бандаж с 20–22 нед.'},
+    {type:'bc-pink',icon:'🌙',title:'Сон на левом боку',text:'Улучшает кровоток к плаценте на 28%. Подушка между коленями снимет боль в тазу.'}
+  ]},
+  22:{sub:'22 нед — малыш реагирует на прикосновение 🤲',items:[
+    {type:'bc-good',icon:'🤲',title:'Тактильный контакт',text:'Погладь живот — 75% малышей реагируют движением через 20–30 сек. Это ваш первый диалог!'},
+    {type:'bc-info',icon:'🥥',title:'Малыш — кокос',text:'~430 г, 28 см. Мозолистое тело (связь между полушариями) полностью видно на УЗИ.'},
+    {type:'bc-warn',icon:'🦷',title:'Дёсны кровоточат',text:'Гормоны усиливают приток крови к дёснам. Мягкая щётка, полоскание, визит к стоматологу.'},
+    {type:'bc-pink',icon:'🚶',title:'Прогулки',text:'30 мин умеренной ходьбы в день снижают риск ГСД на 27% (ACOG). ваш город — идеальное место!'}
+  ]},
+  23:{sub:'23 нед — малыш различает твой голос и папин 🎤',items:[
+    {type:'bc-good',icon:'🎤',title:'Распознаёт голоса',text:'Мозг обрабатывает речь — ритм, интонацию. Малыш уже различает голос мамы и партнёра!'},
+    {type:'bc-info',icon:'🍊',title:'Малыш — грейпфрут',text:'~500 г — первый порог жизнеспособности ВОЗ. Каждый день в утробе — это твоя забота.'},
+    {type:'bc-warn',icon:'🔥',title:'Изжога и запоры',text:'Прогестерон расслабил пищеводный клапан. Малые порции, клетчатка (чернослив, кефир), вода.'},
+    {type:'bc-pink',icon:'💧',title:'Отёки нарастают',text:'Объём крови вырос на 40–50%. Компрессионные чулки при ходьбе, ноги выше уровня сердца вечером.'}
+  ]},
+  24:{sub:'24 нед — ГСД-скрининг этой недели! 🧪',items:[
+    {type:'bc-warn',icon:'🧪',title:'ГСД-скрининг',text:'24–28 нед — сдать глюкозотолерантный тест (ОГТТ). Норма: натощак <5.1, через 1 ч <10.0 ммоль/л.'},
+    {type:'bc-good',icon:'🌽',title:'Малыш — кукуруза',text:'~600 г, 30 см. Жизнеспособность в НИКУ при 24 нед — ~40–50%. Каждая неделя = +3–4%!'},
+    {type:'bc-info',icon:'👁',title:'Глаза открываются',text:'Веки начинают разделяться, зрачок реагирует на свет. Свети фонариком — малыш отвернётся 😄'},
+    {type:'bc-pink',icon:'🦺',title:'Бандаж',text:'Если ещё не носишь — самое время. Поддерживает живот, снимает поясницу. Надевай лёжа.'}
+  ]},
+  25:{sub:'25 нед — лёгкие малыша готовятся 🫁',items:[
+    {type:'bc-good',icon:'🫁',title:'Сурфактант растёт',text:'Пневмоциты II типа синтезируют сурфактант — вещество, не дающее лёгким слипаться. Ключ к дыханию!'},
+    {type:'bc-info',icon:'🥦',title:'Малыш — цветная капуста',text:'~660 г, 34–35 см. Ноздри открылись — тренирует диафрагму для первого вдоха в жизни.'},
+    {type:'bc-warn',icon:'⚡',title:'Судороги икр',text:'Дефицит магния и кальция. Растяни икру вертикально, тепло на мышцу. Обсуди Mg с врачом.'},
+    {type:'bc-pink',icon:'🤱',title:'Молозиво',text:'С 16–20 нед грудь готовит молозиво. Первые капли при нажатии — абсолютно нормально!'}
+  ]},
+  26:{sub:'26 нед — малыш открыл глаза! 👁',items:[
+    {type:'bc-good',icon:'👁',title:'Глаза открылись!',text:'Зрачок реагирует на свет. Настоящий цвет радужки установится к 6–12 месяцам жизни.'},
+    {type:'bc-info',icon:'🥒',title:'Малыш — кабачок',text:'~760 г, 36 см. ЭЭГ мозга 26 нед идентична ЭЭГ здорового новорождённого — мозг созрел нейрологически.'},
+    {type:'bc-warn',icon:'😣',title:'Брэкстон-Хикс',text:'Тренировочные схватки усиливаются — матка «репетирует». Нерегулярные, проходят от отдыха — норма.'},
+    {type:'bc-pink',icon:'💊',title:'Витамин D',text:'1 000–2 000 МЕ/сутки. Дефицит → нарушение эмали у ребёнка. Уточни дозу у врача.'}
+  ]},
+  27:{sub:'27 нед — финальная неделя II триместра 🌟',items:[
+    {type:'bc-good',icon:'🌟',title:'II триместр — финал!',text:'Ты великолепно прошла «золотой» период! Малыш выживает с >90% вероятностью при рождении сейчас.'},
+    {type:'bc-info',icon:'🥬',title:'Малыш — кочан',text:'~875 г, 37 см. Мозжечок удвоился за 4 недели — координация, баланс и речь строятся здесь.'},
+    {type:'bc-warn',icon:'🦵',title:'Боли в ногах ночью',text:'Снижение кальция + сдавление нервов. Растяни икру, выпей воды. Компрессионные чулки днём.'},
+    {type:'bc-pink',icon:'💤',title:'Сон ухудшается',text:'Норма! Неудобный живот, частые позывы, тревога. U-образная подушка изменит качество сна навсегда.'}
+  ]},
+  28:{sub:'28 нед — добро пожаловать в III триместр! 🎉',items:[
+    {type:'bc-good',icon:'🎉',title:'III триместр!',text:'Малыш весит >1 кг и выглядит как настоящий младенец. Мозг создаёт 1,8 млн синапсов в секунду!'},
+    {type:'bc-warn',icon:'😮‍💨',title:'Одышка',text:'Матка поднялась до диафрагмы. При опускании головки в 36–38 нед станет легче. Спи на боку.'},
+    {type:'bc-info',icon:'🛑',title:'Сон на спине — нельзя',text:'Матка пережимает полую вену → головокружение + меньше кислорода малышу. Только левый бок!'},
+    {type:'bc-pink',icon:'🩺',title:'КТГ назначается',text:'Норма: ЧСС 110–160 уд/мин, вариабельность 5–25, ≥2 акцелерации за 20 мин.'}
+  ]},
+  29:{sub:'29 нед — мощные движения и тренировки 🦶',items:[
+    {type:'bc-good',icon:'🦶',title:'Сильные движения',text:'Пинки в рёбра — это норма! Малышу тесновато. Смени позу: встань или ляг на другой бок.'},
+    {type:'bc-info',icon:'🎃',title:'Малыш — мини-тыква',text:'~1 150 г, 38–39 см. Все рефлексы новорождённого уже сформированы. Почти готов к встрече!'},
+    {type:'bc-warn',icon:'💧',title:'Отёки нарастают',text:'Нижние к вечеру у 80% — физиологические. Лицо утром + АД ≥140/90 → немедленно к врачу!'},
+    {type:'bc-pink',icon:'🛍',title:'Сумка в роддом',text:'Самое время начать собирать! Открой вкладку «Сумка» — чек-лист уже готов для тебя.'}
+  ]},
+  30:{sub:'30 нед — декрет! Заслуженный отдых 🛋',items:[
+    {type:'bc-good',icon:'🛋',title:'Время отдыхать',text:'Ты делаешь огромную работу! Малыш весит ~1 300 г. Позволь себе замедлиться — это не лень, это любовь.'},
+    {type:'bc-info',icon:'🥬',title:'Малыш — большой кочан',text:'~1 300 г, 39–40 см. Лануго исчезает с лица. Малыш всё больше похож на того, кого ты встретишь!'},
+    {type:'bc-warn',icon:'🔥',title:'Изжога максимальна',text:'Матка давит на желудок. Омепразол не рекомендован. Помогают: маленькие порции, молоко, сон на возвышении.'},
+    {type:'bc-pink',icon:'🤸',title:'Пренатальная йога',text:'Плавание или пренатальная йога — снижают боль, улучшают сон, готовят мышцы к родам. 30 мин, 3 р/нед.'}
+  ]},
+  31:{sub:'31 нед — финальный рывок набора веса 📈',items:[
+    {type:'bc-good',icon:'📈',title:'Прибавка веса малыша',text:'Теперь малыш набирает ~220–250 г в неделю. Белок в питании (мясо, яйца, рыба) — главный строительный материал.'},
+    {type:'bc-info',icon:'🍍',title:'Малыш — ананас',text:'~1 500 г, 41 см. Лёгкие почти готовы: при родах 31 нед риск РДС резко снижается.'},
+    {type:'bc-warn',icon:'😴',title:'Бессонница',text:'Норма! Неудобный живот + мочевой пузырь. Ограничь жидкость после 18:00. Берушни? Только если шумит.'},
+    {type:'bc-pink',icon:'💪',title:'Упражнения Кегеля',text:'3 подхода по 10 сжатий в день. Укрепляют тазовое дно → легче II период родов → меньше разрывов.'}
+  ]},
+  32:{sub:'32 нед — малыш повернулся головой вниз 👶',items:[
+    {type:'bc-good',icon:'👶',title:'Головное предлежание',text:'80% малышей уже повернулись головой вниз к 32 нед. К 36 нед — 96%. Тело всё умеет само!'},
+    {type:'bc-info',icon:'🍈',title:'Малыш — дыня',text:'~1 700 г, 42 см. Кожа розовая и непрозрачная — жир заполнил дерму. Малыш округляется!'},
+    {type:'bc-warn',icon:'🌡',title:'Варикоз и тромбоз',text:'Компрессионные чулки 20–30 мм рт.ст. — обязательно при ходьбе. Риск тромбоза в III тримере ↑.'},
+    {type:'bc-pink',icon:'🏥',title:'3D/4D УЗИ',text:'Можно сделать по желанию — увидишь лицо малыша! Незабываемое впечатление для всей семьи.'}
+  ]},
+  33:{sub:'33 нед — финальная подготовка лёгких 🫁',items:[
+    {type:'bc-good',icon:'🫁',title:'Лёгкие почти готовы',text:'L/S ratio сурфактанта ≥2. При родах 33 нед — высокий шанс самостоятельного дыхания. Умница!'},
+    {type:'bc-info',icon:'🍍',title:'Малыш — большой ананас',text:'~1 900 г, 43–44 см. Мозг различает день и ночь через мелатонин мамы. Ложись вовремя!'},
+    {type:'bc-warn',icon:'🛑',title:'Тазовое предлежание?',text:'Если малыш ещё не перевернулся — поговори с врачом о наружном повороте в 36–37 нед.'},
+    {type:'bc-pink',icon:'💊',title:'Вакцинация от коклюша',text:'28–36 нед — вакцина Tdap. Антитела передаются малышу и защищают его первые 3–6 мес жизни!'}
+  ]},
+  34:{sub:'34 нед — сумку в роддом пора собирать! 🎒',items:[
+    {type:'bc-good',icon:'🎒',title:'Сумка в роддом!',text:'Собери сумку к 34–36 нед. Открой вкладку «Сумка» — там полный чек-лист. Документы — в кармашек!'},
+    {type:'bc-info',icon:'🎃',title:'Малыш — маленькая тыква',text:'~2 100 г, 45 см. Все системы координированы: дыхание + сосание + глотание — триада кормления.'},
+    {type:'bc-warn',icon:'💆',title:'Перинеомассаж',text:'Начинай с 34–35 нед: 5–10 мин ежедневно с маслом. Доказанно снижает разрывы при родах.'},
+    {type:'bc-pink',icon:'🤱',title:'Грудное вскармливание',text:'Молозиво готово! Специальная подготовка соска не нужна — природа позаботилась. Просто жди встречи.'}
+  ]},
+  35:{sub:'35 нед — малыш набирает последние граммы 🏋',items:[
+    {type:'bc-good',icon:'🏋',title:'Финальный набор',text:'250 г в неделю — темп прибавки максимален. Белок, железо, кальций — до самых родов.'},
+    {type:'bc-info',icon:'🍈',title:'Малыш — медовая дыня',text:'~2 350 г, 46 см. Лёгкие зрелые: оба маркера (L/S >4, PG+) в норме. Дыхание будет самостоятельным!'},
+    {type:'bc-warn',icon:'⚠️',title:'Предвестники родов',text:'Опускание живота, жидкий стул, потеря пробки, усиление Брэкстон-Хикс — всё это нормально!'},
+    {type:'bc-pink',icon:'📱',title:'Телефон заряжен',text:'С 35 нед телефон заряди на 100% каждую ночь. Номер такси и роддома — в контактах. Готова!'}
+  ]},
+  36:{sub:'36 нед — финишная прямая! 🏁',items:[
+    {type:'bc-good',icon:'🏁',title:'Ранний доношенный',text:'36 нед = ранний доношенный. Мозг между 36–40 нед вырастет ещё на 35%. Каждый день в утробе — на вес золота!'},
+    {type:'bc-info',icon:'🥬',title:'Малыш — романо',text:'~2 600 г, 47 см. 95% антител IgG переданы — малыш защищён от всего, чем болела ты за жизнь.'},
+    {type:'bc-warn',icon:'🔔',title:'Признаки родов',text:'Регулярные схватки с нарастанием (≤10 мин), излитие вод, пробка — немедленно звоните в роддом или скорую!'},
+    {type:'bc-pink',icon:'🩺',title:'Скрининг GBS',text:'Мазок на стрептококк группы B в 35–37 нед. При GBS+ → пенициллин в родах снижает сепсис на 80%.'}
+  ]},
+  37:{sub:'37 нед — малыш официально доношенный! 🎉',items:[
+    {type:'bc-good',icon:'🎉',title:'Доношенный!',text:'37 нед = полные доношенные. Но оптимальный срок — 39–40 нед: мозг ещё растёт. Каждый день важен!'},
+    {type:'bc-info',icon:'🍉',title:'Малыш — арбузик',text:'~2 900 г, 48 см. Кортизол малыша нарастает — он сам «назначает» дату родов. Природа умна!'},
+    {type:'bc-warn',icon:'😮‍💨',title:'Живот опустился',text:'Стало легче дышать — головка вошла в малый таз. Зато давление на мочевой пузырь усилилось.'},
+    {type:'bc-pink',icon:'🤱',title:'Молозиво готово',text:'IgA 12–16 г/л — каждая капля молозива это первая вакцина малыша. Раннее прикладывание в 30–60 мин!'}
+  ]},
+  38:{sub:'38 нед — ждём и прислушиваемся 🌸',items:[
+    {type:'bc-good',icon:'🌸',title:'Всё готово',text:'Малыш весит ~3 100 г, 49 см. Верникс только в складках. Все системы готовы — ждём встречи!'},
+    {type:'bc-info',icon:'💧',title:'Воды могут отойти',text:'Тёплая жидкость потоком или подтекание. При излитии — немедленно в роддом, даже без схваток!'},
+    {type:'bc-warn',icon:'📋',title:'Документы — готовы?',text:'Обменная карта, паспорт, полис — в отдельном кармашке сумки. Продумай маршрут в роддом заранее.'},
+    {type:'bc-pink',icon:'🧘',title:'Дыхание 4-7-8',text:'Вдох 4 сек → задержка 7 сек → выдох 8 сек. Основа обезболивания в родах. Тренируй сейчас!'}
+  ]},
+  39:{sub:'39 нед — оптимальный срок по ВОЗ ✨',items:[
+    {type:'bc-good',icon:'✨',title:'Оптимальный срок',text:'39–40 нед — идеально по ВОЗ. Мозг набрал максимальную зрелость. Ты прошла этот путь с любовью!'},
+    {type:'bc-info',icon:'🎃',title:'Малыш — тыква',text:'~3 300 г, 50 см. Плацента степени III — нормальное «созревание». Малыш инициирует каскад родов сам!'},
+    {type:'bc-warn',icon:'⚡',title:'Ложные vs истинные схватки',text:'Истинные: нарастают, не проходят от ходьбы, интервал сокращается. Ложные: нерегулярные, проходят.'},
+    {type:'bc-pink',icon:'🤝',title:'Поддержка рядом',text:'При схватках 10–15 мин — звоните в роддом. Близкий человек может держать твою руку всё время. Вы справитесь!'}
+  ]},
+  40:{sub:'40 нед — встреча совсем скоро! 👶',items:[
+    {type:'bc-good',icon:'👶',title:'ПДР настал!',text:'Только 4–5% рожают точно в срок. Норма — до 41+6 нед. Малыш весит ~3 400–3 600 г. Ты невероятна!'},
+    {type:'bc-info',icon:'🩺',title:'КТГ каждые 2–3 дня',text:'После 40 нед КТГ учащается — следим за состоянием малыша. Это стандарт, не повод для тревоги.'},
+    {type:'bc-warn',icon:'🔔',title:'Когда ехать в роддом',text:'Схватки каждые 5–7 мин в течение часа, или воды отошли, или сильные боли — немедленно едем!'},
+    {type:'bc-pink',icon:'❤️',title:'Вы справитесь',text:'40 недель любви, заботы и ожидания — и через несколько часов или дней вы встретите своё чудо. Поддержка рядом!'}
+  ]}
+};
+
 function renderBodyChanges(week){
   let items, sub;
   const isEn=AppI18n.getLocale()==='en';
   const enBody=typeof getLocalizedBodyChanges==='function'?getLocalizedBodyChanges():null;
-  const weekMap=typeof getWeekBodyChangesRu==='function'?getWeekBodyChangesRu():null;
-  if(!isEn&&weekMap&&weekMap[week]){
-    items=weekMap[week].items;
-    sub=weekMap[week].sub;
+  if(!isEn&&weekBodyChanges[week]){
+    items=weekBodyChanges[week].items;
+    sub=weekBodyChanges[week].sub;
   }else{
     const tri=week<=13?'t1':week<=27?'t2':'t3';
     const source=(isEn&&enBody)?enBody[tri]:bodyChanges[tri];
@@ -2363,6 +2526,36 @@ function renderBodyChanges(week){
     items.map(b=>`<div class="bc-item ${b.type}"><div class="bc-icon">${b.icon}</div><div class="bc-title">${b.title}</div><div class="bc-text">${b.text}</div></div>`).join('')+
     '</div>';
 }
+
+// SMART TIPS by gestational week
+const getSmartTips=w=>{
+  const tips=[];
+
+  // I trimester
+  if(w>=4&&w<=6)tips.push({c:'st-r',i:'🩸',t:'<b>Имплантационная мазня</b> (лёгкие выделения) — норма при имплантации. Обильные выделения с болью → звони врачу.'});
+  if(w>=5&&w<=12)tips.push({c:'st-g',i:'🌿',t:'<b>Фолиевая кислота критически важна</b> сейчас — защищает нервную трубку малыша. Принимай витамины по назначению врача!'});
+  if(w>=6&&w<=13)tips.push({c:'st-b',i:'🤢',t:'<b>Токсикоз:</b> сухарик до вставания с кровати, маленькие порции каждые 2–3 ч, имбирный чай. Пик в 9–10 нед, проходит к 12–14 нед!'});
+  if(w>=9&&w<=10)tips.push({c:'st-p',i:'🧬',t:'<b>НИПТ</b> (неинвазивный пренатальный тест) доступен с 9–10 нед. Точность >99% по хромосомным аномалиям. Обсуди с врачом.'});
+  if(w>=11&&w<=13)tips.push({c:'st-p',i:'🔬',t:'<b>Первый скрининг (11–13 нед)</b> — важнейшее УЗИ! Измеряют ТВП, ЧСС, носовую кость. Запишись заранее!'});
+  // II trimester
+  if(w>=14&&w<=16)tips.push({c:'st-g',i:'✨',t:'<b>Золотой триместр начался!</b> Токсикоз часто уходит, энергия возвращается. Наслаждайся этим периодом!'});
+  if(w>=16&&w<=19)tips.push({c:'st-g',i:'🦋',t:'<b>Скоро первые шевеления!</b> У первородящих — 18–22 нед. Ощущение: «пузырьки» или «лёгкое порхание» в животе.'});
+  if(w>=18&&w<=22)tips.push({c:'st-b',i:'🔭',t:'<b>Второй скрининг (18–22 нед)</b> — детально смотрят все органы. Именно сейчас можно узнать пол малыша!'});
+  if(w>=20)tips.push({c:'st-g',i:'💤',t:'<b>Поза для сна:</b> на левом боку улучшает кровоток к плаценте на 28%. Подложи подушку между коленями!'});
+  if(w>=20&&w<=35)tips.push({c:'st-p',i:'🦶',t:'<b>Считай шевеления:</b> 10 движений за 2 часа активности — норма Кардифф. Используй счётчик на главном экране!'});
+  if(w>=24&&w<=28)tips.push({c:'st-o',i:'🧪',t:'<b>Глюкозотолерантный тест</b> (ОГТТ) — в 24–28 нед. Норма: натощак <5,1 ммоль/л. Исключаем ГСД — это важно!'});
+  if(w>=26&&w<=28)tips.push({c:'st-b',i:'💉',t:'<b>Вакцинация от коклюша (Tdap)</b> в 28–36 нед — антитела передаются малышу и защищают его первые месяцы жизни.'});
+  // III триместр
+  if(w>=28&&w<=35)tips.push({c:'st-o',i:'⚠️',t:'<b>III триместр:</b> считай шевеления ежедневно по методу Кардифф. Менее 10 за 2 ч активности — сразу звони врачу!'});
+  if(w>=28)tips.push({c:'st-b',i:'🩺',t:'<b>КТГ назначается с 28 нед.</b> Норма: ЧСС 110–160 уд/мин, вариабельность 5–25, ≥2 акцелерации за 20 мин.'});
+  if(w>=30)tips.push({c:'st-b',i:'🏋️',t:'<b>Упражнения Кегеля</b> (3×10 сжатий в день) укрепляют тазовое дно → легче II период родов → меньше разрывов.'});
+  if(w>=32)tips.push({c:'st-p',i:'🎒',t:'<b>Пора собрать сумку в роддом!</b> Открой вкладку «Сумка» — полный чек-лист уже готов. Документы — в кармашек!'});
+  if(w>=34)tips.push({c:'st-b',i:'💆',t:'<b>Перинеомассаж</b> с 34–35 нед (5–10 мин/день с маслом) доказанно снижает разрывы и эпизиотомию при родах.'});
+  if(w>=35&&w<=37)tips.push({c:'st-p',i:'🦠',t:'<b>Мазок на стрептококк GBS</b> (35–37 нед). При GBS+ → пенициллин в родах снижает неонатальный сепсис на 80%.'});
+  if(w>=35)tips.push({c:'st-r',i:'🚨',t:'<b>Признаки начала родов:</b> регулярные схватки с интервалом ≤10 мин, воды, боль нарастает — немедленно в роддом или скорую!'});
+  if(w>=36)tips.push({c:'st-g',i:'🌟',t:'<b>Малыш доношенный!</b> Роды возможны в любой момент. Телефон на 100% заряжен каждую ночь. Сумка — в машине!'});
+  return tips;
+};
 
 // FAQ — расширенные, для всех триместров
 const faqs={
@@ -2643,9 +2836,7 @@ function activeFaqs() {
   return (typeof getLocalizedFaqs === 'function' ? getLocalizedFaqs() : null) || faqs;
 }
 function activeSmartTips(w) {
-  if (typeof getLocalizedSmartTips === 'function') return getLocalizedSmartTips(w);
-  if (typeof getSmartTipsRu === 'function') return getSmartTipsRu(w);
-  return [];
+  return typeof getLocalizedSmartTips === 'function' ? getLocalizedSmartTips(w) : getSmartTips(w);
 }
 function activeWeekData() {
   return typeof getWeekData === 'function' ? getWeekData() : wkData;
@@ -2739,18 +2930,18 @@ const genderMsgs={
   g:{
     reveal:"Это девочка! 🎀 Маленькая принцесса уже растёт — поздравляем! 💗",
     banner:{bg:'linear-gradient(135deg,#D63077,#F06BA0,#C966D0)',emoji:'🎀',text:'Будет дочка!',sub:'Маленькая принцесса уже ждёт встречи 💗'},
-    heroNote:"малышки 🎀",
+    heroNote:"baby girl 🎀",
     kickLabel:"шевелений принцессы",
     streakLabel:"дней заботы о малышке"
   },
   b:{
     reveal:"Это мальчик! 🩵 Маленький богатырь уже растёт — поздравляем! 💙",
     banner:{bg:'linear-gradient(135deg,#1878C8,#4CA8F0,#1452A0)',emoji:'🩵',text:'Будет малыш!',sub:'Маленький богатырь уже растёт 💙'},
-    heroNote:"малыша 🩵",
+    heroNote:"baby boy 🩵",
     kickLabel:"шевелений малыша",
     streakLabel:"дней заботы о малыше"
   },
-  n:{reveal:null,banner:null,heroNote:"малыша 🤍",kickLabel:"шевелений малыша",streakLabel:"дней заботы"}
+  n:{reveal:null,banner:null,heroNote:"your baby 🤍",kickLabel:"шевелений малыша",streakLabel:"дней заботы"}
 };
 
 // Доп. факты специфичные для пола (медицински точные)
@@ -2932,8 +3123,8 @@ function checkAnniv(){
   const n=new Date(),md=`${String(n.getMonth()+1).padStart(2,'0')}-${String(n.getDate()).padStart(2,'0')}`;
   if(md==='03-08'){
     document.getElementById('annexBanner').style.display='block';
-    const t=document.querySelector('#annexBanner div:nth-child(2)');
-    const s=document.querySelector('#annexBanner div:nth-child(3)');
+    const t=document.getElementById('annivTitle');
+    const s=document.getElementById('annivSub');
     if(t)t.textContent=AppI18n.t('anniv.march8Title');
     if(s)s.textContent=AppI18n.t('anniv.march8Sub');
     setTimeout(()=>confetti({particleCount:350,spread:130,origin:{y:.5},colors:['#FFD700','#E8325A','#C44DFF','#fff']}),700);
@@ -3640,7 +3831,7 @@ const fetusCompare={
   17:{e1:'🍐',l1:'груша',e2:'👟',l2:'детский кроссовок'},
   18:{e1:'🍠',l1:'батат',e2:'📏',l2:'линейка 30 см'},
   19:{e1:'🥭',l1:'манго',e2:'✋',l2:'ладошка'},
-  20:{e1:'🍌',l1:'банан',e2:'💼',l2:'взрослая ладонь'},
+  20:{e1:'🍌',l1:'банан',e2:'💼',l2:'папина рука'},
   21:{e1:'🥕',l1:'морковь',e2:'🎾',l2:'теннисный мяч'},
   22:{e1:'🥥',l1:'кокос',e2:'🍼',l2:'бутылочка'},
   23:{e1:'🍊',l1:'грейпфрут',e2:'🐰',l2:'кролик'},
@@ -3658,8 +3849,8 @@ const fetusCompare={
   35:{e1:'🍈',l1:'медовая дыня',e2:'🏈',l2:'мяч'},
   36:{e1:'🥬',l1:'романо',e2:'🎈',l2:'воздушный шар'},
   37:{e1:'🍉',l1:'арбузик',e2:'🐕',l2:'маленькая собачка'},
-  38:{e1:'🍉',l1:'большой арбуз',e2:'💪',l2:'твоя сила'},
-  39:{e1:'🎃',l1:'тыква',e2:'❤️',l2:'твоя любовь'},
+  38:{e1:'🍉',l1:'большой арбуз',e2:'💪',l2:'наша сила'},
+  39:{e1:'🎃',l1:'тыква',e2:'❤️',l2:'наша любовь'},
   40:{e1:'🎉',l1:'чудо',e2:'👶',l2:'малыш'}
 };
 

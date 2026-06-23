@@ -2,8 +2,8 @@
  * Minimal service worker — caches shell for offline use.
  * Data remains in LocalStorage; this only caches static assets.
  */
-const CACHE_NAME = 'maternal-care-v5';
-const ASSETS = ['./', './index.html', './js/app-core.js', './js/ui-i18n.js', './js/week-data-en.js', './js/app-content.js', './js/i18n.js', './js/smart-tips-ru.js', './js/body-changes-ru.js', './js/clinical-content.js', './manifest.json'];
+const CACHE_NAME = 'maternal-care-v7';
+const ASSETS = ['./', './index.html', './js/app-core.js', './js/ui-i18n.js', './js/week-data-en.js', './js/app-content.js', './js/i18n.js', './js/clinical-content.js', './manifest.json', './apple-icon.png', './splash-iphone.png'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
