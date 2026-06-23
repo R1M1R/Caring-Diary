@@ -55,7 +55,7 @@ The app supports **optional personalization**: the user can enter their name and
 │   ├── ui-i18n.js          # Static UI strings (381 keys × 2 locales)
 │   ├── i18n.js             # Locale engine
 │   ├── week-data-en.js     # English weekly medical facts (weeks 1–40)
-│   └── clinical-content.js # English FAQ, smart tips, gender facts
+│   └── clinical-content.js # English FAQ, smart tips, gender facts, body & fetus EN
 ├── manifest.json       # PWA manifest
 ├── sw.js               # Service worker (offline shell cache)
 ├── .nojekyll           # Ensures js/ is served on GitHub Pages

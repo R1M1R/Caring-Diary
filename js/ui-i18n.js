@@ -302,6 +302,14 @@ const UI_I18N = {
     'bmi.discussDoctor': 'Обсуди с врачом на следующем приёме',
     'bmi.trackRegularly': 'Записывай вес регулярно — буду отслеживать динамику вместе с тобой! 📈',
     'bmi.firstWeightNote': '* Первый вес ({date}) используется как вес до беременности',
+    'bmi.rangeUnder': '12,5–18 кг',
+    'bmi.rangeNormal': '11,5–16 кг',
+    'bmi.rangeOver': '7–11,5 кг',
+    'bmi.rangeObese': '5–9 кг',
+    'bmi.rateUnder': '0,51 кг/нед (II–III тр)',
+    'bmi.rateNormal': '0,42 кг/нед (II–III тр)',
+    'bmi.rateOver': '0,28 кг/нед (II–III тр)',
+    'bmi.rateObese': '0,22 кг/нед (II–III тр)',
 
     // ── Gallery modal ──
     'gallery.weekTitle': '📷 Неделя {week}',
@@ -756,6 +764,14 @@ const UI_I18N = {
     'bmi.discussDoctor': 'Discuss with your provider at your next visit',
     'bmi.trackRegularly': 'Log weight regularly — I\'ll track trends with you! 📈',
     'bmi.firstWeightNote': '* First weight ({date}) used as pre-pregnancy baseline',
+    'bmi.rangeUnder': '12.5–18 kg',
+    'bmi.rangeNormal': '11.5–16 kg',
+    'bmi.rangeOver': '7–11.5 kg',
+    'bmi.rangeObese': '5–9 kg',
+    'bmi.rateUnder': '0.51 kg/wk (2nd–3rd tri)',
+    'bmi.rateNormal': '0.42 kg/wk (2nd–3rd tri)',
+    'bmi.rateOver': '0.28 kg/wk (2nd–3rd tri)',
+    'bmi.rateObese': '0.22 kg/wk (2nd–3rd tri)',
 
     // ── Gallery modal ──
     'gallery.weekTitle': '📷 Week {week}',

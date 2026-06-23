@@ -1798,7 +1798,7 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
                 <span id="bmiLblUnder">Недовес</span><span id="bmiLblNormal">Норма</span><span id="bmiLblOver">Избыток</span><span id="bmiLblObese">Ожирение</span>
               </div>
               <div class="bmi-bar-track"><div class="bmi-indicator" id="bmiIndicator" style="left:40%"></div></div>
-              <div class="who-box" id="whoBox">Сохрани первый вес для расчёта ИМТ 📊</div>
+              <div class="who-box" id="whoBox"></div>
             </div>
           </div>
         </div>
@@ -2852,6 +2852,7 @@ function refreshLocaleUI() {
   renderHospitalBag();
   updateNextMedicationPill();
   renderWeightChart();
+  renderWaterTracker();
   if (edd) renderGallery(edd);
 }
 
@@ -3160,12 +3161,12 @@ function renderCareTip(){
   const relevant=careTips.filter(t=>{const[a,b]=t.h;return a<b?h>=a&&h<b:h>=a||h<b;});
   if(!relevant.length)return;
   const tip=relevant[Math.floor(Date.now()/3600000)%relevant.length];
-  const periods={5:'☀️ Утро',12:'🌤️ День',18:'🌆 Вечер',23:'🌙 Ночь'};
+  const periodKeys={5:'period.morningBadge',12:'period.afternoonBadge',18:'period.eveningBadge',23:'period.nightBadge'};
   const pk=h>=5&&h<12?5:h>=12&&h<18?12:h>=18&&h<23?18:23;
   const ct=document.getElementById('careTip');
   const ctm=document.getElementById('careTime');
   if(ct)ct.innerHTML=`${tip.tip}`;
-  if(ctm)ctm.textContent=periods[pk]+' · '+new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'});
+  if(ctm)ctm.textContent=AppI18n.t(periodKeys[pk])+' · '+AppI18n.formatTime(new Date(),{hour:'2-digit',minute:'2-digit'});
   const card=document.getElementById('careCard');
   if(card){const icons=document.querySelector('#careCard .care-icon');if(icons)icons.textContent=tip.icon;}
 }
@@ -3243,10 +3244,10 @@ function renderWaterTracker() {
   const count = slots.length;
   const percent = Math.round((count / WaterTracker.DAILY_GOAL) * 100);
   label.innerHTML = count === 0
-    ? '<span style="opacity:.65">Нажми на капельку — отмечай каждый стакан 💧</span>'
+    ? '<span style="opacity:.65">' + AppI18n.t('water.tapHint') + '</span>'
     : count === WaterTracker.DAILY_GOAL
-      ? '<b>Умница! Все 8 стаканов! 🏆</b>'
-      : '<b>' + count + ' из 8</b> стаканов — ' + percent + '% нормы' + (count >= 6 ? ' 💪 Почти всё!' : '');
+      ? '<b>' + AppI18n.t('water.allDone') + '</b>'
+      : '<b>' + AppI18n.t('water.progress', { count, percent }) + '</b>' + (count >= 6 ? AppI18n.t('water.almostDone') : '');
 }
 const renderWater = renderWaterTracker;
 
@@ -3841,7 +3842,8 @@ const fetusCompare={
 };
 
 function updateFetusVisual(week){
-  const d=fetusCompare[week]||fetusCompare[19];
+  const fc=(typeof getFetusCompareData==='function'&&getFetusCompareData())||fetusCompare;
+  const d=fc[week]||fc[19];
   const e1=document.getElementById('fetusEm1');
   const l1=document.getElementById('fetusLbl1');
   const e2=document.getElementById('fetusEm2');
@@ -3850,14 +3852,6 @@ function updateFetusVisual(week){
 }
 
 // ══ BMI & WHO WEIGHT CORRIDOR ══
-// ВОЗ рекомендации по прибавке веса (2022 update)
-const whoGain={
-  underweight:{range:'12.5–18 кг',wkRate:'0.51 кг/нед (II-III тр)',label:'Недовес (ИМТ <18.5)',color:'#4EC8DC'},
-  normal:{range:'11.5–16 кг',wkRate:'0.42 кг/нед (II-III тр)',label:'Норма (ИМТ 18.5–24.9)',color:'#52B882'},
-  overweight:{range:'7–11.5 кг',wkRate:'0.28 кг/нед (II-III тр)',label:'Избыток (ИМТ 25–29.9)',color:'#F0C060'},
-  obese:{range:'5–9 кг',wkRate:'0.22 кг/нед (II-III тр)',label:'Ожирение (ИМТ ≥30)',color:'#E8325A'}
-};
-
 function getBMICategory(bmi){
   if(bmi<18.5)return 'underweight';
   if(bmi<25)return 'normal';
@@ -3876,6 +3870,8 @@ function updateBMI(week){
   // Hide section if no weights saved
   if(!keys.length){
     if(section)section.style.display='none';
+    const emptyBox=document.getElementById('whoBox');
+    if(emptyBox)emptyBox.textContent=AppI18n.t('journal.bmiEmpty');
     return;
   }
   // Show BMI section and toggle button
@@ -3886,7 +3882,9 @@ function updateBMI(week){
   const curWt=wts[keys[keys.length-1]];
   const bmi=firstWt/(hm*hm);
   const cat=getBMICategory(bmi);
-  const wo=whoGain[cat];
+  const wo=AppI18n.getWhoGain(cat);
+  const bmiStr=bmi.toFixed(1);
+  const unit=AppI18n.t('journal.weightUnit');
 
   // BMI indicator position: map to gradient bar %
   let pct;
@@ -3899,36 +3897,37 @@ function updateBMI(week){
   if(ind)setTimeout(()=>{ind.style.left=Math.min(94,Math.max(6,pct))+'%'},350);
 
   const bmiValEl=document.getElementById('bmiVal');
-  if(bmiValEl)bmiValEl.textContent='ИМТ '+bmi.toFixed(1);
+  if(bmiValEl)bmiValEl.textContent=AppI18n.t('bmi.label',{value:bmiStr});
 
   const whoBox=document.getElementById('whoBox');
   if(!whoBox)return;
 
   const isSingleEntry=keys.length===1;
   const gain=parseFloat((curWt-firstWt).toFixed(1));
-  const gainFmt=(gain>0?'+':'')+gain.toFixed(1)+' кг';
+  const gainFmt=(gain>0?'+':'')+gain.toFixed(1)+' '+unit;
+  const bmiLine='<b>'+wo.label+'</b> · '+AppI18n.t('bmi.label',{value:bmiStr}).replace(bmiStr,'<b>'+bmiStr+'</b>');
+  const whoLine=AppI18n.t('bmi.whoRecommend',{range:wo.range}).replace(wo.range,'<b>'+wo.range+'</b>');
 
   if(isSingleEntry){
-    // Only one weight — can't calculate gain yet
     whoBox.innerHTML=
-      '<b>'+wo.label+'</b> · ИМТ <b>'+bmi.toFixed(1)+'</b><br>'+
-      '📋 ВОЗ рекомендует: <b>'+wo.range+'</b> за всю беременность<br>'+
-      '⏱ Темп II–III тр.: <b>'+wo.wkRate+'</b><br>'+
-      '<span style="opacity:0.65;font-size:11px">Записывай вес регулярно — буду отслеживать динамику вместе с тобой! 📈</span>';
+      bmiLine+'<br>'+
+      whoLine+'<br>'+
+      AppI18n.t('bmi.paceTrimester',{rate:wo.wkRate}).replace(wo.wkRate,'<b>'+wo.wkRate+'</b>')+'<br>'+
+      '<span style="opacity:0.65;font-size:11px">'+AppI18n.t('bmi.trackRegularly')+'</span>';
   } else {
-    // Calculate expected gain range by week (WHO 2022)
-    const wksFromStart=week<=13?week:week;
-    const expectedMax=week<=13?2.0:2.0+((week-13)*parseFloat(wo.wkRate));
+    const expectedMax=week<=13?2.0:2.0+((week-13)*wo.rateNum);
     const expectedMin=week<=13?-0.5:-0.5;
     const gainOk=gain>=expectedMin&&gain<=expectedMax+1.5;
     const gainEmoji=gain>0?(gainOk?'✅':'💛'):(gain===0?'➡️':'⚠️');
-    const gainNote=gainOk?'В норме по ВОЗ 🤍':'Обсуди с врачом на следующем приёме';
+    const gainNote=gainOk?AppI18n.t('bmi.inNorm'):AppI18n.t('bmi.discussDoctor');
+    const paceLine=AppI18n.t('bmi.pace',{rate:wo.wkRate}).replace(wo.wkRate,'<b>'+wo.wkRate+'</b>');
+    const gainLine=AppI18n.t('bmi.gain',{gain:'<b>'+gainFmt+'</b>',emoji:gainEmoji,note:gainNote});
     whoBox.innerHTML=
-      '<b>'+wo.label+'</b> · ИМТ <b>'+bmi.toFixed(1)+'</b><br>'+
-      '📋 ВОЗ рекомендует: <b>'+wo.range+'</b> за всю беременность<br>'+
-      '⏱ Темп: <b>'+wo.wkRate+'</b><br>'+
-      '📦 Прибавка: <b>'+gainFmt+'</b> '+gainEmoji+' — '+gainNote+'<br>'+
-      '<span style="opacity:0.55;font-size:10px">* Первый вес ('+keys[0]+') принят за допреременный</span>';
+      bmiLine+'<br>'+
+      whoLine+'<br>'+
+      paceLine+'<br>'+
+      gainLine+'<br>'+
+      '<span style="opacity:0.55;font-size:10px">'+AppI18n.t('bmi.firstWeightNote',{date:keys[0]})+'</span>';
   }
 }
 

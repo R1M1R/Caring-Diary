@@ -87,6 +87,23 @@ const AppI18n = {
     return this.t('medCount.many');
   },
 
+  /** WHO weight-gain corridor labels for BMI category. */
+  getWhoGain(category) {
+    const map = {
+      underweight: { label: 'bmi.underweightFull', range: 'bmi.rangeUnder', rate: 'bmi.rateUnder', rateNum: 0.51 },
+      normal: { label: 'bmi.normalFull', range: 'bmi.rangeNormal', rate: 'bmi.rateNormal', rateNum: 0.42 },
+      overweight: { label: 'bmi.overweightFull', range: 'bmi.rangeOver', rate: 'bmi.rateOver', rateNum: 0.28 },
+      obese: { label: 'bmi.obeseFull', range: 'bmi.rangeObese', rate: 'bmi.rateObese', rateNum: 0.22 },
+    };
+    const m = map[category] || map.normal;
+    return {
+      label: this.t(m.label),
+      range: this.t(m.range),
+      wkRate: this.t(m.rate),
+      rateNum: m.rateNum,
+    };
+  },
+
   /** Sync APP_CONTENT globals used by inline logic. */
   bindContentGlobals() {
     const c = APP_CONTENT[this._locale] || APP_CONTENT.ru;

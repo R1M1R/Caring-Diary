@@ -398,3 +398,47 @@ function getLocalizedBodyChanges() {
 function getWeekData() {
   return AppI18n.getLocale() === 'en' ? wkDataEn : wkData;
 }
+
+/** English size-comparison labels for fetus visual (weeks 5–40). */
+const fetusCompareEn = {
+  5: { e1: '🌾', l1: 'sesame seed', e2: '💧', l2: 'a drop' },
+  6: { e1: '🫘', l1: 'lentil', e2: '🐜', l2: 'an ant' },
+  7: { e1: '🫐', l1: 'blueberry', e2: '💅', l2: 'a fingernail' },
+  8: { e1: '🍒', l1: 'cherry', e2: '🍬', l2: 'a candy' },
+  9: { e1: '🫒', l1: 'olive', e2: '🍇', l2: 'a grape' },
+  10: { e1: '🍊', l1: 'kumquat', e2: '🌰', l2: 'a chestnut' },
+  11: { e1: '🍓', l1: 'strawberry', e2: '🐞', l2: 'a ladybug' },
+  12: { e1: '🍋', l1: 'lime', e2: '🌷', l2: 'a tulip' },
+  13: { e1: '🍑', l1: 'peach', e2: '🐹', l2: 'a hamster' },
+  14: { e1: '🍋', l1: 'lemon', e2: '✊', l2: 'a fist' },
+  15: { e1: '🍏', l1: 'apple', e2: '🧸', l2: 'a small teddy' },
+  16: { e1: '🥑', l1: 'avocado', e2: '🖐', l2: 'a palm' },
+  17: { e1: '🍐', l1: 'pear', e2: '👟', l2: 'a baby shoe' },
+  18: { e1: '🍠', l1: 'sweet potato', e2: '📏', l2: 'a 30 cm ruler' },
+  19: { e1: '🥭', l1: 'mango', e2: '✋', l2: 'a hand' },
+  20: { e1: '🍌', l1: 'banana', e2: '💼', l2: 'an adult hand' },
+  21: { e1: '🥕', l1: 'carrot', e2: '🎾', l2: 'a tennis ball' },
+  22: { e1: '🥥', l1: 'coconut', e2: '🍼', l2: 'a bottle' },
+  23: { e1: '🍊', l1: 'grapefruit', e2: '🐰', l2: 'a rabbit' },
+  24: { e1: '🌽', l1: 'corn', e2: '📖', l2: 'a book' },
+  25: { e1: '🥦', l1: 'cauliflower', e2: '⚽', l2: 'a small ball' },
+  26: { e1: '🥒', l1: 'zucchini', e2: '🐈', l2: 'a kitten' },
+  27: { e1: '🥬', l1: 'head of lettuce', e2: '🧸', l2: 'a plush toy' },
+  28: { e1: '🍆', l1: 'eggplant', e2: '📦', l2: 'a small box' },
+  29: { e1: '🎃', l1: 'mini pumpkin', e2: '🎒', l2: 'a small backpack' },
+  30: { e1: '🥬', l1: 'large cabbage', e2: '💻', l2: 'a laptop' },
+  31: { e1: '🍍', l1: 'pineapple', e2: '🐶', l2: 'a puppy' },
+  32: { e1: '🍈', l1: 'melon', e2: '👜', l2: 'a handbag' },
+  33: { e1: '🍍', l1: 'large pineapple', e2: '🐇', l2: 'a rabbit' },
+  34: { e1: '🎃', l1: 'small pumpkin', e2: '🐱', l2: 'a pet cat' },
+  35: { e1: '🍈', l1: 'honeydew', e2: '🏈', l2: 'a football' },
+  36: { e1: '🥬', l1: 'romaine', e2: '🎈', l2: 'a balloon' },
+  37: { e1: '🍉', l1: 'small watermelon', e2: '🐕', l2: 'a small dog' },
+  38: { e1: '🍉', l1: 'large watermelon', e2: '💪', l2: 'your strength' },
+  39: { e1: '🎃', l1: 'pumpkin', e2: '❤️', l2: 'your love' },
+  40: { e1: '🎉', l1: 'a miracle', e2: '👶', l2: 'your baby' },
+};
+
+function getFetusCompareData() {
+  return AppI18n.getLocale() === 'en' ? fetusCompareEn : null;
+}
