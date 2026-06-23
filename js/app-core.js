@@ -371,7 +371,7 @@ const GalleryStore = {
  */
 const UserProfile = {
   getDisplayName() {
-    const fallback = AppI18n?.getLocale?.() === 'en' ? 'dear one' : 'родная';
+    const fallback = AppI18n?.getLocale?.() === 'en' ? 'dear one' : 'дорогая';
     return AppStorage.getString(STORAGE_KEYS.USER_NAME) || fallback;
   },
   getPartnerName() {
