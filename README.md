@@ -3,7 +3,8 @@
 A **Progressive Web App (PWA)** for expectant mothers — a private, offline-capable pregnancy companion with medically grounded weekly guidance, daily wellness tracking, and emotional support. Built as a portfolio HealthTech project with a warm, empathetic B2C tone.
 
 > **Live demo:** [https://r1m1r.github.io/Caring-Diary/](https://r1m1r.github.io/Caring-Diary/)  
-> **Note:** Bilingual UI — **Russian** and **English** (switch in Settings or on the setup screen). Source code identifiers and documentation are in English.
+> **Note:** Bilingual UI — **Russian** and **English** (switch in Settings or on the setup screen). Source code identifiers and documentation are in English.  
+> **After deploy:** If the live site looks outdated, hard-refresh (Ctrl+Shift+R) or clear the site data — the service worker caches static assets (`maternal-care-v5`).
 
 ---
 
@@ -55,6 +56,8 @@ The app supports **optional personalization**: the user can enter their name and
 │   ├── ui-i18n.js          # Static UI strings (381 keys × 2 locales)
 │   ├── i18n.js             # Locale engine
 │   ├── week-data-en.js     # English weekly medical facts (weeks 1–40)
+│   ├── smart-tips-ru.js    # Russian gestational-week smart tips
+│   ├── body-changes-ru.js  # Russian week-specific body change cards (16–40)
 │   └── clinical-content.js # English FAQ, smart tips, gender facts, body & fetus EN
 ├── manifest.json       # PWA manifest
 ├── sw.js               # Service worker (offline shell cache)

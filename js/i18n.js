@@ -160,6 +160,7 @@ const AppI18n = {
       moodTitle: 'hero.moodTitle',
       moodSub: 'hero.moodSub',
       faqTitle: 'hero.faqTitle',
+      faqSub: 'hero.faqSub',
       breathingTitle: 'hero.breathingTitle',
       breathingSub: 'hero.breathingSub',
       brTit: 'hero.breathingStart',
