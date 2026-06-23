@@ -2,7 +2,8 @@
 
 A **Progressive Web App (PWA)** for expectant mothers — a private, offline-capable pregnancy companion with medically grounded weekly guidance, daily wellness tracking, and emotional support. Built as a portfolio HealthTech project with a warm, empathetic B2C tone.
 
-> **Note:** Bilingual UI — **Russian** and **English** (switch in Settings). Source code identifiers and documentation are in English.
+> **Live demo:** [https://r1m1r.github.io/Caring-Diary/](https://r1m1r.github.io/Caring-Diary/)  
+> **Note:** Bilingual UI — **Russian** and **English** (switch in Settings or on the setup screen). Source code identifiers and documentation are in English.
 
 ---
 
@@ -57,6 +58,8 @@ The app supports **optional personalization**: the user can enter their name and
 │   └── clinical-content.js # English FAQ, smart tips, gender facts
 ├── manifest.json       # PWA manifest
 ├── sw.js               # Service worker (offline shell cache)
+├── .nojekyll           # Ensures js/ is served on GitHub Pages
+├── .github/workflows/deploy-pages.yml
 ├── apple-icon.png      # PWA home-screen icon (optional)
 ├── .gitignore
 └── README.md
@@ -107,6 +110,20 @@ Then visit **http://localhost:8080** (or the port shown).
 ### Option 3 — VS Code / Cursor Live Server
 
 Install the **Live Server** extension, right-click `index.html` → **Open with Live Server**.
+
+---
+
+## Deploy to GitHub Pages
+
+This repo includes [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) for automatic deployment on every push to `main`.
+
+**One-time setup in GitHub:**
+
+1. Open the repository → **Settings** → **Pages**
+2. Under **Build and deployment**, set **Source** to **GitHub Actions**
+3. Push to `main` — the workflow uploads the project root (including `js/` modules and `.nojekyll`)
+
+After deploy, verify in DevTools that `js/i18n.js` loads with **200** (not 404). Hard-refresh or clear the service worker cache if you still see an old build.
 
 ---
 

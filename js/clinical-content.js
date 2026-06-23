@@ -363,6 +363,38 @@ function getLocalizedGenderFacts() {
   return AppI18n.getLocale() === 'en' ? genderFactsEn : null;
 }
 
+/** English trimester body-change cards (week-specific cards stay RU-only in index.html). */
+const bodyChangesEn = {
+  t1: [
+    { type: 'bc-warn', icon: '🤢', title: 'Morning sickness', text: 'Nausea is driven by rising hCG and estrogen, often peaking around weeks 9–10 and easing by 12–14. A plain cracker before getting up may help.' },
+    { type: 'bc-info', icon: '😴', title: 'Fatigue', text: 'Progesterone lowers alertness while the placenta forms — a high-energy process. Rest when you need to; this is normal in early pregnancy.' },
+    { type: 'bc-pink', icon: '🌡️', title: 'Basal temperature', text: 'Progesterone keeps basal temperature about 0.3–0.5°C higher throughout pregnancy. This is expected.' },
+    { type: 'bc-good', icon: '👃', title: 'Heightened smell', text: 'Hyperosmia — a sharper sense of smell — may help you avoid harmful odors. It often improves after the first trimester.' },
+    { type: 'bc-warn', icon: '🍶', title: 'Frequent urination', text: 'The growing uterus presses on the bladder and blood volume rises 40–50%. More bathroom trips are normal now.' },
+    { type: 'bc-info', icon: '💆', title: 'Headaches', text: 'Vascular changes from estrogen can trigger headaches. Stay hydrated, avoid triggers, and acetaminophen is generally considered safe if your provider agrees.' },
+  ],
+  t2: [
+    { type: 'bc-good', icon: '✨', title: 'Second-trimester glow', text: 'Nausea often fades, energy returns, and the bump is still manageable. Many people feel their best during these weeks.' },
+    { type: 'bc-info', icon: '🫀', title: 'Circulation', text: 'Blood volume increases about 40–50%. The heart pumps 30–40% more blood. Mild palpitations can occur and should be discussed if persistent.' },
+    { type: 'bc-warn', icon: '🦵', title: 'Varicose veins & swelling', text: 'Uterine pressure on pelvic veins can cause leg swelling. Compression stockings, leg elevation, and movement breaks help.' },
+    { type: 'bc-pink', icon: '🎯', title: 'Stretch marks', text: 'Skin stretches faster than it can remodel. Moisturizing from mid-pregnancy may help comfort; genetics strongly influence stretch marks.' },
+    { type: 'bc-good', icon: '💇', title: 'Thicker hair', text: 'Estrogen prolongs the growth phase — less shedding, faster nail growth. Enjoy it while it lasts!' },
+    { type: 'bc-info', icon: '🦷', title: 'Gums', text: 'Hormones increase gum blood flow — tenderness and bleeding are common. Use a soft brush and keep dental checkups.' },
+  ],
+  t3: [
+    { type: 'bc-warn', icon: '😮‍💨', title: 'Shortness of breath', text: 'The uterus rises toward the diaphragm. Breathing often eases after the baby drops (around 36–38 weeks). Side sleeping helps.' },
+    { type: 'bc-info', icon: '🔥', title: 'Heartburn', text: 'Progesterone relaxes the lower esophageal sphincter. Smaller meals, staying upright after eating, and head elevation at night help.' },
+    { type: 'bc-warn', icon: '💤', title: 'Insomnia', text: 'Discomfort, nighttime bathroom trips, and anticipation are common. A pillow between knees and limiting fluids before bed may help.' },
+    { type: 'bc-pink', icon: '🤱', title: 'Breast changes', text: 'Colostrum may appear from 16–20 weeks. Breast fullness is normal — no special nipple prep is needed.' },
+    { type: 'bc-good', icon: '💪', title: 'Braxton Hicks', text: 'Practice contractions from ~20 weeks are irregular and stop with rest. Contact your provider if they become regular or painful.' },
+    { type: 'bc-info', icon: '🦴', title: 'Pelvic pain', text: 'Relaxin softens pelvic ligaments for birth. Symphysis pain (SPD) — use a support belt and avoid wide steps.' },
+  ],
+};
+
+function getLocalizedBodyChanges() {
+  return AppI18n.getLocale() === 'en' ? bodyChangesEn : null;
+}
+
 function getWeekData() {
   return AppI18n.getLocale() === 'en' ? wkDataEn : wkData;
 }

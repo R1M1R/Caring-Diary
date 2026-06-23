@@ -22,6 +22,7 @@ const UI_I18N = {
     'setup.description': 'Персональный дневник беременности: трекеры, факты и поддержка каждый день. Укажи предполагаемую дату родов (ПДР).',
     'setup.namePlaceholder': 'Как к тебе обращаться? (необязательно)',
     'setup.startBtn': 'Начать путь ✨',
+    'setup.langTitle': 'Язык / Language',
 
     // ── Navigation ──
     'nav.home': 'Главная',
@@ -443,6 +444,14 @@ const UI_I18N = {
     'toast.reportNeedEdd': 'Сначала укажи дату родов!',
     'toast.reportCopied': 'Скопировано в буфер! 📋',
     'toast.reportCopiedFallback': 'Скопировано! 📋',
+    'toast.waterComplete': 'Умница! Все 8 стаканов выпиты 💧🏆',
+    'toast.kickGoal': 'Отлично! 10 шевелений — норма достигнута 🎉',
+    'toast.kickCount': 'Уже {count} пиночков! 🦶',
+    'toast.notifUnsupported': 'Уведомления не поддерживаются',
+    'toast.notifAlready': 'Уведомления уже включены! ❤️',
+    'toast.notifEnabled': 'Уведомления включены!',
+    'toast.notifTestTitle': 'Проверка связи 🤍',
+    'toast.notifTestBody': 'Буду напоминать о витаминках вовремя!',
 
     // ── Units ──
     'unit.kg': 'кг',
@@ -467,6 +476,7 @@ const UI_I18N = {
     'setup.description': 'A personal pregnancy diary with trackers, weekly facts, and daily support. Enter your estimated due date (EDD).',
     'setup.namePlaceholder': 'What should we call you? (optional)',
     'setup.startBtn': 'Begin your journey ✨',
+    'setup.langTitle': 'Language / Язык',
 
     // ── Navigation ──
     'nav.home': 'Home',
@@ -888,6 +898,14 @@ const UI_I18N = {
     'toast.reportNeedEdd': 'Set your due date first!',
     'toast.reportCopied': 'Copied to clipboard! 📋',
     'toast.reportCopiedFallback': 'Copied! 📋',
+    'toast.waterComplete': 'Well done! All 8 glasses logged 💧🏆',
+    'toast.kickGoal': 'Great! 10 movements — goal reached 🎉',
+    'toast.kickCount': '{count} kicks already! 🦶',
+    'toast.notifUnsupported': 'Notifications not supported',
+    'toast.notifAlready': 'Notifications already enabled! ❤️',
+    'toast.notifEnabled': 'Notifications enabled!',
+    'toast.notifTestTitle': 'Connection check 🤍',
+    'toast.notifTestBody': 'I\'ll remind you about medications on time!',
 
     // ── Units ──
     'unit.kg': 'kg',

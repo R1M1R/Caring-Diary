@@ -56,6 +56,37 @@ const AppI18n = {
     return text;
   },
 
+  /** Russian day pluralization; English uses short form. */
+  pluralDays(count) {
+    const n = Math.abs(Number(count)) || 0;
+    if (this._locale === 'en') return `${n} ${this.t('days.short').replace(/^d\.$/, 'd')}`;
+    const mod10 = n % 10;
+    const mod100 = n % 100;
+    let word = this.t('days.many');
+    if (mod100 >= 11 && mod100 <= 14) word = this.t('days.many');
+    else if (mod10 === 1) word = this.t('days.one');
+    else if (mod10 >= 2 && mod10 <= 4) word = this.t('days.few');
+    return `${n} ${word}`;
+  },
+
+  /** Hero chip suffix after week number (e.g. «& 3 дн.»). */
+  heroDaysSuffix(dayR) {
+    if (this._locale === 'en') return `& ${dayR} d.`;
+    return `& ${dayR} ${this.t('days.short')}`;
+  },
+
+  /** Medication count plural (ru); English uses "dose(s)". */
+  pluralMedCount(count) {
+    const n = Math.abs(Number(count)) || 0;
+    if (this._locale === 'en') return n === 1 ? 'dose' : 'doses';
+    const mod10 = n % 10;
+    const mod100 = n % 100;
+    if (mod100 >= 11 && mod100 <= 14) return this.t('medCount.many');
+    if (mod10 === 1) return this.t('medCount.one');
+    if (mod10 >= 2 && mod10 <= 4) return this.t('medCount.few');
+    return this.t('medCount.many');
+  },
+
   /** Sync APP_CONTENT globals used by inline logic. */
   bindContentGlobals() {
     const c = APP_CONTENT[this._locale] || APP_CONTENT.ru;
@@ -103,6 +134,7 @@ const AppI18n = {
       fetusCompareTitle: 'hero.fetusCompareTitle',
       careTipTitle: 'hero.careTipTitle',
       bodyChangesTitle: 'hero.bodyChangesTitle',
+      bodyChangesSub: 'hero.bodyChangesDefaultSub',
       lettersTitle: 'hero.lettersTitle',
       lettersSub: 'hero.lettersSub',
       couponTitle: 'hero.couponTitle',
@@ -157,6 +189,35 @@ const AppI18n = {
       medFormSave: 'medForm.save',
       medDelBtn: 'medForm.delete',
       journalPageTitle: 'journal.pageTitle',
+      journalPageDesc: 'journal.pageDesc',
+      journalMoodTitle: 'journal.moodHistoryTitle',
+      journalMoodSub: 'journal.moodHistorySub',
+      journalWeightTitle: 'journal.weightTitle',
+      journalWeightSub: 'journal.weightSub',
+      journalWeightUnit: 'journal.weightUnit',
+      journalWeightSave: 'journal.weightSave',
+      journalGalleryTitle: 'journal.galleryTitle',
+      journalGallerySub: 'journal.gallerySub',
+      bmiTitle: 'journal.bmiTitle',
+      bmiLblUnder: 'journal.bmiUnder',
+      bmiLblNormal: 'journal.bmiNormal',
+      bmiLblOver: 'journal.bmiOver',
+      bmiLblObese: 'journal.bmiObese',
+      settingsPageTitle: 'settings.pageTitle',
+      settingsDarkThemeLbl: 'settings.darkTheme',
+      settingsNotifLbl: 'settings.notifications',
+      settingsNotifBtn: 'settings.notificationsEnable',
+      setupLangLbl: 'setup.langTitle',
+      medMoSub: 'medForm.subtitle',
+      medNameLbl: 'medForm.nameLabel',
+      medDoseLbl: 'medForm.doseLabel',
+      medTimeLbl: 'medForm.timeLabel',
+      medIconLbl: 'medForm.iconLabel',
+      medDetLbl: 'medForm.noteLabel',
+      medEndLbl: 'medForm.endLabel',
+      medPauseLbl: 'medForm.pauseLabel',
+      galAddBtn: 'gallery.addPhoto',
+      galDelBtn: 'gallery.deletePhoto',
       tmsgTap: 'hero.tmsgTap',
       qNoteSig: 'hero.quoteSignature',
       qNoteTap: 'hero.quoteTapHint',
@@ -198,6 +259,16 @@ const AppI18n = {
     if (langEn) {
       langEn.textContent = this.t('settings.langEn');
       langEn.classList.toggle('active', this._locale === 'en');
+    }
+    const setupRu = document.getElementById('setupLangRu');
+    const setupEn = document.getElementById('setupLangEn');
+    if (setupRu) setupRu.classList.toggle('active', this._locale === 'ru');
+    if (setupEn) setupEn.classList.toggle('active', this._locale === 'en');
+    const bmiBtn = document.getElementById('bmiToggleBtn');
+    const bmiSection = document.getElementById('bmiSection');
+    if (bmiBtn && bmiSection) {
+      const open = bmiSection.style.display !== 'none';
+      bmiBtn.textContent = this.t(open ? 'journal.bmiToggleHide' : 'journal.bmiToggleShow');
     }
     const navKeys = ['nav.home', 'nav.care', 'nav.journal', 'nav.bag', 'nav.settings'];
     document.querySelectorAll('#nav .nb .nav-lbl').forEach((el, i) => {
