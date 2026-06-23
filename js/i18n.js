@@ -249,6 +249,8 @@ const AppI18n = {
       gBtnNLbl: 'gender.secret',
       gBtnGLbl: 'gender.girl',
       gBtnBLbl: 'gender.boy',
+      lSign: 'letter.signDefault',
+      tmsgFrom: 'hero.tmsgDefaultFrom',
     };
     Object.entries(byId).forEach(([id, key]) => {
       const el = document.getElementById(id);

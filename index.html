@@ -1906,9 +1906,9 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
     <div class="ms-hdl"></div>
     <button class="ms-close" onclick="closeCoupon()">✕</button>
     <div style="text-align:center;font-size:70px;margin-bottom:10px">🎟️</div>
-    <div style="text-align:center;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:rgba(138,88,0,.5);margin-bottom:12px">Купон на:</div>
+    <div style="text-align:center;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:2px;color:rgba(138,88,0,.5);margin-bottom:12px" id="couponModalLbl">Купон на:</div>
     <div style="font-size:22px;font-weight:900;text-align:center;color:#5A2800;line-height:1.45;margin-bottom:22px" id="cpnBody"></div>
-    <p style="text-align:center;font-size:12px;font-weight:700;color:rgba(138,88,0,.55);background:rgba(255,255,255,.5);padding:12px;border-radius:14px">Сделай скриншот и покажи близкому человеку ❤️<br>Срок годности: бесконечен.</p>
+    <p style="text-align:center;font-size:12px;font-weight:700;color:rgba(138,88,0,.55);background:rgba(255,255,255,.5);padding:12px;border-radius:14px"><span id="couponScreenshotHint">Сделай скриншот и покажи близкому человеку ❤️</span><br><span id="couponExpiry">Срок годности: бесконечен.</span></p>
   </div>
 </div>
 
@@ -2853,6 +2853,7 @@ function refreshLocaleUI() {
   updateNextMedicationPill();
   renderWeightChart();
   renderWaterTracker();
+  renderMoodHistory();
   if (edd) renderGallery(edd);
 }
 
@@ -3214,7 +3215,7 @@ function renderMoodHistory() {
   if (!el) return;
   const dates = Object.keys(history).sort().slice(-14);
   if (!dates.length) {
-    el.innerHTML = '<p style="color:var(--t3);font-size:13px;font-weight:700;padding-bottom:20px">Настроение ещё не отмечено!</p>';
+    el.innerHTML = '<p style="color:var(--t3);font-size:13px;font-weight:700;padding-bottom:20px">' + AppI18n.t('mood.emptyHistory') + '</p>';
     return;
   }
   el.innerHTML = dates.map((key) => {
@@ -3286,7 +3287,7 @@ function renderWeightChart() {
   if (!el) return;
   const keys = Object.keys(history).sort().slice(-10);
   if (!keys.length) {
-    el.innerHTML = '<p style="color:var(--t3);font-size:13px;font-weight:700;width:100%;text-align:center;padding:16px 0;opacity:.6">Запиши первый вес!</p>';
+    el.innerHTML = '<p style="color:var(--t3);font-size:13px;font-weight:700;width:100%;text-align:center;padding:16px 0;opacity:.6">' + AppI18n.t('journal.weightEmpty') + '</p>';
     return;
   }
   const values = keys.map((key) => history[key]);
