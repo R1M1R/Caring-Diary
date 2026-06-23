@@ -22,6 +22,8 @@ const STORAGE_KEYS = Object.freeze({
   THEME: 'theme',
   DIARY: 'diaryEntry',
   HUSBAND_PHONE: 'husbandPhone',
+  USER_NAME: 'userName',
+  PARTNER_NAME: 'partnerName',
   BABY_GENDER: 'babyGender',
   HEIGHT_CM: 'heightCm',
   UZI_PHOTO: 'uziPh',
@@ -46,6 +48,8 @@ const APP_RESET_KEYS = Object.freeze([
   STORAGE_KEYS.THEME,
   STORAGE_KEYS.DIARY,
   STORAGE_KEYS.HUSBAND_PHONE,
+  STORAGE_KEYS.USER_NAME,
+  STORAGE_KEYS.PARTNER_NAME,
   STORAGE_KEYS.BABY_GENDER,
   STORAGE_KEYS.HEIGHT_CM,
   STORAGE_KEYS.UZI_PHOTO,
@@ -357,6 +361,24 @@ const GalleryStore = {
   /** @param {Record<number, string>} photos @returns {boolean} */
   savePhotos(photos) {
     return AppStorage.set(STORAGE_KEYS.GALLERY_PHOTOS, photos);
+  },
+};
+
+/**
+ * Optional display names — setup on first launch, editable in Settings.
+ */
+const UserProfile = {
+  getDisplayName() {
+    return AppStorage.getString(STORAGE_KEYS.USER_NAME) || 'родная';
+  },
+  getPartnerName() {
+    return AppStorage.getString(STORAGE_KEYS.PARTNER_NAME) || 'близкий человек';
+  },
+  setDisplayName(name) {
+    AppStorage.set(STORAGE_KEYS.USER_NAME, (name || '').trim());
+  },
+  setPartnerName(name) {
+    AppStorage.set(STORAGE_KEYS.PARTNER_NAME, (name || '').trim());
   },
 };
 
