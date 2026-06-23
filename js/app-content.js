@@ -233,8 +233,8 @@ const APP_CONTENT = {
 
   en: {
     petNames: [
-      'dear one', 'sunshine', 'beloved', 'beautiful', 'gentle soul', 'sweet one',
-      'little star', 'joy', 'queen', 'little one', 'treasure', 'darling',
+      'Dear one', 'Sunshine', 'Beloved', 'Beautiful', 'Gentle soul', 'Sweet one',
+      'Little star', 'Joy', 'Queen', 'Little one', 'Treasure', 'Darling',
     ],
 
     heroG: {

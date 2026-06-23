@@ -45,6 +45,20 @@ const AppI18n = {
    * @param {Record<string, string|number>} [vars]
    * @returns {string}
    */
+  /** Capitalize first letter (e.g. dear one → Dear one). */
+  capitalizeFirst(str) {
+    if (!str || typeof str !== 'string') return str;
+    const s = str.trim();
+    return s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
+  },
+
+  /** Ensure each sentence starts with a capital letter. */
+  capitalizeSentences(str) {
+    if (!str || typeof str !== 'string') return str;
+    const s = this.capitalizeFirst(str);
+    return s.replace(/([.!?…]\s+)([a-zа-яё])/g, (_, punct, ch) => punct + ch.toUpperCase());
+  },
+
   t(key, vars) {
     const pack = UI_I18N[this._locale] || UI_I18N.ru;
     let text = pack[key] ?? UI_I18N.ru[key] ?? key;

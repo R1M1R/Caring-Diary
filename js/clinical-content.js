@@ -258,33 +258,33 @@ function getSmartTipsEn(w) {
 
 const genderMsgsEn = {
   g: {
-    reveal: 'It\'s a girl! 🎀 A little princess is on the way — congratulations! 💗',
+    reveal: 'It\'s a girl! 🎀 Congratulations — your baby is growing beautifully! 💗',
     banner: {
       bg: 'linear-gradient(135deg,#D63077,#F06BA0,#C966D0)',
       emoji: '🎀',
       text: 'It\'s a girl!',
-      sub: 'A little princess is already waiting to meet you 💗',
+      sub: 'Your baby is growing every day 💗',
     },
-    heroNote: 'our princess 🎀',
-    kickLabel: 'princess kicks',
-    streakLabel: 'days of care for baby girl',
+    heroNote: 'your baby 🎀',
+    kickLabel: 'baby kicks',
+    streakLabel: 'days of care',
   },
   b: {
-    reveal: 'It\'s a boy! 🩵 A little champion is on the way — congratulations! 💙',
+    reveal: 'It\'s a boy! 🩵 Congratulations — your baby is growing beautifully! 💙',
     banner: {
       bg: 'linear-gradient(135deg,#1878C8,#4CA8F0,#1452A0)',
       emoji: '🩵',
       text: 'It\'s a boy!',
-      sub: 'A little champion is growing strong 💙',
+      sub: 'Your baby is growing every day 💙',
     },
-    heroNote: 'our little one 🩵',
+    heroNote: 'your baby 🩵',
     kickLabel: 'baby kicks',
-    streakLabel: 'days of care for baby boy',
+    streakLabel: 'days of care',
   },
   n: {
     reveal: null,
     banner: null,
-    heroNote: 'our baby 🤍',
+    heroNote: 'your baby 🤍',
     kickLabel: 'baby kicks',
     streakLabel: 'days of care',
   },

@@ -371,11 +371,11 @@ const GalleryStore = {
  */
 const UserProfile = {
   getDisplayName() {
-    const fallback = AppI18n?.getLocale?.() === 'en' ? 'dear one' : 'дорогая';
+    const fallback = AppI18n?.getLocale?.() === 'en' ? 'Dear one' : 'Дорогая';
     return AppStorage.getString(STORAGE_KEYS.USER_NAME) || fallback;
   },
   getPartnerName() {
-    const fallback = AppI18n?.getLocale?.() === 'en' ? 'loved one' : 'близкий человек';
+    const fallback = AppI18n?.getLocale?.() === 'en' ? 'Loved one' : 'Близкий человек';
     return AppStorage.getString(STORAGE_KEYS.PARTNER_NAME) || fallback;
   },
   setDisplayName(name) {
