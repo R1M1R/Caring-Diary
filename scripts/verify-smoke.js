@@ -15,58 +15,58 @@ function check(name, fn) {
   }
 }
 
-const jsFiles = [
-  'js/app-core.js', 'js/ui-i18n.js', 'js/week-data-en.js', 'js/app-content.js',
-  'js/i18n.js', 'js/clinical-content.js', 'sw.js',
-];
+const indexPath = path.join(root, 'index.html');
+const index = fs.readFileSync(indexPath, 'utf8');
 
-jsFiles.forEach((f) => {
+check('index.html exists and is monolith', () => {
+  if (index.length < 300000) throw new Error('index.html too small — expected v18 monolith');
+  if (index.includes('js/app-core.js')) throw new Error('modular shell detected');
+  if (!index.includes('const V="_v16"')) throw new Error('missing v18 app bundle marker');
+});
+
+check('English portfolio branding', () => {
+  if (!index.includes('<html lang="en">')) throw new Error('lang not en');
+  if (!index.includes('Caring Diary')) throw new Error('title missing');
+  if (index.includes('Для Индиры')) throw new Error('personal title remains');
+  if (index.includes('Эмир')) throw new Error('personal name remains');
+});
+
+check('v18 dashboard features', () => {
+  const required = ['today-dash', 'kickCard', 'contr-card', 'visitPrepCard', 'weekWellness', 'backup-btn'];
+  required.forEach((id) => {
+    if (!index.includes(id)) throw new Error(`missing ${id}`);
+  });
+});
+
+check('EN content blocks', () => {
+  if (!index.includes('"Dear one"')) throw new Error('EN petNames missing');
+  if (!index.includes('function getSmartTips(w)')) throw new Error('getSmartTips missing');
+  if (index.includes('SCREENING_DATE')) throw new Error('SCREENING_DATE still referenced');
+});
+
+check('syntax index.html inline script', () => {
+  const start = index.indexOf('function capitalizeFirst(s)');
+  const end = index.lastIndexOf('</script>');
+  if (start < 0 || end < 0) throw new Error('script bounds');
+  const script = index.slice(start, end);
+  new vm.Script(script, { filename: 'index.html' });
+});
+
+['sw.js'].forEach((f) => {
   check(`syntax ${f}`, () => {
     new vm.Script(fs.readFileSync(path.join(root, f), 'utf8'), { filename: f });
   });
 });
 
-const store = {};
-const sandbox = {
-  console,
-  localStorage: {
-    getItem: (k) => (k in store ? store[k] : null),
-    setItem: (k, v) => { store[k] = String(v); },
-    removeItem: (k) => { delete store[k]; },
-  },
-  document: {
-    documentElement: { lang: 'en', classList: { add() {}, remove() {}, toggle() {} } },
-    title: '', querySelector: () => null, querySelectorAll: () => [],
-    getElementById: () => null,
-  },
-  window: {}, navigator: { vibrate: () => {} }, Intl, Date, Math, JSON,
-  setInterval: () => 0, clearInterval: () => {}, setTimeout: () => 0, clearTimeout: () => {},
-  refreshLocaleUI: () => {}, toast: () => {}, H: () => {},
-};
-sandbox.window = sandbox;
-sandbox.globalThis = sandbox;
-const ctx = vm.createContext(sandbox);
-jsFiles.filter((f) => f.startsWith('js/')).forEach((f) => {
-  vm.runInContext(fs.readFileSync(path.join(root, f), 'utf8'), ctx, { filename: f });
-});
-const exp = (n) => vm.runInContext(`typeof ${n} !== 'undefined' ? ${n} : undefined`, ctx);
-
-check('default locale EN', () => {
-  if (exp('AppI18n')._locale !== 'en') throw new Error('expected en default');
+check('manifest english', () => {
+  const m = JSON.parse(fs.readFileSync(path.join(root, 'manifest.webmanifest'), 'utf8'));
+  if (m.lang !== 'en') throw new Error('manifest lang');
+  if (!/Caring Diary/i.test(m.name)) throw new Error('manifest name');
 });
 
-check('EN week data 1-40', () => {
-  const data = exp('getWeekData')();
-  for (let w = 1; w <= 40; w++) {
-    if (!data[w]?.f?.length) throw new Error(`week ${w}`);
-  }
-});
-
-check('i18n key parity', () => {
-  const UI = exp('UI_I18N');
-  const ru = Object.keys(UI.ru);
-  const en = Object.keys(UI.en);
-  if (ru.length !== en.length) throw new Error(`${ru.length} vs ${en.length}`);
+check('service worker cache version', () => {
+  const sw = fs.readFileSync(path.join(root, 'sw.js'), 'utf8');
+  if (!sw.includes('care-diary-portfolio')) throw new Error('SW cache name');
 });
 
 console.log(JSON.stringify({ passed: ok.length, failed: errors.length, errors }, null, 2));

@@ -1,35 +1,94 @@
-/**
- * Minimal service worker — caches shell for offline use.
- * Data remains in LocalStorage; this only caches static assets.
- */
-const CACHE_NAME = 'maternal-care-v7';
-const ASSETS = ['./', './index.html', './js/app-core.js', './js/ui-i18n.js', './js/week-data-en.js', './js/app-content.js', './js/i18n.js', './js/clinical-content.js', './manifest.json', './apple-icon.png', './splash-iphone.png'];
+/* Service Worker — offline cache for Caring Diary PWA */
+const CACHE = 'care-diary-portfolio-v1';
+const PRECACHE = [
+  './index.html',
+  './manifest.webmanifest',
+  './apple-icon.png'
+];
+
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') self.skipWaiting();
+});
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS))
+    caches.open(CACHE)
+      .then((cache) => cache.addAll(PRECACHE))
+      .then(() => self.skipWaiting())
+      .catch(() => {})
   );
-  self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
-    )
+    caches.keys()
+      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
+      .then(() => self.clients.claim())
   );
-  self.clients.claim();
+});
+
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  event.waitUntil(
+    clients.matchAll({ type: 'window', includeUncontrolled: true }).then((list) => {
+      if (list.length) return list[0].focus();
+      return clients.openWindow('./index.html');
+    })
+  );
 });
 
 self.addEventListener('fetch', (event) => {
-  if (event.request.method !== 'GET') return;
-  event.respondWith(
-    caches.match(event.request).then(
-      (cached) =>
-        cached ||
-        fetch(event.request).catch(() =>
-          caches.match('./index.html')
-        )
-    )
-  );
+  const { request } = event;
+  if (request.method !== 'GET') return;
+
+  const url = new URL(request.url);
+  if (!url.protocol.startsWith('http')) return;
+
+  if (request.mode === 'navigate') {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          const copy = response.clone();
+          caches.open(CACHE).then((cache) => cache.put('./index.html', copy));
+          return response;
+        })
+        .catch(() => caches.match('./index.html'))
+    );
+    return;
+  }
+
+  if (url.origin === self.location.origin) {
+    event.respondWith(staleWhileRevalidate(request));
+    return;
+  }
+
+  if (url.hostname === 'fonts.googleapis.com' || url.hostname === 'fonts.gstatic.com') {
+    event.respondWith(cacheFirst(request));
+  }
 });
+
+function staleWhileRevalidate(request) {
+  return caches.open(CACHE).then(async (cache) => {
+    const cached = await cache.match(request);
+    const network = fetch(request)
+      .then((response) => {
+        if (response.ok) cache.put(request, response.clone());
+        return response;
+      })
+      .catch(() => null);
+    return cached || network || caches.match('./index.html');
+  });
+}
+
+function cacheFirst(request) {
+  return caches.open(CACHE).then(async (cache) => {
+    const cached = await cache.match(request);
+    if (cached) return cached;
+    return fetch(request)
+      .then((response) => {
+        if (response.ok) cache.put(request, response.clone());
+        return response;
+      })
+      .catch(() => cached);
+  });
+}

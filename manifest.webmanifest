@@ -1,19 +1,28 @@
 {
   "name": "Caring Diary",
-  "short_name": "Caring",
-  "description": "Maternal care & pregnancy tracker — medications, hydration, weekly facts, emotional support.",
+  "short_name": "Care Diary",
+  "description": "Your pregnancy companion — daily trackers, evidence-based facts, and gentle support",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "background_color": "#FFF0F5",
   "theme_color": "#E8325A",
-  "orientation": "portrait",
   "lang": "en",
+  "dir": "ltr",
+  "categories": ["health", "lifestyle"],
   "icons": [
     {
       "src": "apple-icon.png",
-      "sizes": "192x192",
+      "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "apple-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }

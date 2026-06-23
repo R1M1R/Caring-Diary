@@ -5,6 +5,7 @@
   "scripts": {
     "start": "npx --yes serve . -p 4173",
     "preview": "npm run start",
+    "build:portfolio": "node scripts/build-portfolio-monolith.js",
     "verify": "node scripts/verify-smoke.js",
     "icons": "python scripts/optimize-icons.py"
   }
