@@ -76,7 +76,7 @@ const UI_I18N = {
     'hero.breathingStart': 'Начать',
     'hero.breathingReady': 'Нажми на круг, когда будешь готова',
     'hero.waterTitle': '💧 Водичка',
-    'hero.waterSub': 'Пей за двоих, родная! Норма: 8 стаканов в день',
+    'hero.waterSub': 'Пей за двоих! Норма: 8 стаканов в день',
     'hero.ultrasoundTitle': '📸 Наше чудо',
     'hero.ultrasoundSub': 'Сохрани здесь наше любимое фото УЗИ',
     'hero.ultrasoundAdd': 'Добавить фото',
@@ -364,7 +364,7 @@ const UI_I18N = {
     'settings.partnerLabel': 'Имя близкого человека (для посланий):',
     'settings.partnerPlaceholder': 'Партнёр, мама, подруга…',
     'settings.partnerDefault': 'близкий человек',
-    'settings.displayNameDefault': 'родная',
+    'settings.displayNameDefault': 'дорогая',
     'settings.darkTheme': 'Тёмная тема 🌙',
     'settings.notifications': 'Уведомления 🔔',
     'settings.notificationsEnable': 'Включить',
@@ -378,7 +378,7 @@ const UI_I18N = {
     'settings.eddLabel': 'Изменить дату родов (ПДР):',
     'settings.eddUpdate': 'Обновить дату',
     'settings.clearData': 'Очистить все данные',
-    'settings.clearConfirm': 'Родная, это удалит все данные и фотографии. Точно сбрасываем?',
+    'settings.clearConfirm': 'Это удалит все данные и фотографии. Точно сбрасываем?',
 
     // ── Coupon modal ──
     'coupon.modalLabel': 'Купон на:',
@@ -420,7 +420,7 @@ const UI_I18N = {
     'notif.testTitle': 'Проверка связи 🤍',
     'notif.testBody': 'Буду напоминать о витаминках вовремя!',
     'notif.reminderTitle': 'Время заботы ❤️',
-    'notif.reminderBody': 'Родная, пора принять: {name}',
+    'notif.reminderBody': 'Пора принять: {name}',
 
     // ── Toasts ──
     'toast.eddUpdated': 'Дата родов обновлена! ✨',

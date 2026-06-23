@@ -3738,8 +3738,8 @@ function checkNotifs() {
     if (med.time === currentTime && !tasks[med.id]) {
       const notifKey = STORAGE_KEYS.notificationPrefix(med.id);
       if (AppStorage.getString(notifKey) !== now.toDateString()) {
-        new Notification('Время заботы ❤️', {
-          body: `Родная, пора принять: ${med.name}`,
+        new Notification(AppI18n.t('notif.reminderTitle'), {
+          body: AppI18n.t('notif.reminderBody', { name: med.name }),
           icon: 'apple-icon.png',
         });
         AppStorage.set(notifKey, now.toDateString());
