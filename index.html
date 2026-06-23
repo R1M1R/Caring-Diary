@@ -1433,8 +1433,8 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
 <div id="splash">
   <div class="sp-orb sp-orb1"></div><div class="sp-orb sp-orb2"></div><div class="sp-orb sp-orb3"></div>
   <div class="sp-heart">💗</div>
-  <div class="sp-title">Дневник заботы</div>
-  <div class="sp-name">Твой спутник на пути к материнству 🤍</div>
+  <div class="sp-title" id="spTitle">Дневник заботы</div>
+  <div class="sp-name" id="spName">Твой спутник на пути к материнству 🤍</div>
   <div class="sp-heart-small">🌸 💕 ✨ 💖 🌷</div>
   <div class="sp-dots"><div class="sp-dot"></div><div class="sp-dot"></div><div class="sp-dot"></div></div>
 </div>
@@ -1448,11 +1448,11 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
 <div id="setupScreen" style="display:none">
   <div class="setup-card">
     <div style="font-size:88px;animation:spBeat 2s ease-in-out infinite;display:block;margin-bottom:18px">🤍</div>
-    <div style="font-family:'Playfair Display',serif;font-size:34px;font-style:italic;font-weight:900;margin-bottom:12px">Добро пожаловать!</div>
-    <p style="font-size:14px;font-weight:700;color:var(--t3);line-height:1.68;margin-bottom:18px">Персональный дневник беременности: трекеры, факты и поддержка каждый день. Укажи предполагаемую дату родов (ПДР).</p>
+    <div style="font-family:'Playfair Display',serif;font-size:34px;font-style:italic;font-weight:900;margin-bottom:12px" id="setupWelcome">Добро пожаловать!</div>
+    <p style="font-size:14px;font-weight:700;color:var(--t3);line-height:1.68;margin-bottom:18px" id="setupDesc">Персональный дневник беременности: трекеры, факты и поддержка каждый день. Укажи предполагаемую дату родов (ПДР).</p>
     <input type="text" id="userNameIn" placeholder="Как к тебе обращаться? (необязательно)" maxlength="32" style="width:100%;font-size:16px;padding:14px;text-align:center;font-weight:700;margin-bottom:12px;border-radius:16px;border:2px solid var(--cb);background:var(--bg2);font-family:'Nunito',sans-serif">
     <input type="date" id="eddDate" style="width:100%;font-size:18px;padding:16px;text-align:center;font-weight:800;margin-bottom:22px">
-    <button class="lq" onclick="saveEDD()">Начать путь ✨</button>
+    <button class="lq" id="setupStartBtn" onclick="saveEDD()">Начать путь ✨</button>
   </div>
 </div>
 
@@ -1506,11 +1506,11 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
       <div id="smartTips" style="margin-top:4px"></div>
 
       <div class="cd-bar">
-        <div class="cd-title">✨ До встречи с малышом</div>
+        <div class="cd-title" id="cdTitle">✨ До встречи с малышом</div>
         <div class="cd-grid">
-          <div class="cd-unit"><div class="cd-num" id="cdD">--</div><div class="cd-lbl">дней</div></div>
-          <div class="cd-unit"><div class="cd-num" id="cdH">--</div><div class="cd-lbl">часов</div></div>
-          <div class="cd-unit"><div class="cd-num" id="cdM">--</div><div class="cd-lbl">минут</div></div>
+          <div class="cd-unit"><div class="cd-num" id="cdD">--</div><div class="cd-lbl" id="cdLblD">дней</div></div>
+          <div class="cd-unit"><div class="cd-num" id="cdH">--</div><div class="cd-lbl" id="cdLblH">часов</div></div>
+          <div class="cd-unit"><div class="cd-num" id="cdM">--</div><div class="cd-lbl" id="cdLblM">минут</div></div>
         </div>
       </div>
 
@@ -1519,7 +1519,7 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
         <div class="tmsg-icon" id="tmIcon">💌</div>
         <div class="tmsg-from" id="tmsgFrom">Послание поддержки</div>
         <div class="tmsg-text" id="tmText">Загружаю любовь...</div>
-        <div class="tmsg-tap">тапни — следующее ↻</div>
+        <div class="tmsg-tap" id="tmsgTap">тапни — следующее ↻</div>
       </div>
 
       <div class="card">
@@ -1536,7 +1536,7 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
             </svg>
             <div class="ring-c">
               <div class="ring-num" id="wkNum">0</div>
-              <div class="ring-lbl">недель</div>
+              <div class="ring-lbl" id="ringLbl">недель</div>
               <div class="ring-days" id="wkDays">0 дней</div>
             </div>
           </div>
@@ -1549,7 +1549,7 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
           
           <!-- FETUS SIZE VISUAL -->
           <div class="fetus-visual" id="fetusVisual">
-            <div style="font-size:11px;font-weight:900;color:var(--t3);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px">Малыш сейчас как...</div>
+            <div style="font-size:11px;font-weight:900;color:var(--t3);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px" id="fetusCompareTitle">Малыш сейчас как...</div>
             <div class="fetus-row">
               <div class="fetus-obj"><div class="fetus-em" id="fetusEm1">🥭</div><div class="fetus-lbl" id="fetusLbl1">манго</div></div>
               <div class="fetus-vs">≈</div>
@@ -1572,7 +1572,7 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
             <span style="font-size:26px">💝</span>
             <div>
-              <div style="font-size:12px;font-weight:900;color:var(--rose);text-transform:uppercase;letter-spacing:1.5px">Совет дня</div>
+            <div style="font-size:12px;font-weight:900;color:var(--rose);text-transform:uppercase;letter-spacing:1.5px" id="careTipTitle">Совет дня</div>
               <div style="font-size:11px;font-weight:700;color:var(--t3)" id="careTime"></div>
             </div>
           </div>
@@ -1585,7 +1585,7 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
           <div class="baby-em">👶</div>
           <div>
             <div class="baby-txt" id="babyT">Мамочка, я расту и очень тебя люблю!</div>
-            <div class="baby-author">малыш пишет 💕 · тапни чтобы сменить</div>
+            <div class="baby-author" id="babyAuthor">малыш пишет 💕 · тапни чтобы сменить</div>
           </div>
         </div>
       </div>
@@ -1593,7 +1593,7 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
       <!-- BODY CHANGES CARD -->
       <div class="card" id="bodyChangesCard">
         <div class="cb">
-          <div class="sh">🌸 Твоё тело сейчас</div>
+          <div class="sh" id="bodyChangesTitle">🌸 Твоё тело сейчас</div>
           <div class="ssub" id="bodyChangesSub">Что происходит с мамой на этой неделе</div>
           <div id="bodyChangesContent"></div>
         </div>
@@ -1601,14 +1601,14 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
 
       <div class="card">
         <div class="cb">
-          <div class="sh">💌 Письма поддержки</div>
-          <div class="ssub">Выбери, что чувствуешь сейчас — тёплые слова уже здесь для тебя</div>
+          <div class="sh" id="lettersTitle">💌 Письма поддержки</div>
+          <div class="ssub" id="lettersSub">Выбери, что чувствуешь сейчас — тёплые слова уже здесь для тебя</div>
           <div class="lg">
-            <button class="lb lb1" onclick="openLetter('anxiety')"><em>🥺</em>Мне тревожно</button>
-            <button class="lb lb2" onclick="openLetter('tired')"><em>😫</em>Я устала</button>
-            <button class="lb lb3" onclick="openLetter('sad')"><em>😢</em>Мне грустно</button>
-            <button class="lb lb4" onclick="openLetter('love')"><em>❤️</em>Скучаю</button>
-            <button class="lb lb1" onclick="openLetter('games')" style="grid-column:span 2;background:rgba(99,102,241,.13)"><em>🎮</em>Хочу поиграть вместе</button>
+            <button class="lb lb1" onclick="openLetter('anxiety')"><em>🥺</em><span id="letterBtnAnxiety">Мне тревожно</span></button>
+            <button class="lb lb2" onclick="openLetter('tired')"><em>😫</em><span id="letterBtnTired">Я устала</span></button>
+            <button class="lb lb3" onclick="openLetter('sad')"><em>😢</em><span id="letterBtnSad">Мне грустно</span></button>
+            <button class="lb lb4" onclick="openLetter('love')"><em>❤️</em><span id="letterBtnLove">Скучаю</span></button>
+            <button class="lb lb1" onclick="openLetter('games')" style="grid-column:span 2;background:rgba(99,102,241,.13)"><em>🎮</em><span id="letterBtnGames">Хочу поиграть вместе</span></button>
           </div>
         </div>
       </div>
@@ -1819,6 +1819,14 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
       <div style="padding-top:16px">
         <div class="page-h1" style="margin-bottom:18px">Настройки</div>
 
+        <div class="card"><div class="cb">
+          <div style="font-size:15px;font-weight:800;margin-bottom:12px" id="settingsLangTitle">Язык интерфейса</div>
+          <div style="display:flex;gap:10px;margin-bottom:4px">
+            <button type="button" id="langBtnRu" onclick="setAppLanguage('ru')" style="flex:1;border-radius:14px;padding:12px;border:2px solid var(--cb);background:var(--bg2);font-family:'Nunito',sans-serif;font-weight:900;font-size:14px;cursor:pointer">Русский</button>
+            <button type="button" id="langBtnEn" onclick="setAppLanguage('en')" style="flex:1;border-radius:14px;padding:12px;border:2px solid var(--cb);background:var(--bg2);font-family:'Nunito',sans-serif;font-weight:900;font-size:14px;cursor:pointer">English</button>
+          </div>
+        </div></div>
+
         <!-- GENDER CARD -->
         <div class="card" style="border:2px solid rgba(232,50,90,.18);overflow:visible">
           <div class="cb">
@@ -1868,11 +1876,11 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
   </div>
 
   <div id="nav">
-    <button class="nb act" onclick="switchTab('home',this)"><span>🤍</span>Главная</button>
-    <button class="nb" onclick="switchTab('meds',this)"><span>💊</span>Забота</button>
-    <button class="nb" onclick="switchTab('journal',this)"><span>📓</span>Дневник</button>
-    <button class="nb" onclick="switchTab('bag',this)"><span>👜</span>Сумка</button>
-    <button class="nb" onclick="switchTab('settings',this)"><span>⚙️</span>Настр.</button>
+    <button class="nb act" onclick="switchTab('home',this)"><span>🤍</span><span class="nav-lbl">Главная</span></button>
+    <button class="nb" onclick="switchTab('meds',this)"><span>💊</span><span class="nav-lbl">Забота</span></button>
+    <button class="nb" onclick="switchTab('journal',this)"><span>📓</span><span class="nav-lbl">Дневник</span></button>
+    <button class="nb" onclick="switchTab('bag',this)"><span>👜</span><span class="nav-lbl">Сумка</span></button>
+    <button class="nb" onclick="switchTab('settings',this)"><span>⚙️</span><span class="nav-lbl">Настр.</span></button>
   </div>
 </div>
 
@@ -1939,7 +1947,11 @@ body{background:linear-gradient(180deg,rgba(255,220,230,0.18) 0%,var(--bg) 120px
 </div>
 
 <script src="js/app-core.js"></script>
+<script src="js/ui-i18n.js"></script>
+<script src="js/week-data-en.js"></script>
 <script src="js/app-content.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/clinical-content.js"></script>
 <script>
 /** Currently selected gallery week (19–40), or null. */
 let currentGalleryWeek = null;
@@ -2485,8 +2497,8 @@ function renderBodyChanges(week){
   } else {
     const tri=week<=13?'t1':week<=27?'t2':'t3';
     items=bodyChanges[tri].slice(0,4);
-    const subs={t1:'1-й триместр: адаптация организма',t2:'2-й триместр: расцвет беременности',t3:'3-й триместр: финальный этап'};
-    sub=subs[tri]+' (неделя '+week+')';
+    const subs={t1:AppI18n.t('bodyChanges.trimester1Sub'),t2:AppI18n.t('bodyChanges.trimester2Sub'),t3:AppI18n.t('bodyChanges.trimester3Sub')};
+    sub=AppI18n.t('bodyChanges.weekSuffix',{subtitle:subs[tri],week});
   }
   document.getElementById('bodyChangesSub').textContent=sub;
   document.getElementById('bodyChangesContent').innerHTML=
@@ -2794,10 +2806,50 @@ const deleteMed = deleteMedication;
 /** Prevents duplicate background timers when init() runs more than once. */
 let appTimersInitialized = false;
 
+function activeGenderMsgs() {
+  return (typeof getLocalizedGenderMsgs === 'function' ? getLocalizedGenderMsgs() : null) || genderMsgs;
+}
+function activeGenderFacts() {
+  return (typeof getLocalizedGenderFacts === 'function' ? getLocalizedGenderFacts() : null) || genderFacts;
+}
+function activeFaqs() {
+  return (typeof getLocalizedFaqs === 'function' ? getLocalizedFaqs() : null) || faqs;
+}
+function activeSmartTips(w) {
+  return typeof getLocalizedSmartTips === 'function' ? getLocalizedSmartTips(w) : getSmartTips(w);
+}
+function activeWeekData() {
+  return typeof getWeekData === 'function' ? getWeekData() : wkData;
+}
+function localizeBagList(list) {
+  if (typeof buildDefaultBag !== 'function') return list;
+  const tpl = buildDefaultBag();
+  const doneMap = {};
+  list.forEach((i) => { if (i?.id) doneMap[i.id] = !!i.done; });
+  return tpl.map((i) => (i.id ? { ...i, done: !!doneMap[i.id] } : i));
+}
+function refreshLocaleUI() {
+  AppI18n.bindContentGlobals();
+  AppI18n.applyDom();
+  updateCallButton();
+  loadTMsg();
+  renderCareTip();
+  const edd = AppStorage.getString(STORAGE_KEYS.EDD);
+  if (edd) {
+    applyGender(AppStorage.getString(STORAGE_KEYS.BABY_GENDER, 'n'), false);
+    updateAll(edd);
+    updateCD(edd);
+    renderSchedule(edd);
+  }
+  renderHospitalBag();
+  updateNextMedicationPill();
+}
+
 /**
  * Bootstrap the application — load persisted state and start background timers.
  */
 function initializeApp() {
+  AppI18n.init();
   checkDailyReset();
   loadMedicationRegistry();
   if (AppStorage.getString(STORAGE_KEYS.THEME) === 'dark') {
@@ -2891,7 +2943,7 @@ function setGender(g){
   const prev=localStorage.getItem('babyGender')||'n';
   localStorage.setItem('babyGender',g);
   applyGender(g,prev!==g&&g!=='n');
-  const msgs={g:"Записала! 🎀 Тема сменилась на розово-лиловую для малышки!",b:"Записала! 🩵 Тема сменилась на небесно-голубую для малыша!",n:"Хорошо, пока тайна! Нейтральная тема 🤍"};
+  const msgs={g:AppI18n.t('gender.msgGirl'),b:AppI18n.t('gender.msgBoy'),n:AppI18n.t('gender.msgSecret')};
   const el=document.getElementById('genderMsg');
   el.textContent=msgs[g];el.style.display='block';
   // Update button states
@@ -2902,7 +2954,7 @@ function setGender(g){
     btn.style.boxShadow=x===g?'0 0 0 3px var(--rose)':'none';
     btn.style.transform=x===g?'scale(1.04)':'scale(1)';
   });
-  if(g!=='n'){toast(g==='g'?'Это девочка! 🎀 Тема обновлена':'Это мальчик! 🩵 Тема обновлена');}
+  if(g!=='n'){toast(g==='g'?AppI18n.t('gender.toastGirl'):AppI18n.t('gender.toastBoy'));}
 }
 
 function applyGender(g,showBanner){
@@ -2913,7 +2965,7 @@ function applyGender(g,showBanner){
   // Update nav active color via body re-render
   const banner=document.getElementById('genderBanner');
   const bannerContent=document.getElementById('genderBannerContent');
-  const gd=genderMsgs[g];
+  const gd=activeGenderMsgs()[g];
   if(gd.banner&&banner&&bannerContent){
     banner.style.display='block';
     banner.style.background=gd.banner.bg;
@@ -2942,7 +2994,7 @@ function applyGender(g,showBanner){
 function getGenderFact(week){
   const g=localStorage.getItem('babyGender')||'n';
   if(g==='n')return null;
-  const facts=genderFacts[g];
+  const facts=activeGenderFacts()[g];
   return facts[week]||null;
 }
 
@@ -2956,7 +3008,7 @@ function saveEDD(){
   document.getElementById('setupScreen').style.display='none';
   init();
 }
-function updateEDD(){H();const d=document.getElementById('newEdd').value;if(!d)return;localStorage.setItem('eddDate',d);updateAll(d);renderSchedule(d);renderGallery(d);toast("Дата родов обновлена! ✨")}
+function updateEDD(){H();const d=document.getElementById('newEdd').value;if(!d)return;localStorage.setItem('eddDate',d);updateAll(d);renderSchedule(d);renderGallery(d);toast(AppI18n.t('toast.eddUpdated'))}
 
 
 function updateAll(edd){
@@ -2970,11 +3022,11 @@ function updateAll(edd){
   document.getElementById('wkDays').textContent='и '+dayR+' '+(dayR===1?dl[0]:dayR>=2&&dayR<=4?dl[1]:dl[2]);
   document.getElementById('heroWeek').textContent=week;
   document.getElementById('heroWD').textContent='и '+dayR+' дн.';
-  const wd=wkData[week]||wkData[40];
+  const wd=activeWeekData()[week]||activeWeekData()[40];
   document.getElementById('heroEmoji').textContent=wd.e;
-  document.getElementById('sizeT').textContent='Размер: '+wd.s;
+  document.getElementById('sizeT').textContent=AppI18n.t('hero.sizePrefix',{size:wd.s});
   document.getElementById('sizeE').textContent=wd.e;
-  document.getElementById('cdBadge').textContent=dL>0?'До встречи: '+dL+' дн.':'Скоро! 🎉';
+  document.getElementById('cdBadge').textContent=dL>0?AppI18n.t('hero.untilBadge',{days:dL}):AppI18n.t('hero.soonBadge');
   const daysEl=document.getElementById('heroDaysLeft');
   if(daysEl)daysEl.textContent=dL>0?dL:'🎉';
   // Hero progress bar
@@ -2990,10 +3042,10 @@ function updateAll(edd){
   const allFacts=gFact?[...wd.f,gFact]:wd.f;
   let curFact=Math.floor(Date.now()/86400000)%allFacts.length;
   function renderFactCard(){
-    const sources=['ACOG','ВОЗ','Langman\'s Embryology','Sadler 2019','FIGO'];
+    const sources=AppI18n.getLocale()==='en'?['ACOG','WHO','Langman\'s Embryology','Sadler 2019','FIGO']:['ACOG','ВОЗ','Langman\'s Embryology','Sadler 2019','FIGO'];
     const isG=gFact&&curFact===allFacts.length-1;
-    const gBadge=isG&&gv!=='n'?`<span style="display:inline-block;margin-left:6px;background:${gv==='g'?'rgba(214,48,119,.13)':'rgba(24,120,200,.13)'};color:${gv==='g'?'#D63077':'#1878C8'};border-radius:50px;padding:2px 9px;font-size:10px;font-weight:900">${gv==='g'?'🎀 Для девочки':'🩵 Для мальчика'}</span>`:'';
-    document.getElementById('factT').innerHTML=`<div class="fact-card-inner">${allFacts[curFact]}${gBadge}<div class="fact-source">📚 ${isG?'Медицинская литература':sources[curFact%sources.length]}</div></div><div class="fact-nav-row" style="display:flex;align-items:center;justify-content:space-between;padding:8px 4px 0"><div class="fact-dot-row">${allFacts.map((_,i)=>`<div class="fact-dot ${i===curFact?'act':''}" onclick="window._factGo(${i})"></div>`).join('')}</div><div style="display:flex;gap:4px"><button class="fact-nav-btn" onclick="window._factNav(-1)">◀</button><button class="fact-nav-btn" onclick="window._factNav(1)">▶</button></div></div>`;
+    const gBadge=isG&&gv!=='n'?`<span style="display:inline-block;margin-left:6px;background:${gv==='g'?'rgba(214,48,119,.13)':'rgba(24,120,200,.13)'};color:${gv==='g'?'#D63077':'#1878C8'};border-radius:50px;padding:2px 9px;font-size:10px;font-weight:900">${gv==='g'?AppI18n.t('fact.girlBadge'):AppI18n.t('fact.boyBadge')}</span>`:'';
+    document.getElementById('factT').innerHTML=`<div class="fact-card-inner">${allFacts[curFact]}${gBadge}<div class="fact-source">📚 ${isG?AppI18n.t('fact.medicalLit'):sources[curFact%sources.length]}</div></div><div class="fact-nav-row" style="display:flex;align-items:center;justify-content:space-between;padding:8px 4px 0"><div class="fact-dot-row">${allFacts.map((_,i)=>`<div class="fact-dot ${i===curFact?'act':''}" onclick="window._factGo(${i})"></div>`).join('')}</div><div style="display:flex;gap:4px"><button class="fact-nav-btn" onclick="window._factNav(-1)">◀</button><button class="fact-nav-btn" onclick="window._factNav(1)">▶</button></div></div>`;
   }
   window._factNav=function(d){H();curFact=(curFact+d+allFacts.length)%allFacts.length;renderFactCard()};
   window._factGo=function(i){H();curFact=i;renderFactCard()};
@@ -3013,20 +3065,21 @@ function updateAll(edd){
   const n=UserProfile.getDisplayName();
   const gArr=heroG[period];
   document.getElementById('heroTitle').textContent=gArr[Math.floor(Date.now()/86400000)%gArr.length](n);
-  document.getElementById('heroDate').textContent=new Date().toLocaleDateString('ru-RU',{weekday:'long',day:'numeric',month:'long'});
-  const trimBadge=document.getElementById('heroTrimBadge');if(trimBadge){const triLabel=tri===1?'I триместр · 1–13 нед':tri===2?'II триместр · 14–27 нед':'III триместр · 28–40 нед';trimBadge.textContent=triLabel;}
+  document.getElementById('heroDate').textContent=AppI18n.formatDate(new Date(),{weekday:'long',day:'numeric',month:'long'});
+  const trimBadge=document.getElementById('heroTrimBadge');if(trimBadge){const triLabel=tri===1?AppI18n.t('trimester.badge1'):tri===2?AppI18n.t('trimester.badge2'):AppI18n.t('trimester.badge3');trimBadge.textContent=triLabel;}
   document.getElementById('kickCard').style.display=week>=18?'block':'none';
   if(week>=18){
     const k = KickCounter.getCount();
     document.getElementById('kickN').textContent=k;
-    const tips=['Норма: минимум 10 движений за 2 часа активности малыша','Малыш активнее после еды, вечером и ночью','Если менее 10 за 2 часа в дневное время — звони врачу!','Каждый пиночек — это малыш говорит "привет, мама!" 💕'];
-    document.getElementById('kickTip').textContent=tips[week%4];
+    const kickTips=[AppI18n.t('kick.tip1'),AppI18n.t('kick.tip2'),AppI18n.t('kick.tip3'),AppI18n.t('kick.tip4')];
+    document.getElementById('kickTip').textContent=kickTips[week%4];
   }
   const faqK=tri===1?'t1':tri===2?'t2':'t3';
-  const fSubs={t1:'Вопросы 1-го триместра (недели 1-13)',t2:'Вопросы 2-го триместра (недели 14-27)',t3:'Вопросы 3-го триместра (недели 28-40)'};
-  document.getElementById('faqSub').textContent=fSubs[faqK]+' — неделя '+week;
-  document.getElementById('faqBox').innerHTML=faqs[faqK].map((f,i)=>`<div class="faq-item"><div class="faq-q" id="fq${i}" onclick="tFaq(${i})"><span>${f.q}</span><span class="faq-ic">▾</span></div><div class="faq-a" id="fa${i}">${f.a}</div></div>`).join('');
-  const tips=getSmartTips(week);
+  const faqData=activeFaqs();
+  const fSubs={t1:AppI18n.t('faq.trimester1'),t2:AppI18n.t('faq.trimester2'),t3:AppI18n.t('faq.trimester3')};
+  document.getElementById('faqSub').textContent=AppI18n.t('faq.weekSuffix',{subtitle:fSubs[faqK],week});
+  document.getElementById('faqBox').innerHTML=faqData[faqK].map((f,i)=>`<div class="faq-item"><div class="faq-q" id="fq${i}" onclick="tFaq(${i})"><span>${f.q}</span><span class="faq-ic">▾</span></div><div class="faq-a" id="fa${i}">${f.a}</div></div>`).join('');
+  const tips=activeSmartTips(week);
   document.getElementById('smartTips').innerHTML=tips.slice(0,3).map(t=>`<div class="stip ${t.c}"><div class="stip-ic">${t.i}</div><div class="stip-txt">${t.t}</div></div>`).join('');
   renderBodyChanges(week);
   updateFetusVisual(week);
@@ -3047,8 +3100,10 @@ function checkAnniv(){
   const n=new Date(),md=`${String(n.getMonth()+1).padStart(2,'0')}-${String(n.getDate()).padStart(2,'0')}`;
   if(md==='03-08'){
     document.getElementById('annexBanner').style.display='block';
-    document.querySelector('#annexBanner div:nth-child(2)').textContent='С 8 Марта!';
-    document.querySelector('#annexBanner div:nth-child(3)').textContent='Ты невероятная — береги себя и малыша 💐';
+    const t=document.querySelector('#annexBanner div:nth-child(2)');
+    const s=document.querySelector('#annexBanner div:nth-child(3)');
+    if(t)t.textContent=AppI18n.t('anniv.march8Title');
+    if(s)s.textContent=AppI18n.t('anniv.march8Sub');
     setTimeout(()=>confetti({particleCount:350,spread:130,origin:{y:.5},colors:['#FFD700','#E8325A','#C44DFF','#fff']}),700);
   }
 }
@@ -3066,7 +3121,7 @@ function loadTMsg(){
   const fromEl=document.getElementById('tmsgFrom');
   if(fromEl){
     const partner=UserProfile.getPartnerName();
-    fromEl.textContent=partner&&partner!=='близкий человек'?('От '+partner):'Послание поддержки';
+    fromEl.textContent=partner&&partner!==AppI18n.t('settings.partnerDefault')&&partner!=='близкий человек'&&partner!=='loved one'?AppI18n.t('hero.tmsgFromPartner',{name:partner}):AppI18n.t('hero.tmsgDefaultFrom');
   }
   // Read CSS variable via inline style trick
   const el=document.getElementById('tmCard');
@@ -3085,7 +3140,7 @@ function loadTMsg(){
   // For CSS var gradients, use var() directly in inline style
   el.style.background='var('+s.bgKey+','+fallbacks[p]+')';
 }
-function nextTMsg(){H();const h=new Date().getHours();const p=h>=5&&h<12?'morning':h>=12&&h<18?'afternoon':h>=18&&h<23?'evening':'night';if(!tmIdx[p])tmIdx[p]=0;tmIdx[p]++;loadTMsg();toast('Ещё одно послание поддержки 💌')}
+function nextTMsg(){H();const h=new Date().getHours();const p=h>=5&&h<12?'morning':h>=12&&h<18?'afternoon':h>=18&&h<23?'evening':'night';if(!tmIdx[p])tmIdx[p]=0;tmIdx[p]++;loadTMsg();toast(AppI18n.t('toast.nextTMsg'))}
 
 // BABY
 // QUOTE ROTATION
@@ -3589,9 +3644,9 @@ function openLetter(type) {
   const signEl = document.getElementById('lSign');
   if (signEl) {
     const partner = UserProfile.getPartnerName();
-    signEl.textContent = partner && partner !== 'близкий человек'
-      ? ('— ' + partner + ' ❤️')
-      : '— С любовью 🤍';
+    signEl.textContent = partner && partner !== AppI18n.t('settings.partnerDefault') && partner !== 'близкий человек' && partner !== 'loved one'
+      ? AppI18n.t('letter.signPartner', { name: partner })
+      : AppI18n.t('letter.signDefault');
   }
   document.getElementById('letterMo').classList.add('open');
 }
@@ -3611,8 +3666,10 @@ function closeCoupon() {
 function renderHospitalBag() {
   let bag = HospitalBagStore.getList();
   if (!bag || !bag.length) {
-    bag = defaultBag;
+    bag = typeof buildDefaultBag === 'function' ? buildDefaultBag() : defaultBag;
     HospitalBagStore.saveList(bag);
+  } else if (typeof buildDefaultBag === 'function') {
+    bag = localizeBagList(bag);
   }
   document.getElementById('bagBox').innerHTML = bag.map((item, i) => {
     if (!item) return '';
@@ -3667,14 +3724,12 @@ function updateCallButton() {
   if (!btn) return;
   const partner = UserProfile.getPartnerName();
   const phone = AppStorage.getString(STORAGE_KEYS.HUSBAND_PHONE);
-  btn.textContent = partner && partner !== 'близкий человек'
-    ? ('📞 Позвонить: ' + partner)
-    : '📞 Экстренный звонок';
+  btn.textContent = partner && partner !== AppI18n.t('settings.partnerDefault') && partner !== 'близкий человек' && partner !== 'loved one'
+    ? AppI18n.t('hero.callPartner', { name: partner })
+    : AppI18n.t('hero.callEmergency');
   if (phone) btn.href = 'tel:' + phone;
   if (sub) {
-    sub.textContent = phone
-      ? 'Контакт сохранён — можно позвонить в любой момент'
-      : 'Добавь номер в настройках';
+    sub.textContent = phone ? AppI18n.t('hero.callSaved') : AppI18n.t('hero.callAddPhone');
   }
 }
 
@@ -3845,67 +3900,68 @@ function updateBMI(week){
 function generateReport(){
   H();
   const edd=AppStorage.getString(STORAGE_KEYS.EDD);
-  if(!edd){toast('Сначала укажи дату родов!');return;}
+  if(!edd){toast(AppI18n.t('toast.reportNeedEdd'));return;}
   const {week}=calculateGestationalWeek(edd);
   const now=new Date();
   const gender=AppStorage.getString(STORAGE_KEYS.BABY_GENDER,'n');
-  const gStr=gender==='g'?'Девочка 🎀':gender==='b'?'Мальчик 🩵':'Не определён';
+  const gStr=gender==='g'?AppI18n.t('gender.reportGirl'):gender==='b'?AppI18n.t('gender.reportBoy'):AppI18n.t('gender.reportUnknown');
   
   const tasks=MedicationTracker.getDailyTasks();
   const medsLines=getScheduledMedications(now).active.map(t=>{
     const done=!!tasks[t.id];
-    return `  ${done?'✓':'✗'} ${t.time} — ${t.name} ${t.dose} ${done?'(выпито)':'(не отмечено сегодня)'}`;
+    return AppI18n.t(done?'report.medTaken':'report.medNotMarked',{mark:AppI18n.t(done?'report.markDone':'report.markPending'),time:t.time,name:t.name,dose:t.dose});
   });
   const pausedMeds=getMedicationRegistry().filter(t=>t.paused);
-  const pausedLines=pausedMeds.length?['','─── НА ПАУЗЕ ───',...pausedMeds.map(t=>`  ⏸ ${t.time} — ${t.name}`)]:[];
+  const pausedLines=pausedMeds.length?[ '',AppI18n.t('report.pausedSection'),...pausedMeds.map(t=>AppI18n.t('report.pausedLine',{time:t.time,name:t.name}))]:[];
   
   const wts=WeightTracker.getHistory();
   const wtKeys=Object.keys(wts).sort();
-  const wtLines=wtKeys.slice(-5).map(k=>`  ${k}: ${wts[k]} кг`);
+  const wtLines=wtKeys.slice(-5).map(k=>AppI18n.t('report.weightLine',{date:k,weight:wts[k]}));
   
   const moodH=MoodTracker.getHistory();
   const moodKeys=Object.keys(moodH).sort().slice(-7);
-  const moodLines=moodKeys.map(k=>`  ${k}: ${moodH[k]}`);
+  const moodLines=moodKeys.map(k=>AppI18n.t('report.moodLine',{date:k,mood:moodH[k]}));
   
-  const diary=(AppStorage.getString(STORAGE_KEYS.DIARY)||'(не заполнено)').slice(0,200);
+  const diaryRaw=AppStorage.getString(STORAGE_KEYS.DIARY)||AppI18n.t('report.diaryEmpty');
+  const diary=diaryRaw.slice(0,200);
   const kicks=KickCounter.getCount().toString();
   const streak=AppStorage.getString(STORAGE_KEYS.STREAK,'0');
   
   const report=[
-    '═══════════════════════════════',
-    'ОТЧЁТ ДЛЯ ВРАЧА',
-    `Дата формирования: ${now.toLocaleDateString('ru-RU')} ${now.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'})}`,
-    `Пациентка: ${UserProfile.getDisplayName()}`,
-    `Срок беременности: ${week} нед.`,
-    `ПДР: ${new Date(edd).toLocaleDateString('ru-RU')}`,
-    `Пол малыша: ${gStr}`,
+    AppI18n.t('report.headerLine'),
+    AppI18n.t('report.title'),
+    AppI18n.t('report.dateGenerated',{date:AppI18n.formatDate(now),time:AppI18n.formatTime(now,{hour:'2-digit',minute:'2-digit'})}),
+    AppI18n.t('report.patient',{name:UserProfile.getDisplayName()}),
+    AppI18n.t('report.gestationalWeek',{week}),
+    AppI18n.t('report.edd',{date:AppI18n.formatDate(new Date(edd))}),
+    AppI18n.t('report.gender',{gender:gStr}),
     '',
-    '─── ПРЕПАРАТЫ СЕГОДНЯ ───',
-    ...(medsLines.length?medsLines:['  (нет активных препаратов)']),
+    AppI18n.t('report.medsToday'),
+    ...(medsLines.length?medsLines:[AppI18n.t('report.noMeds')]),
     ...pausedLines,
-    `Дней подряд витаминки выпиты: ${streak}`,
+    AppI18n.t('report.streak',{count:streak}),
     '',
-    '─── ВЕС (последние 5 записей) ───',
+    AppI18n.t('report.weightSection'),
     ...wtLines,
     '',
-    '─── НАСТРОЕНИЕ (последние 7 дней) ───',
+    AppI18n.t('report.moodSection'),
     ...moodLines,
     '',
-    '─── ШЕВЕЛЕНИЯ СЕГОДНЯ ───',
-    `  ${kicks} шевелений (норма ≥10 за 2ч)`,
+    AppI18n.t('report.kicksSection'),
+    AppI18n.t('report.kicksLine',{count:kicks}),
     '',
-    '─── ЗАМЕТКИ ───',
-    `  ${diary}`,
+    AppI18n.t('report.notesSection'),
+    AppI18n.t('report.notesLine',{text:diary}),
     '',
-    '═══════════════════════════════',
-    'Сформировано приложением «Дневник заботы»',
+    AppI18n.t('report.headerLine'),
+    AppI18n.t('report.footer'),
   ].join('\n');
   
   const area=document.getElementById('reportArea');
   const copyBtn=document.getElementById('reportCopyBtn');
   if(area){area.style.display='block';area.value=report;}
   if(copyBtn)copyBtn.style.display='block';
-  toast('Отчёт сформирован! 📋');
+  toast(AppI18n.t('toast.reportGenerated'));
 }
 
 function copyReport(){
@@ -4003,6 +4059,8 @@ Object.assign(window, {
   UserProfile,
   triggerHaptic,
   showToast,
+  AppI18n,
+  refreshLocaleUI,
   calculateGestationalWeek,
   checkDailyReset,
   initializeApp,

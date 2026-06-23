@@ -3,7 +3,7 @@
  * Data remains in LocalStorage; this only caches static assets.
  */
 const CACHE_NAME = 'maternal-care-v1';
-const ASSETS = ['./', './index.html', './js/app-core.js', './js/app-content.js', './manifest.json'];
+const ASSETS = ['./', './index.html', './js/app-core.js', './js/ui-i18n.js', './js/week-data-en.js', './js/app-content.js', './js/i18n.js', './js/clinical-content.js', './manifest.json'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(

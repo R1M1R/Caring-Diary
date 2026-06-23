@@ -2,7 +2,7 @@
 
 A **Progressive Web App (PWA)** for expectant mothers — a private, offline-capable pregnancy companion with medically grounded weekly guidance, daily wellness tracking, and emotional support. Built as a portfolio HealthTech project with a warm, empathetic B2C tone.
 
-> **Note:** All user-facing copy is in Russian. Source code identifiers, comments, and documentation are in English for portfolio and open-source clarity.
+> **Note:** Bilingual UI — **Russian** and **English** (switch in Settings). Source code identifiers and documentation are in English.
 
 ---
 
@@ -49,8 +49,12 @@ The app supports **optional personalization**: the user can enter their name and
 ```
 ├── index.html          # Main application (HTML + CSS + app logic)
 ├── js/
-│   ├── app-core.js     # Storage layer and tracker state stores
-│   └── app-content.js  # Universal Russian UI copy (greetings, letters, tips)
+│   ├── app-core.js         # Storage layer and tracker state stores
+│   ├── app-content.js      # Bilingual dynamic copy (RU / EN)
+│   ├── ui-i18n.js          # Static UI strings (381 keys × 2 locales)
+│   ├── i18n.js             # Locale engine
+│   ├── week-data-en.js     # English weekly medical facts (weeks 1–40)
+│   └── clinical-content.js # English FAQ, smart tips, gender facts
 ├── manifest.json       # PWA manifest
 ├── sw.js               # Service worker (offline shell cache)
 ├── apple-icon.png      # PWA home-screen icon (optional)
@@ -145,3 +149,9 @@ Portfolio / learning project — feel free to fork and adapt for non-commercial 
 ## Author
 
 Built by **Emir** — full-stack developer. HealthTech PWA case study for Upwork portfolio.
+
+## License & Copyright
+
+© 2026 Emir Useinov. All Rights Reserved.
+
+This project is published strictly for portfolio demonstration and evaluation purposes. Unauthorized copying, modification, distribution, or commercial use of any part of this codebase is strictly prohibited without explicit written permission from the author.

@@ -24,6 +24,7 @@ const STORAGE_KEYS = Object.freeze({
   HUSBAND_PHONE: 'husbandPhone',
   USER_NAME: 'userName',
   PARTNER_NAME: 'partnerName',
+  LANGUAGE: 'appLang',
   BABY_GENDER: 'babyGender',
   HEIGHT_CM: 'heightCm',
   UZI_PHOTO: 'uziPh',
@@ -50,6 +51,7 @@ const APP_RESET_KEYS = Object.freeze([
   STORAGE_KEYS.HUSBAND_PHONE,
   STORAGE_KEYS.USER_NAME,
   STORAGE_KEYS.PARTNER_NAME,
+  STORAGE_KEYS.LANGUAGE,
   STORAGE_KEYS.BABY_GENDER,
   STORAGE_KEYS.HEIGHT_CM,
   STORAGE_KEYS.UZI_PHOTO,
@@ -369,10 +371,12 @@ const GalleryStore = {
  */
 const UserProfile = {
   getDisplayName() {
-    return AppStorage.getString(STORAGE_KEYS.USER_NAME) || 'родная';
+    const fallback = AppI18n?.getLocale?.() === 'en' ? 'dear one' : 'родная';
+    return AppStorage.getString(STORAGE_KEYS.USER_NAME) || fallback;
   },
   getPartnerName() {
-    return AppStorage.getString(STORAGE_KEYS.PARTNER_NAME) || 'близкий человек';
+    const fallback = AppI18n?.getLocale?.() === 'en' ? 'loved one' : 'близкий человек';
+    return AppStorage.getString(STORAGE_KEYS.PARTNER_NAME) || fallback;
   },
   setDisplayName(name) {
     AppStorage.set(STORAGE_KEYS.USER_NAME, (name || '').trim());
