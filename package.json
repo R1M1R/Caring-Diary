@@ -6,7 +6,9 @@
     "start": "npx --yes serve . -p 4173",
     "preview": "npm run start",
     "build:portfolio": "node scripts/build-portfolio-monolith.js",
+    "build": "npm run build:portfolio && npm run verify && npm run audit",
     "verify": "node scripts/verify-smoke.js",
+    "audit": "node scripts/audit-leaked-ru.js",
     "icons": "python scripts/optimize-icons.py"
   }
 }

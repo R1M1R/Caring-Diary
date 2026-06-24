@@ -24,6 +24,12 @@ check('index.html exists and is monolith', () => {
   if (!index.includes('const V="_v16"')) throw new Error('missing v18 app bundle marker');
 });
 
+check('no cyrillic in user strings', () => {
+  const stripped = index.replace(/\/\*[\s\S]*?\*\//g, '').replace(/<!--[\s\S]*?-->/g, '');
+  const cyr = stripped.match(/[\u0400-\u04FF]/g);
+  if (cyr && cyr.length > 0) throw new Error(`${cyr.length} Cyrillic chars remain outside comments`);
+});
+
 check('English portfolio branding', () => {
   if (!index.includes('<html lang="en">')) throw new Error('lang not en');
   if (!index.includes('Caring Diary')) throw new Error('title missing');
@@ -66,7 +72,7 @@ check('manifest english', () => {
 
 check('service worker cache version', () => {
   const sw = fs.readFileSync(path.join(root, 'sw.js'), 'utf8');
-  if (!sw.includes('care-diary-portfolio')) throw new Error('SW cache name');
+  if (!sw.includes('care-diary-portfolio-v3')) throw new Error('SW cache name');
 });
 
 console.log(JSON.stringify({ passed: ok.length, failed: errors.length, errors }, null, 2));

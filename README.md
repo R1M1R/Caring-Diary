@@ -77,9 +77,10 @@ npm start
 Regenerate portfolio `index.html` from Vercel source:
 
 ```bash
-npm run build:portfolio
-npm run verify
+npm run build
 ```
+
+This runs `build:portfolio`, `verify` (9 smoke checks), and `audit` (0 leaked RU strings expected).
 
 ---
 

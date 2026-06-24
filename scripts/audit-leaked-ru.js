@@ -1,0 +1,14 @@
+'use strict';
+const fs = require('fs');
+const path = require('path');
+const root = path.join(__dirname, '..');
+const src = fs.readFileSync(path.join(root, '_vercel_source.html'), 'utf8');
+const out = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+const re = /(['"`])((?:\\.|(?!\1)[^\\])*[\u0400-\u04FF](?:\\.|(?!\1)[^\\])*)\1/g;
+const found = new Set();
+let m;
+while ((m = re.exec(src))) found.add(m[2]);
+const leaked = [...found].filter((s) => out.includes(s)).sort((a, b) => b.length - a.length);
+console.log('source RU strings:', found.size);
+console.log('still in index.html:', leaked.length);
+leaked.slice(0, 40).forEach((s) => console.log('·', s.slice(0, 100)));

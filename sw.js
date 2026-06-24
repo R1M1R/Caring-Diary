@@ -1,5 +1,5 @@
 /* Service Worker — offline cache for Caring Diary PWA */
-const CACHE = 'care-diary-portfolio-v1';
+const CACHE = 'care-diary-portfolio-v3';
 const PRECACHE = [
   './index.html',
   './manifest.webmanifest',

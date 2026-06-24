@@ -95,7 +95,11 @@ function buildI18nMap() {
     if (en[key] && ru[key] !== en[key]) map.push([ru[key], en[key]]);
   }
   map.sort((a, b) => b[0].length - a[0].length);
-  return map;
+  return map.filter(([from]) => {
+    if (!from || from.length < 6) return false;
+    if (from.length < 10 && !/[\s,.!?;:—–\-<>«»()]/.test(from)) return false;
+    return true;
+  });
 }
 
 function buildDefaultBagEn(ui) {
@@ -368,6 +372,11 @@ const V18_HTML = {
   'Для Индиры · v18': 'Caring Diary · portfolio',
   'Позвонить Эмиру': 'Call emergency contact',
   'Позвонить': 'Call',
+  '+7 (999) 123-45-67': '+1 (555) 123-4567',
+  '+7 (999) 123-45-67 / +996 777 123 456': '+1 (555) 123-4567',
+  '+1 (555) 123-4567 / +996 777 123 456': '+1 (555) 123-4567',
+  '<em>🥺</em>I\'m anxious': '<em>🥺</em>I feel anxious',
+  '<em>😫</em>I\'m tired': '<em>😫</em>I\'m exhausted',
   'Навигация приложения': 'App navigation',
   'Главная': 'Home',
   'Забота и препараты': 'Care and medications',
@@ -479,6 +488,8 @@ const JS_STRING_PATCHES = [
   ['Дневник беременности', 'Pregnancy journal'],
   ["showImgCompressOverlay('Сжимаем фото…')", "showImgCompressOverlay('Compressing photo…')"],
   ["showImgCompressOverlay('Сжимаем фото УЗИ…')", "showImgCompressOverlay('Compressing ultrasound…')"],
+  ["a.download='dlya-indiry-backup-'", "a.download='caring-diary-backup-'"],
+  ["a.download='otchet-vrach-'", "a.download='provider-report-'"],
 ];
 
 const SCRUB = [
@@ -487,9 +498,190 @@ const SCRUB = [
   /25 марта/gi, /25 мар/gi, /Tatar/gi, /татар/gi, /сынок/gi, /богатыр/gi,
 ];
 
-function capitalizeFirst(s) {
-  if (!s || typeof s !== 'string') return s;
-  return s.charAt(0).toUpperCase() + s.slice(1);
+const EXTRA_PATCHES = require('./v18-extra-patches');
+const JS_BLOCKS = require('./v18-en-js-blocks');
+
+function stripCyrillicFromComments(html) {
+  return html
+    .replace(/\/\*[\s\S]*?\*\//g, (c) => (/[\u0400-\u04FF]/.test(c) ? c.replace(/[\u0400-\u04FF]/g, '') : c))
+    .replace(/<!--[\s\S]*?-->/g, (c) => (/[\u0400-\u04FF]/.test(c) ? '' : c))
+    .replace(/^\/\/[^\n]*[\u0400-\u04FF][^\n]*/gm, (line) => line.replace(/[\u0400-\u04FF]/g, ''));
+}
+
+function countUserCyrillic(html) {
+  let h = html.replace(/function migratePortfolioEn\(\)[\s\S]*?localStorage\.setItem\('portfolioEnV2','1'\);\s*\}/, '');
+  h = h.replace(/\\u[0-9a-fA-F]{4}/g, '');
+  h = h.replace(/\/\*[\s\S]*?\*\//g, '').replace(/<!--[\s\S]*?-->/g, '');
+  const m = h.match(/[\u0400-\u04FF]/g);
+  return m ? m.length : 0;
+}
+
+function reportRemainingRu(html) {
+  const re = /(['"`])([^\1]*[\u0400-\u04FF][^\1]*)\1/g;
+  const found = new Set();
+  let m;
+  while ((m = re.exec(html))) found.add(m[2].slice(0, 120));
+  return [...found].sort((a, b) => b.length - a.length).slice(0, 40);
+}
+function cleanupMangledComments(html) {
+  const fixes = [
+    ['/* ══ SOFT PALETTE OVERRIDE — , ,  ══ */', '/* SOFT PALETTE OVERRIDE — warm, soft theme */'],
+    ['  /*   — ,  */', '  /* warmer accent tones */'],
+    ['// ══ IMAGE COMPRESSION (Canvas —   FileReader/base64  ) ══', '// IMAGE COMPRESSION (Canvas — lightweight preview pipeline)'],
+    ['//   npm: npm install browser-image-compression', '// optional npm: browser-image-compression'],
+    ['// ══ PHOTO STORAGE (IndexedDB —  localStorage,   ) ══', '// PHOTO STORAGE (IndexedDB — not localStorage)'],
+    ['// : ACOG, , Moore', '// Sources: ACOG, WHO, Moore'],
+    ['// FAQ — ,', '// FAQ — by trimester'],
+    ['// DEFAULT MEDS (seed —   localStorage   )', '// DEFAULT MEDS (seed — copied to localStorage on first run)'],
+    ['// .     ( )', '// Gender-specific supplemental facts'],
+    ['// ══ BMI & WHO WEIGHT CORRIDOR ══\n//      (2022 update)', '// BMI & WHO WEIGHT CORRIDOR (2022 guidance)'],
+    ['// ══ SWIPE GESTURE —    ══', '// SWIPE GESTURE — tab navigation'],
+    ['//   Подпись под кнопкой', '// Label under take button'],
+    ['// Label under button', '// Label under take button'],
+    ['/*  —  - ♀️ */', '/* Girl theme — pink palette */'],
+    ['/*  — -    ♂️ */', '/* Boy theme — blue palette */'],
+  ];
+  let out = html;
+  for (const [from, to] of fixes) out = out.split(from).join(to);
+  return out;
+}
+
+function jsMigrateKey(s) {
+  let out = '"';
+  for (const ch of s) {
+    const code = ch.charCodeAt(0);
+    if (code >= 0x0400 && code <= 0x04ff) out += '\\u' + code.toString(16).padStart(4, '0');
+    else if (ch === '"') out += '\\"';
+    else if (ch === '\\') out += '\\\\';
+    else if (ch === '\n') out += '\\n';
+    else out += ch;
+  }
+  return out + '"';
+}
+
+function serializeMigrateMap(map) {
+  return (
+    '{' +
+    Object.entries(map)
+      .map(([k, v]) => `${jsMigrateKey(k)}:${jsMigrateKey(v)}`)
+      .join(',') +
+    '}'
+  );
+}
+
+function buildPortfolioMigrate(ui) {
+  const map = {};
+  for (const k of Object.keys(ui.ru)) {
+    const ru = ui.ru[k];
+    const en = ui.en[k];
+    if (ru && en && ru !== en && /[\u0400-\u04FF]/.test(ru) && !/[\u0400-\u04FF]/.test(en)) map[ru] = en;
+  }
+  Object.assign(map, {
+    'УЗИ 2 триместра (20 нед.)': '2nd trimester ultrasound (20 wk.)',
+    'Глюкозный тест (24 нед.)': 'Glucose test (24 wk.)',
+    'Консультация 3 триместра': '3rd trimester visit',
+    'УЗИ перед родами (36 нед.)': 'Pre-birth ultrasound (36 wk.)',
+    'Скрининг 25 марта': 'Anatomy scan',
+    'Скрининг, УЗИ…': 'Screening, ultrasound…',
+    'Элевит 2': 'Prenatal Vitamins',
+    'Железо': 'Iron Supplementation',
+    'Омега-3 DHA': 'Omega-3 DHA',
+    'Обсуди с врачом на следующем приёме': 'Discuss with your provider at your next visit',
+    '2-й триместр: расцвет беременности': 'Second trimester: pregnancy glow',
+    '1-й триместр: адаптация организма': 'First trimester: body adapts',
+    '3-й триместр: финальный этап': 'Third trimester: final stretch',
+    'Это девочка! 🎀 Тема обновлена': "It's a girl! 🎀 Theme updated",
+    'Это мальчик! 🩵 Тема обновлена': "It's a boy! 🩵 Theme updated",
+    'Рост сохранён для расчёта ИМТ!': 'Height saved for BMI calculation!',
+    '👩‍⚕️ Для мамы (после родов)': '👩‍⚕️ For mom (postpartum)',
+    'Укажи рост от 140 до 210 см': 'Enter height between 140 and 210 cm',
+    '─── ПРЕПАРАТЫ СЕГОДНЯ ───': '─── MEDICATIONS TODAY ───',
+    'Сначала укажи дату родов!': 'Enter your due date first!',
+    '📊 Показать коридор ВОЗ': '📊 Show WHO range',
+    '👩 Для мамы (в родзал)': '👩 For mom (labor)',
+    'Норма (ИМТ 18.5–24.9)': 'Normal (BMI 18.5–24.9)',
+    'Избыток (ИМТ 25–29.9)': 'Overweight (BMI 25–29.9)',
+    '📊 Скрыть коридор ВОЗ': '📊 Hide WHO range',
+    'Недовес (ИМТ <18.5)': 'Underweight (BMI <18.5)',
+    'Ожирение (ИМТ ≥30)': 'Obese (BMI ≥30)',
+    ' (норма ≥10 за 2ч)': ' (norm ≥10 in 2h)',
+    'В норме по ВОЗ 🤍': 'Within WHO range 🤍',
+    '─── НА ПАУЗЕ ───': '─── PAUSED ───',
+    'Скопировано! 📋': 'Copied! 📋',
+    'Сумка в роддом': 'Hospital bag',
+    'Расписание на ': 'Schedule for ',
+    'Не определён': 'Not set',
+    'Пол малыша: ': 'Fetal sex: ',
+    'дней заботы': 'days of care',
+    'Шевеления': 'Baby kicks',
+    ' (неделя ': ' (week ',
+    ' · через ': ' · in ',
+    'День 🌤️': 'Day 🌤️',
+    'Вечер 🌆': 'Evening 🌆',
+    '(выпито)': '(taken)',
+    'малышка': 'baby',
+  });
+  return `function migratePortfolioEn(){
+  if(localStorage.getItem('portfolioEnV2')==='1')return;
+  const M=${serializeMigrateMap(map)};
+  try{
+    const appts=loadAppts();
+    let ch=false;
+    appts.forEach(a=>{if(M[a.title]){a.title=M[a.title];ch=true;}});
+    if(ch)saveAppts(appts);
+  }catch(e){}
+  try{
+    const raw=localStorage.getItem('bagList'+V);
+    if(raw){
+      const bag=JSON.parse(raw);
+      if(Array.isArray(bag)){
+        let ch=false;
+        bag.forEach(it=>{if(it.t&&M[it.t]){it.t=M[it.t];ch=true;}});
+        if(ch)localStorage.setItem('bagList'+V,JSON.stringify(bag));
+      }
+    }
+  }catch(e){}
+  try{
+    const raw=localStorage.getItem('medReg'+V);
+    if(raw){
+      const arr=JSON.parse(raw);
+      if(Array.isArray(arr)){
+        let ch=false;
+        arr.forEach(m=>{
+          if(m.name&&M[m.name]){m.name=M[m.name];ch=true;}
+          if(m.dose&&M[m.dose]){m.dose=M[m.dose];ch=true;}
+        });
+        if(ch)localStorage.setItem('medReg'+V,JSON.stringify(arr));
+      }
+    }
+  }catch(e){}
+  localStorage.setItem('portfolioEnV2','1');
+}`;
+}
+
+function applyPostBuildAssets(root) {
+  const swPath = path.join(root, 'sw.js');
+  let sw = fs.readFileSync(swPath, 'utf8');
+  sw = sw.replace(/care-diary-portfolio-v\d+/g, 'care-diary-portfolio-v3');
+  fs.writeFileSync(swPath, sw, 'utf8');
+}
+
+function fixJsStringLiterals(html) {
+  return html
+    .replace(/innerHTML='Today · <b>don't miss it!<\/b>'/g, "innerHTML='Today · <b>do not miss it!</b>'")
+    .replace(/you'll love reading this later/g, 'you will love reading this later')
+    .replace(/we'll remind you on Home/g, 'we will remind you on Home')
+    .replace(/I'll track trends/g, 'I will track trends');
+}
+
+function applyI18nToScript(script, map) {
+  let out = script;
+  for (const [from, to] of map) {
+    if (!from || !out.includes(from)) continue;
+    const safeTo = to.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    out = out.split(from).join(safeTo);
+  }
+  return out;
 }
 
 function applyReplacements(html, map) {
@@ -600,6 +792,39 @@ function capitalizeSentences(s){if(!s||typeof s!=='string')return s;return s.rep
     html = html.split(from).join(to);
   }
 
+  for (const [from, to] of JS_BLOCKS) {
+    if (html.includes(from)) html = html.split(from).join(to);
+  }
+
+  for (const [from, to] of EXTRA_PATCHES) {
+    if (from && html.includes(from)) html = html.split(from).join(to);
+  }
+
+  const i18nMap = buildI18nMap();
+  const scriptAnchor = html.indexOf('function capitalizeFirst(s)');
+  const scriptTag = html.lastIndexOf('<script>', scriptAnchor);
+  html = applyReplacements(html.slice(0, scriptTag), i18nMap) + applyI18nToScript(html.slice(scriptTag), i18nMap);
+
+  // Fix gender toast if i18n left unescaped apostrophes in single-quoted ternary
+  html = html.replace(
+    /toast\(g==='g'\?'It's a girl! 🎀 Theme updated':'It's a boy! 🩵 Theme updated'\)/g,
+    'toast(g===\'g\'?"It\'s a girl! 🎀 Theme updated":"It\'s a boy! 🩵 Theme updated")',
+  );
+
+  for (const re of SCRUB) {
+    html = html.replace(re, '');
+  }
+
+  html = stripCyrillicFromComments(html);
+  html = cleanupMangledComments(html);
+  html = fixJsStringLiterals(html);
+
+  for (const [from, to] of EXTRA_PATCHES) {
+    if (from && html.includes(from)) html = html.split(from).join(to);
+  }
+
+  html = html.replace(/\u0412\u0441\u0435\u0433\u043e completed days:/g, 'Total completed days:');
+
   html = html.replace(
     /  const daysSc=Math\.ceil\(\(new Date\(SCREENING_DATE\+'T12:00:00'\)-new Date\(\)\)\/86400000\);\s*if\(daysSc>=-1&&daysSc<=14\)\{\s*candidates\.push\(\{date:SCREENING_DATE,title:'[^']*',ico:'🔬',days:daysSc\}\);\s*\}\s*/g,
     '',
@@ -622,7 +847,28 @@ function capitalizeSentences(s){if(!s||typeof s!=='string')return s;return s.rep
     '.stip-txt{font-size:12px;font-weight:700;color:var(--t2);line-height:1.55;word-break:normal;overflow-wrap:break-word;hyphens:none}',
   );
 
+  const migrateFn = buildPortfolioMigrate(ui);
+  html = html.replace('function init(){', `${migrateFn}\nfunction init(){`);
+  html = html.replace(
+    'const migrated=migrateLegacyStorage();',
+    'migratePortfolioEn();\n  const migrated=migrateLegacyStorage();',
+  );
+  html = html.replace(
+    "if(md==='03-08'){document.getElementById('annexBanner').style.display='block';setTimeout(()=>confetti({particleCount:350,spread:130,origin:{y:.5},colors:['#FFD700','#E8325A','#C44DFF','#fff']}),700)}",
+    "if(md==='03-08'){const b=document.getElementById('annexBanner');b.style.display='block';const bt=b.querySelectorAll('div');if(bt[1])bt[1].textContent=\"Happy International Women's Day!\";if(bt[2])bt[2].textContent='You are amazing — take care of yourself and your baby 💐';setTimeout(()=>confetti({particleCount:350,spread:130,origin:{y:.5},colors:['#FFD700','#E8325A','#C44DFF','#fff']}),700)}",
+  );
+
+  html = html.replace(/\bfunction dtRu\(/g, 'function fmtShortDate(');
+  html = html.replace(/\bdtRu\(/g, 'fmtShortDate(');
+
+  const cyrLeft = countUserCyrillic(html);
+  if (cyrLeft > 0) {
+    console.warn(`Warning: ${cyrLeft} Cyrillic chars remain in user-visible output`);
+    reportRemainingRu(html).slice(0, 15).forEach((s) => console.warn('  ·', s));
+  }
+
   fs.writeFileSync(OUT, html, 'utf8');
+  applyPostBuildAssets(ROOT);
   const lines = html.split('\n').length;
   const sizeKb = (Buffer.byteLength(html) / 1024).toFixed(0);
   console.log(`Wrote ${OUT} (${lines} lines, ${sizeKb} KB)`);

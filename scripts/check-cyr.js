@@ -1,0 +1,14 @@
+'use strict';
+const fs = require('fs');
+const path = require('path');
+let h = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+h = h.replace(/function migratePortfolioEn\(\)[\s\S]*?localStorage\.setItem\('portfolioEnV2','1'\);\s*\}/, '');
+h = h.replace(/\/\*[\s\S]*?\*\//g, '').replace(/<!--[\s\S]*?-->/g, '');
+const c = (h.match(/[\u0400-\u04FF]/g) || []).length;
+console.log('cyrillic after removing migrate:', c);
+const re = /(['"`])((?:\\.|(?!\1)[^\\])*[\u0400-\u04FF](?:\\.|(?!\1)[^\\])*)\1/g;
+const f = new Set();
+let m;
+while ((m = re.exec(h))) f.add(m[2].slice(0, 120));
+console.log('strings:', f.size);
+[...f].sort((a, b) => b.length - a.length).slice(0, 50).forEach((s) => console.log('·', s));

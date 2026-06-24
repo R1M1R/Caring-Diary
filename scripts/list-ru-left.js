@@ -1,0 +1,11 @@
+'use strict';
+const fs = require('fs');
+let h = fs.readFileSync(require('path').join(__dirname, '..', 'index.html'), 'utf8');
+h = h.replace(/\/\*[\s\S]*?\*\//g, '').replace(/<!--[\s\S]*?-->/g, '');
+const re = /(['"`])((?:\\.|(?!\1)[^\\])*[\u0400-\u04FF](?:\\.|(?!\1)[^\\])*)\1/g;
+const f = new Set();
+let m;
+while ((m = re.exec(h))) f.add(m[2].slice(0, 120));
+const list = [...f].sort((a, b) => b.length - a.length);
+console.log('count', list.length);
+list.slice(0, 60).forEach((s) => console.log('·', s));
